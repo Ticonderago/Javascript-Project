@@ -1,0 +1,25 @@
+html, body, header, nav, h1, a,
+ul, li, strong, main, button, i,
+section, img, div, h2, p, form,
+fieldset, label, input, textarea,
+span, article, footer, time, small {
+  margin: 0px;
+  padding: 0px;
+  border: 0px;
+  color: rgb(28, 28, 28);
+  font-weight: normal;
+  outline: none;
+  box-sizing: content-box;
+  background: transparent;
+  text-decoration: none;
+}
+
+ol, ul, li {
+  list-style-type: none;
+}
+
+img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
