@@ -23,3 +23,7 @@ img {
   width: 100%;
   height: auto;
 }
+
+body {
+  background-color: rgb(255, 232, 255);
+}

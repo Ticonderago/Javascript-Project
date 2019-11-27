@@ -7,21 +7,29 @@
   <script type="application/javascript" src="./bundle/bundle.js"></script>
   <script type="application/javascript" src="./assets/functions.js"></script>
   <link rel="stylesheet" href="./stylesheets/reset.css">
-  <link rel="stylesheet" href="./stylesheets/some.css">
+  <link rel="stylesheet" href="./stylesheets/title.css">
+  <link rel="stylesheet" href="./stylesheets/canvas.css">
+  <link rel="stylesheet" href="./stylesheets/buttons.css">
   <title>Canvas App</title>
 </head>
 <body onload="returnFunction()">
   <div id="root">
-    <div className="canvas-back">
-      <canvas id="canv" width="575" height="575"></canvas>
-      <ul>
-        <li>
-          <button id="draw" 
-          onclick="mainFunction(document.getElementById(draw).textContent)">
-          Draw
-          </button>
-        </li>
-      </ul>
+    <div id="title-container">
+      <h1 id="title">Canvas Time!</h1>
+      <a id="github" href="https://github.com/Ticonderago/Javascript-Project" target="_blank">Canvas Github</a>
+    </div>
+    <div id="content-container">
+      <div id="canvas-back">
+        <canvas id="canv" width="800" height="550"></canvas>
+        <div id="button-container">
+          <button id="draw" onclick="mainFunction(document.getElementById('draw').textContent)">Draw</button>
+          <button id="spiral" onclick="mainFunction(document.getElementById('spiral').textContent)">Spiral</button>
+          <button id="star" onclick="mainFunction(document.getElementById('star').textContent)">Star</button>
+        </div>
+      </div>
+      <div id="side-bar">
+
+      </div>
     </div>
   </div>
 </body>
