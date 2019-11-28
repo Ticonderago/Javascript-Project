@@ -1,11 +1,17 @@
 /* work above the canvas */
 
+#content-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 #title-container {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-top: 20px;
-    margin-bottom: 5px;
+    margin-top: 15px;
+    margin-bottom: 10px;
 }
 
 #title, #github {
@@ -32,4 +38,5 @@
     cursor: pointer;
     color: rgb(24, 24, 24);
     background-color: rgb(137, 255, 220);
+    box-shadow: rgba(0, 0, 0, 0.2) 0 0 5px;
 }

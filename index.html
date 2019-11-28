@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="./stylesheets/reset.css">
   <link rel="stylesheet" href="./stylesheets/title.css">
   <link rel="stylesheet" href="./stylesheets/canvas.css">
+  <link rel="stylesheet" href="./stylesheets/slider.css">
   <link rel="stylesheet" href="./stylesheets/buttons.css">
   <title>Canvas App</title>
 </head>
@@ -28,7 +29,10 @@
         </div>
       </div>
       <div id="side-bar">
-
+        <div id="slide-container">
+            <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+            <p id="p-w">Line Width: <span id="line-w"></span></p>
+        </div>
       </div>
     </div>
   </div>

@@ -24,4 +24,5 @@
     cursor: pointer;
     background-color: rgb(122, 213, 255);
     color: rgb(0, 0, 0);
+    box-shadow: rgba(0, 0, 0, 0.2) 0 0 5px;
 }
