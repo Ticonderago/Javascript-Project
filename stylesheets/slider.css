@@ -1,16 +1,22 @@
 /* Slider styling */
 
 #slide-container {
-    margin-right: 360px;
-    width: 85%;
+    border: 1px solid black;
+    border-style: dashed;
+    margin-right: 40px;
+    width: 500px;
 }
   
 .slider {
+    margin-top: 20px;
+    margin-left: 15px;
+    margin-right: 15px;
+    margin-bottom: 15px;
     -webkit-appearance: none;
-    width: 100%;
+    width: 460px;
     height: 15px;
     border-radius: 5px;
-    background: #d3d3d3;
+    background: rgb(166, 255, 228);
     outline: none;
     opacity: 0.7;
     -webkit-transition: .2s;
@@ -27,7 +33,7 @@
     width: 25px;
     height: 25px;
     border-radius: 50%;
-    background: #4CAF50;
+    background: rgb(15, 15, 15);
     cursor: pointer;
 }
 
@@ -35,13 +41,19 @@
     width: 25px;
     height: 25px;
     border-radius: 50%;
-    background: #4CAF50;
+    background: rgb(15, 15, 15);
     cursor: pointer;
 }
 
 /* other parts of the slider */
 
 #p-w, #line-w {
+    margin-top: 5px;
     font-weight: bold;
+    font-size: 17px;
     /* add more after functionality */
+}
+
+#p-w {
+    margin-left: 200px;
 }
