@@ -10,7 +10,7 @@
     border: 1px dashed black;
 }
 
-#draw, #spiral, #star {
+#box, #spiral, #star {
     font-weight: bold;
     font-size: 16px;
     color: rgb(25, 25, 25);
@@ -22,7 +22,7 @@
     padding-bottom: 10px;
 }
 
-#draw:hover, #spiral:hover, #star:hover {
+#box:hover, #spiral:hover, #star:hover {
     cursor: pointer;
     background-color: rgb(122, 213, 255);
     color: rgb(0, 0, 0);

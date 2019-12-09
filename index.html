@@ -19,14 +19,14 @@
   <div id="root">
     <div id="title-container">
       <h1 id="title">Canvas Time!</h1>
-      <h1 id="current-selection">Currently Selected - none</h1>
+      <h1 id="current-selection"></h1>
       <a id="github" href="https://github.com/Ticonderago/Javascript-Project" target="_blank">Canvas Github</a>
     </div>
     <div id="content-container">
       <div id="canvas-back">
         <canvas id="canv" width="800" height="550"></canvas>
         <div id="button-container">
-          <button id="draw" onclick="mainFunction(document.getElementById('draw').textContent)">Draw</button>
+          <button id="box" onclick="mainFunction(document.getElementById('box').textContent)">Box</button>
           <button id="spiral" onclick="mainFunction(document.getElementById('spiral').textContent)">Spiral</button>
           <button id="star" onclick="mainFunction(document.getElementById('star').textContent)">Star</button>
         </div>
@@ -44,7 +44,7 @@
         <button id="reload-page" onclick="reloadFunction()">Reload!</button>
         <div id="slide-container">
             <p id="p-w">Line Width: <span id="line-w"></span></p>
-            <input type="range" min="1" max="40" value="1" class="slider" id="myRange">
+            <input type="range" min="0" max="40" value="0" class="slider" id="myRange">
         </div>
       </div>
     </div>
