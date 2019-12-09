@@ -30,8 +30,6 @@ const mainFunction = (htmlText) => {
         localStorage.setItem("Star", functionName)
         localStorage.setItem("fP", functionPicker);
     }
-
-    location.reload();
 }
 
 const returnFunction = () => {
@@ -76,14 +74,8 @@ const draw = () => {
         ctx.beginPath();
         ctx.moveTo(25, 25);
         ctx.lineTo(105, 25);
-        ctx.lineTo(25, 105);
-        ctx.fill();
-    
-        // Stroked triangle
-        ctx.beginPath();
-        ctx.moveTo(125, 125);
-        ctx.lineTo(125, 45);
-        ctx.lineTo(45, 125);
+        ctx.lineTo(105, 105);
+        ctx.lineTo(25, 105)
         ctx.closePath();
         ctx.stroke();
     }

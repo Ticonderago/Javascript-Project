@@ -6,6 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <script type="application/javascript" src="./bundle/bundle.js"></script>
   <script type="application/javascript" src="./assets/functions.js"></script>
+  <script type="application/javascript" src="./assets/nonrel_functions.js"></script>
   <link rel="stylesheet" href="./stylesheets/reset.css">
   <link rel="stylesheet" href="./stylesheets/title.css">
   <link rel="stylesheet" href="./stylesheets/canvas.css">
@@ -19,7 +20,7 @@
       <h1 id="title">Canvas Time!</h1>
       <a id="github" href="https://github.com/Ticonderago/Javascript-Project" target="_blank">Canvas Github</a>
     </div>
-    <!-- <h1></h1> -->
+    <h2 id="current-selection"></h2>
     <div id="content-container">
       <div id="canvas-back">
         <canvas id="canv" width="800" height="550"></canvas>
@@ -30,12 +31,14 @@
         </div>
       </div>
       <div id="side-bar">
+        <button id="reload-page" onclick="reloadFunction()">Reload!</button>
         <div id="slide-container">
             <p id="p-w">Line Width: <span id="line-w"></span></p>
-            <input type="range" min="1" max="30" value="1" class="slider" id="myRange">
+            <input type="range" min="1" max="40" value="1" class="slider" id="myRange">
         </div>
       </div>
     </div>
+    <h1 id="trade-mark">®</h1>
   </div>
 
   <script>
