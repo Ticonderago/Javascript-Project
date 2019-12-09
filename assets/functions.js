@@ -15,6 +15,8 @@ const mainFunction = (htmlText) => {
         functionName = "Draw";
         localStorage.setItem("Draw", functionName)
         localStorage.setItem("fP", functionPicker);
+        let output = document.getElementById("current-selection");
+        output.innerHTML = `Current Selection - ${functionName}`;
     }
 
     if (htmlText === "Spiral") {
@@ -22,6 +24,8 @@ const mainFunction = (htmlText) => {
         functionName = "Spiral";
         localStorage.setItem("Spiral", functionName)
         localStorage.setItem("fP", functionPicker);
+        let output = document.getElementById("current-selection");
+        output.innerHTML = `Current Selection - ${functionName}`;;
     }
 
     if (htmlText === "Star") {
@@ -29,6 +33,8 @@ const mainFunction = (htmlText) => {
         functionName = "Star";
         localStorage.setItem("Star", functionName)
         localStorage.setItem("fP", functionPicker);
+        let output = document.getElementById("current-selection");
+        output.innerHTML = `Current Selection - ${functionName}`;;
     }
 }
 

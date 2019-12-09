@@ -14,18 +14,19 @@
     margin-bottom: 10px;
 }
 
-#title, #github {
+#title, #github, #current-selection {
     font-weight: bold;
 }
 
 #title {
     font-size: 30px;
-    margin-left: 360px;
+    margin-left: 100px;
 }
 
 #github {
     margin-right: 225px;
     color: rgb(48, 48, 48);
+    font-size: 18px;
     background-color: rgb(166, 255, 228);
     border-radius: 3px;
     padding-left: 10px;
@@ -39,6 +40,11 @@
     color: rgb(24, 24, 24);
     background-color: rgb(137, 255, 220);
     box-shadow: rgba(0, 0, 0, 0.2) 0 0 5px;
+}
+
+#current-selection {
+    font-size: 30px;
+    margin-left: -40px;
 }
 
 #trade-mark {
