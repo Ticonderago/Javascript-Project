@@ -13,10 +13,28 @@ if (localStorage.getItem("lineWidth") === null) {
     localStorage.setItem("lineWidth", "0");
 }
 
+if (localStorage.getItem("Save") === null) {
+    localStorage.setItem("Save", "false");
+}
+
+if (localStorage.getItem("Restore") === null) {
+    localStorage.setItem("Restore", "false");
+}
+
 // functions for the canvas
 
 const mainFunction = (htmlText) => {
     var functionName = "";
+
+    if (htmlText === "Save Drawing") {
+        localStorage.setItem("Save", "true");
+        returnFunction();
+    }
+
+    if (htmlText === "Restore Drawing") {
+        localStorage.setItem("Restore", "true");
+        returnFunction();
+    }
 
     if (htmlText === "Box") {
         functionPicker = "1";
@@ -80,6 +98,14 @@ const returnFunction = () => {
     let output = document.getElementById("line-w");
     output.innerHTML = keepLineText;
     slider.value = keepLineText;
+
+    if (localStorage.getItem("Save") === "true") {
+        localStorage.setItem("Save", "false");
+    }
+
+    if (localStorage.getItem("Restore") === "true") {
+        localStorage.setItem("Restore", "false");
+    }
 }
 
 // drawing functions
@@ -109,21 +135,45 @@ const box = () => {
     if (canv.getContext) {
         const ctx = canvas.getContext('2d');
 
-        ctx.lineWidth = localStorage.getItem("lineWidth");
+        if (localStorage.getItem("Restore") === "true") {
+            ctx.restore();
 
-        ctx.beginPath();
-        ctx.moveTo((canvas.width / 2) - 45, (canvas.height / 2) - 45);
-        ctx.lineTo((canvas.width / 2) + 75, (canvas.height / 2) - 45);
-        ctx.lineTo((canvas.width / 2) + 75, (canvas.height / 2) + 75);
-        ctx.lineTo((canvas.width / 2) - 45, (canvas.height / 2) + 75);
-        ctx.closePath();
-
-        if (localStorage.getItem("checked") === "true") {
-            // Filled Box if checked
-            ctx.fill();
+            ctx.beginPath();
+            ctx.moveTo((canvas.width / 2) - 45, (canvas.height / 2) - 45);
+            ctx.lineTo((canvas.width / 2) + 75, (canvas.height / 2) - 45);
+            ctx.lineTo((canvas.width / 2) + 75, (canvas.height / 2) + 75);
+            ctx.lineTo((canvas.width / 2) - 45, (canvas.height / 2) + 75);
+            ctx.closePath();
+    
+            if (localStorage.getItem("checked") === "true") {
+                // Filled Box if checked
+                ctx.fill();
+            }
+    
+            ctx.stroke();
+            location.reload();
         }
-
-        ctx.stroke();
+        else {
+            if (localStorage.getItem("Save") === "true") {
+                ctx.save();
+            }
+    
+            ctx.lineWidth = localStorage.getItem("lineWidth");
+    
+            ctx.beginPath();
+            ctx.moveTo((canvas.width / 2) - 45, (canvas.height / 2) - 45);
+            ctx.lineTo((canvas.width / 2) + 75, (canvas.height / 2) - 45);
+            ctx.lineTo((canvas.width / 2) + 75, (canvas.height / 2) + 75);
+            ctx.lineTo((canvas.width / 2) - 45, (canvas.height / 2) + 75);
+            ctx.closePath();
+    
+            if (localStorage.getItem("checked") === "true") {
+                // Filled Box if checked
+                ctx.fill();
+            }
+    
+            ctx.stroke();
+        }
     }
 }
 
@@ -135,21 +185,30 @@ const spiral = () => {
     if (canv.getContext) {
         const ctx = canvas.getContext('2d');
 
-        ctx.lineWidth = localStorage.getItem("lineWidth");
-        // ctx.strokeStyle = "#0096FF"; // blue-ish color (line color)
-        ctx.beginPath();
-        ctx.moveTo(canvas.width / 2, canvas.height / 2);
-
-        for (var n = 0; n < 200; n++) {
-            radius += 0.75;
-            // make a complete circle every 50 iterations
-            angle += (Math.PI * 2) / 50;
-            var x = canvas.width / 2 + radius * Math.cos(angle);
-            var y = canvas.height / 2 + radius * Math.sin(angle);
-            ctx.lineTo(x, y);
+        if (localStorage.getItem("Restore") === "true") {
+            ctx.restore();
         }
-
-        ctx.stroke();
+        else {
+            if (localStorage.getItem("Save") === "true") {
+                ctx.save();
+            }
+    
+            ctx.lineWidth = localStorage.getItem("lineWidth");
+            // ctx.strokeStyle = "#0096FF"; // blue-ish color (line color)
+            ctx.beginPath();
+            ctx.moveTo(canvas.width / 2, canvas.height / 2);
+    
+            for (var n = 0; n < 200; n++) {
+                radius += 0.75;
+                // make a complete circle every 50 iterations
+                angle += (Math.PI * 2) / 50;
+                var x = canvas.width / 2 + radius * Math.cos(angle);
+                var y = canvas.height / 2 + radius * Math.sin(angle);
+                ctx.lineTo(x, y);
+            }
+    
+            ctx.stroke();
+        }
     }
 }
 
@@ -159,21 +218,30 @@ const star = () => {
     if (canv.getContext) {
         const ctx = canvas.getContext('2d');
 
-        ctx.lineWidth = localStorage.getItem("lineWidth");
-
-        ctx.moveTo((canvas.width / 2) - 15, (canvas.height / 2) - 60);
-        ctx.lineTo((canvas.width / 2) + 45, (canvas.height / 2) + 70);
-        ctx.lineTo((canvas.width / 2) - 100, (canvas.height / 2) - 5);
-        ctx.lineTo((canvas.width / 2) + 70, (canvas.height / 2) - 5);
-        ctx.lineTo((canvas.width / 2) - 70, (canvas.height / 2) + 70);
-        ctx.closePath();
-
-        if (localStorage.getItem("checked") === "true") {
-            // Filled Star if checked
-            ctx.fill();
+        if (localStorage.getItem("Restore") === "true") {
+            ctx.restore();
         }
-
-        ctx.stroke();
+        else {
+            if (localStorage.getItem("Save") === "true") {
+                ctx.save();
+            }
+    
+            ctx.lineWidth = localStorage.getItem("lineWidth");
+    
+            ctx.moveTo((canvas.width / 2) - 15, (canvas.height / 2) - 60);
+            ctx.lineTo((canvas.width / 2) + 45, (canvas.height / 2) + 70);
+            ctx.lineTo((canvas.width / 2) - 100, (canvas.height / 2) - 5);
+            ctx.lineTo((canvas.width / 2) + 70, (canvas.height / 2) - 5);
+            ctx.lineTo((canvas.width / 2) - 70, (canvas.height / 2) + 70);
+            ctx.closePath();
+    
+            if (localStorage.getItem("checked") === "true") {
+                // Filled Star if checked
+                ctx.fill();
+            }
+    
+            ctx.stroke();
+        }
     }
 }
 

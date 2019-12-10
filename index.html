@@ -17,10 +17,15 @@
 </head>
 <body onload="returnFunction()">
   <div id="root">
-    <div id="title-container">
-      <h1 id="title">Canvas Time!</h1>
-      <h1 id="current-selection"></h1>
-      <a id="github" href="https://github.com/Ticonderago/Javascript-Project" target="_blank">Canvas Github</a>
+    <div id="nav-container">
+        <div id="title-container">
+          <h1 id="title">Canvas Time!</h1>
+          <button id="save-drawing" onclick="mainFunction(document.getElementById('save-drawing').textContent)">Save Drawing</button>
+        </div>
+        <div id="github-container">
+            <h1 id="current-selection"></h1>
+            <a id="github" href="https://github.com/Ticonderago/Javascript-Project" target="_blank">Canvas Github</a>
+        </div>
     </div>
     <div id="content-container">
       <div id="canvas-back">
@@ -41,6 +46,7 @@
             explanation.
           </p>
         </div>
+        <button id="restore-drawing" onclick="mainFunction(document.getElementById('restore-drawing').textContent)">Restore Drawing</button>
         <button id="reload-page" onclick="reloadFunction()">Reload!</button>
         <div id="slide-container">
             <p id="p-w">Line Width: <span id="line-w"></span></p>

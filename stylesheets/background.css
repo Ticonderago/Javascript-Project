@@ -1,7 +1,7 @@
 /* sidebar content */
 
 #side-bar {
-    margin-top: -215px;
+    margin-top: -205px;
 }
 
 #app-background {
@@ -15,7 +15,7 @@
     font-weight: bold;
     margin-left: 187px;
     margin-top: 5px;
-    margin-bottom: -1px;
+    margin-bottom: 2px;
 }
 
 #background-info-f, #background-info-r {
@@ -41,6 +41,7 @@
     align-items: center;
     width: 500px;
     margin-bottom: 10px;
+    margin-top: 8px;
 }
 
 #fill-title {

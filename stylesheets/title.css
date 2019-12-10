@@ -1,41 +1,51 @@
 /* work above the canvas */
 
-#content-container {
+/* containers */
+
+#content-container, #nav-container, #title-container, #github-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-#title-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+#title-container, #github-container {
     margin-top: 15px;
     margin-bottom: 10px;
 }
 
-#title, #github, #current-selection {
+/* Details */
+
+#title, #github, #current-selection, #save-drawing {
     font-weight: bold;
 }
 
 #title {
     font-size: 30px;
-    margin-left: 100px;
+    margin-left: 80px;
 }
 
-#github {
-    margin-right: 225px;
+#github, #save-drawing {
     color: rgb(48, 48, 48);
     font-size: 18px;
     background-color: rgb(166, 255, 228);
     border-radius: 3px;
-    padding-left: 10px;
-    padding-right: 10px;
     padding-top: 8px;
     padding-bottom: 8px;
 }
 
-#github:hover {
+#github {
+    margin-right: 225px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+#save-drawing {
+    margin-left: 75px;
+    padding-left: 12px;
+    padding-right: 12px;
+}
+
+#github:hover, #save-drawing:hover {
     cursor: pointer;
     color: rgb(24, 24, 24);
     background-color: rgb(137, 255, 220);
@@ -43,8 +53,8 @@
 }
 
 #current-selection {
+    margin-right: 235px;
     font-size: 30px;
-    margin-left: -40px;
 }
 
 #trade-mark {
