@@ -1,0 +1,32 @@
+/* styling for color picker on sidebar */
+
+#all-lc-container, #line-color-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#line-color-container {
+    margin-bottom: 13px;
+}
+
+#line-color-title, #actual-l-color {
+    font-weight: bold;
+}
+
+#line-color-title {
+    font-size: 22px;
+}
+
+#myColor {
+    margin-bottom: -3px;
+    margin-left: 5px;
+    height: 35px;
+    width: 50px;
+}
+
+#actual-l-color {
+    font-size: 18px;
+    margin-left: 5px;
+    margin-top: -7.2px;
+}

@@ -8,6 +8,7 @@
     justify-content: space-between;
     align-items: center;
     border: 1px dashed black;
+    transition: 1s;
 }
 
 #box, #spiral, #star {

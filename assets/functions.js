@@ -1,4 +1,4 @@
-// To pick what should be drawn
+// null cases covered
 
 if (localStorage.getItem("fP") === null) {
     var functionPicker = "0";
@@ -21,16 +21,22 @@ if (localStorage.getItem("Restore") === null) {
     localStorage.setItem("Restore", "false");
 }
 
+if (localStorage.getItem("lineColor") === null) {
+    localStorage.setItem("lineColor", "#000000")
+}
+
 // functions for the canvas
 
 const mainFunction = (htmlText) => {
     var functionName = "";
 
+    // saves all properties for the restore to use
     if (htmlText === "Save Drawing") {
         localStorage.setItem("Save", "true");
         localStorage.setItem("savefP", localStorage.getItem("fP"));
         localStorage.setItem("saveFill", localStorage.getItem("checked"));
         localStorage.setItem("saveLine", localStorage.getItem("lineWidth"));
+        localStorage.setItem("saveLineColor", localStorage.getItem("lineColor"));
 
         if (localStorage.getItem("savefP") === "1") {
             localStorage.setItem("saveName", "Box");
@@ -78,6 +84,7 @@ const mainFunction = (htmlText) => {
 
 const returnFunction = () => {
 
+    // when user calls restore of old drawing
     if (localStorage.getItem("Restore") === "true") {
     
         if (localStorage.getItem("savefP") === "1") {
@@ -100,8 +107,10 @@ const returnFunction = () => {
         }
 
         var keepLineText = localStorage.getItem("saveLine");
+
+        var linecolor = localStorage.getItem("saveLineColor");
     }
-    else {
+    else {  // when user does not wanna restore
 
         if (localStorage.getItem("fP") === "0") {
             let output = document.getElementById("current-selection");
@@ -132,7 +141,14 @@ const returnFunction = () => {
         }
     
         var keepLineText = localStorage.getItem("lineWidth");
+
+        var linecolor = localStorage.getItem("lineColor");
     }
+
+    let cline = document.getElementById("actual-l-color");
+    let lineColorPicker = document.getElementById("myColor");
+    cline.innerHTML = linecolor;
+    lineColorPicker.value = linecolor;
 
     let slider = document.getElementById("myRange");
     let output = document.getElementById("line-w");
@@ -213,13 +229,14 @@ const spiral = () => {
 
         if (localStorage.getItem("Restore") === "true") {
             ctx.lineWidth = localStorage.getItem("saveLine");
+            ctx.strokeStyle = localStorage.getItem("saveLineColor");
             ctx.clearRect(0, 0, canvas.width, canvas.height);
         }
         else {
             ctx.lineWidth = localStorage.getItem("lineWidth");
+            ctx.strokeStyle = localStorage.getItem("lineColor"); // (line color)
         }
 
-        // ctx.strokeStyle = "#0096FF"; // blue-ish color (line color)
         ctx.beginPath();
         ctx.moveTo(canvas.width / 2, canvas.height / 2);
 

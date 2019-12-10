@@ -17,6 +17,7 @@
 
 #title, #github, #current-selection, #save-drawing {
     font-weight: bold;
+    transition: 1s;
 }
 
 #title {

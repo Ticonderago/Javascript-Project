@@ -1,3 +1,5 @@
+/*  reload the page */
+
 const reloadFunction = () => {
     location.reload();
 }
@@ -9,4 +11,12 @@ const check = () => {
     localStorage.setItem("checked", isChecked);
 }
 
-module.exports = { reloadFunction, check };
+/* line color picker */
+
+const lineColor = () => {
+    let linecolor = document.getElementById("myColor").value;
+    document.getElementById("actual-l-color").innerHTML = linecolor;
+    localStorage.setItem("lineColor", linecolor);
+}
+
+module.exports = { reloadFunction, check, lineColor };

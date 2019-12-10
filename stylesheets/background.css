@@ -1,13 +1,14 @@
 /* sidebar content */
 
 #side-bar {
-    margin-top: -145px;
+    margin-top: -150px;
 }
 
 #app-background {
-    margin-bottom: 120px;
+    margin-bottom: 70px;
     border: 1px dashed black;
     width: 500px;
+    transition: 1s;
 }
 
 #background-title {

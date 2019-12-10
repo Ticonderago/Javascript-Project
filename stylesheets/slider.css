@@ -5,6 +5,11 @@
     border-style: dashed;
     margin-right: 40px;
     width: 500px;
+    transition: 1s;
+}
+
+#slide-container:hover, #app-background:hover, #button-container:hover {
+    background-color: rgb(255, 208, 255);
 }
   
 .slider {
