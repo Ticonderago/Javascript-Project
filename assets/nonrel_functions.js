@@ -4,8 +4,8 @@ const reloadFunction = () => {
 
 /* checkbox function */
 
-function check() {
-    var isChecked = document.getElementById("myCheck").checked;
+const check = () => {
+    let isChecked = document.getElementById("myCheck").checked;
     localStorage.setItem("checked", isChecked);
 }
 

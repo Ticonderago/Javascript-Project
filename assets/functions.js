@@ -4,8 +4,13 @@ if (localStorage.getItem("fP") === null) {
     var functionPicker = "0";
     localStorage.setItem("fP", functionPicker);
 }
+
 if (localStorage.getItem("checked") === null) {
     localStorage.setItem("checked", false);
+}
+
+if (localStorage.getItem("lineWidth") === null) {
+    localStorage.setItem("lineWidth", "0");
 }
 
 // functions for the canvas
@@ -69,6 +74,12 @@ const returnFunction = () => {
     if (localStorage.getItem("checked") === "true") {
         document.getElementById("myCheck").checked = true;
     }
+
+    let slider = document.getElementById("myRange");
+    let keepLineText = localStorage.getItem("lineWidth");
+    let output = document.getElementById("line-w");
+    output.innerHTML = keepLineText;
+    slider.value = keepLineText;
 }
 
 // drawing functions

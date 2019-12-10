@@ -1,7 +1,7 @@
 /* sidebar content */
 
 #side-bar {
-    margin-top: -270px;
+    margin-top: -215px;
 }
 
 #app-background {
@@ -31,4 +31,24 @@
     margin-left: 10px;
     margin-right: 10px;
     margin-bottom: 5px;
+}
+
+/* fill */
+
+#checkbox-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 500px;
+    margin-bottom: 10px;
+}
+
+#fill-title {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+#myCheck {
+    margin-left: 5px;
+    font-size: 40px;
 }
