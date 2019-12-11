@@ -186,6 +186,8 @@ const returnFunction = () => {
     output.innerHTML = keepLineText;
     slider.value = keepLineText;
 
+    document.getElementById("has-saved").innerHTML = "";
+
     if (localStorage.getItem("Restore") === "true") {
         localStorage.setItem("Restore", "false");
     }
@@ -225,10 +227,11 @@ const box = () => {
         if (localStorage.getItem("Restore") === "true") {
             ctx.lineWidth = localStorage.getItem("saveLine");
             ctx.strokeStyle = localStorage.getItem("saveLineColor");
-            var drawX = localStorage.getItem("saveX");
-            var drawY = localStorage.getItem("saveY");
+            var drawX = parseInt(localStorage.getItem("saveX"), 10);
+            var drawY = parseInt(localStorage.getItem("saveY"), 10);
         }
         else {  // when load is not true
+            document.getElementById("has-loaded").innerHTML = "";
             ctx.lineWidth = localStorage.getItem("lineWidth");
             ctx.strokeStyle = localStorage.getItem("lineColor"); // (line color)
             var drawX = parseInt(localStorage.getItem("useX"), 10);
@@ -269,28 +272,34 @@ const spiral = () => {
 
     if (canv.getContext) {
         const ctx = canvas.getContext('2d');
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
 
         // if load is true take from save
         if (localStorage.getItem("Restore") === "true") {
             ctx.lineWidth = localStorage.getItem("saveLine");
             ctx.strokeStyle = localStorage.getItem("saveLineColor");
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            var drawX = parseInt(localStorage.getItem("saveX"), 10);
+            var drawY = parseInt(localStorage.getItem("saveY"), 10);
         }
         else {  // when load is not true
+            document.getElementById("has-loaded").innerHTML = "";
             ctx.lineWidth = localStorage.getItem("lineWidth");
             ctx.strokeStyle = localStorage.getItem("lineColor"); // (line color)
+            var drawX = parseInt(localStorage.getItem("useX"), 10);
+            var drawY = parseInt(localStorage.getItem("useY"), 10);
         }
 
         ctx.beginPath();
-        ctx.moveTo(canvas.width / 2, canvas.height / 2);
+        ctx.moveTo(drawX, drawY);
 
         for (var n = 0; n < 200; n++) {
             radius += 0.75;
             // make a complete circle every 50 iterations
             angle += (Math.PI * 2) / 50;
-            var x = canvas.width / 2 + radius * Math.cos(angle);
-            var y = canvas.height / 2 + radius * Math.sin(angle);
-            ctx.lineTo(x, y);
+
+            let spiralX = drawX + radius * Math.cos(angle);
+            let spiralY = drawY + radius * Math.sin(angle);
+            ctx.lineTo(spiralX, spiralY);
         }
 
         ctx.stroke();
@@ -303,24 +312,29 @@ const star = () => {
 
     if (canv.getContext) {
         const ctx = canvas.getContext('2d');
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
 
         // if load is true take from save
         if (localStorage.getItem("Restore") === "true") {
             ctx.lineWidth = localStorage.getItem("saveLine");
             ctx.strokeStyle = localStorage.getItem("saveLineColor"); // (line color)
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            var drawX = parseInt(localStorage.getItem("saveX"), 10);
+            var drawY = parseInt(localStorage.getItem("saveY"), 10);
         }
         else {  // when load is not true
+            document.getElementById("has-loaded").innerHTML = "";
             ctx.lineWidth = localStorage.getItem("lineWidth");
             ctx.strokeStyle = localStorage.getItem("lineColor");
+            var drawX = parseInt(localStorage.getItem("useX"), 10);
+            var drawY = parseInt(localStorage.getItem("useY"), 10);
         }
 
         ctx.beginPath();
-        ctx.moveTo((canvas.width / 2) - 15, (canvas.height / 2) - 60);
-        ctx.lineTo((canvas.width / 2) + 45, (canvas.height / 2) + 70);
-        ctx.lineTo((canvas.width / 2) - 100, (canvas.height / 2) - 5);
-        ctx.lineTo((canvas.width / 2) + 70, (canvas.height / 2) - 5);
-        ctx.lineTo((canvas.width / 2) - 70, (canvas.height / 2) + 70);
+        ctx.moveTo(drawX + 85, drawY - 55);
+        ctx.lineTo(drawX + 145, drawY + 75);
+        ctx.lineTo(drawX, drawY);
+        ctx.lineTo(drawX + 170, drawY);
+        ctx.lineTo(drawX + 30, drawY + 75);
         ctx.closePath();
 
         if (localStorage.getItem("Restore") === "true") {
