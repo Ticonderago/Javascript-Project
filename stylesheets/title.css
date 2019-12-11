@@ -53,25 +53,24 @@
 }
 
 #save-drawing {
-    margin-left: 50px;
+    margin-left: 40px;
 }
 
 #restore-drawing {
-    margin-left: -50px;     /* fix margins */
+    margin-right: 40px;
 }
 
 #has-saved, #has-loaded {
     font-weight: bold;
     font-size: 20px;
-    margin-left: 5px;
 }
 
 #has-saved {
-
+    margin-left: 5px;
 }
 
 #has-loaded {
-
+    margin-right: 5px;
 }
 
 #github:hover, #save-drawing:hover, #restore-drawing:hover {

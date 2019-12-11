@@ -42,7 +42,8 @@ const mainFunction = (htmlText) => {
         let hasSaved = "Saved!"
         document.getElementById("has-saved").innerHTML = hasSaved;
     }
-
+    
+    // if load drawing is clicked
     if (htmlText === "Load Drawing") {
 
         document.getElementById("has-saved").innerHTML = "";
@@ -53,6 +54,7 @@ const mainFunction = (htmlText) => {
         returnFunction();
     }
 
+    // selecting box to draw
     if (htmlText === "Box") {
         functionPicker = "1";
         functionName = "Box";
@@ -62,6 +64,7 @@ const mainFunction = (htmlText) => {
         output.innerHTML = `Current Selection - ${localStorage.getItem("Box")}`;
     }
 
+    // selecting spiral to draw
     if (htmlText === "Spiral") {
         functionPicker = "2";
         functionName = "Spiral";
@@ -71,6 +74,7 @@ const mainFunction = (htmlText) => {
         output.innerHTML = `Current Selection - ${localStorage.getItem("Spiral")}`;
     }
 
+    // selecting star to draw
     if (htmlText === "Star") {
         functionPicker = "3";
         functionName = "Star";
@@ -83,7 +87,7 @@ const mainFunction = (htmlText) => {
 
 const returnFunction = () => {
 
-    // when user calls restore of old drawing
+    // when user calls to load the old drawing
     if (localStorage.getItem("Restore") === "true") {
     
         if (localStorage.getItem("savefP") === "1") {
@@ -111,7 +115,7 @@ const returnFunction = () => {
 
         var fillcolor = localStorage.getItem("saveFillColor");
     }
-    else {  // when user does not wanna restore
+    else {  // when user does not wanna load drawing
 
         if (localStorage.getItem("fP") === "0") {
             let output = document.getElementById("current-selection");
@@ -173,6 +177,7 @@ const returnFunction = () => {
 
 // drawing functions
 
+// placeholder function for first time on site
 const initial = () => {
     const canvas = document.getElementById('canv');
 
@@ -199,12 +204,13 @@ const box = () => {
     if (canv.getContext) {
         const ctx = canvas.getContext('2d');
 
+        // if load is true take from save
         if (localStorage.getItem("Restore") === "true") {
             ctx.lineWidth = localStorage.getItem("saveLine");
             ctx.strokeStyle = localStorage.getItem("saveLineColor");
             ctx.clearRect(0, 0, canvas.width, canvas.height);
         }
-        else {
+        else {  // when load is not true
             ctx.lineWidth = localStorage.getItem("lineWidth");
             ctx.strokeStyle = localStorage.getItem("lineColor"); // (line color)
         }
@@ -244,12 +250,13 @@ const spiral = () => {
     if (canv.getContext) {
         const ctx = canvas.getContext('2d');
 
+        // if load is true take from save
         if (localStorage.getItem("Restore") === "true") {
             ctx.lineWidth = localStorage.getItem("saveLine");
             ctx.strokeStyle = localStorage.getItem("saveLineColor");
             ctx.clearRect(0, 0, canvas.width, canvas.height);
         }
-        else {
+        else {  // when load is not true
             ctx.lineWidth = localStorage.getItem("lineWidth");
             ctx.strokeStyle = localStorage.getItem("lineColor"); // (line color)
         }
@@ -277,12 +284,13 @@ const star = () => {
     if (canv.getContext) {
         const ctx = canvas.getContext('2d');
 
+        // if load is true take from save
         if (localStorage.getItem("Restore") === "true") {
             ctx.lineWidth = localStorage.getItem("saveLine");
             ctx.strokeStyle = localStorage.getItem("saveLineColor"); // (line color)
             ctx.clearRect(0, 0, canvas.width, canvas.height);
         }
-        else {
+        else {  // when load is not true
             ctx.lineWidth = localStorage.getItem("lineWidth");
             ctx.strokeStyle = localStorage.getItem("lineColor");
         }
