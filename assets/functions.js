@@ -5,24 +5,13 @@ if (localStorage.getItem("fP") === null) {
     localStorage.setItem("fP", functionPicker);
 }
 
-if (localStorage.getItem("checked") === null) {
-    localStorage.setItem("checked", false);
-}
+var keys = ["checked", "lineWidth", "Save", "Restore", "lineColor", "fillColor"];
+var values = ["false", "0", "false", "false", "#000000", "#000000"]
 
-if (localStorage.getItem("lineWidth") === null) {
-    localStorage.setItem("lineWidth", "0");
-}
-
-if (localStorage.getItem("Save") === null) {
-    localStorage.setItem("Save", "false");
-}
-
-if (localStorage.getItem("Restore") === null) {
-    localStorage.setItem("Restore", "false");
-}
-
-if (localStorage.getItem("lineColor") === null) {
-    localStorage.setItem("lineColor", "#000000")
+for (let i = 0; i < keys.length; i++) {
+    if (localStorage.getItem(keys[i]) === null) {
+        localStorage.setItem(keys[i], values[i]);
+    }
 }
 
 // functions for the canvas
@@ -37,6 +26,7 @@ const mainFunction = (htmlText) => {
         localStorage.setItem("saveFill", localStorage.getItem("checked"));
         localStorage.setItem("saveLine", localStorage.getItem("lineWidth"));
         localStorage.setItem("saveLineColor", localStorage.getItem("lineColor"));
+        localStorage.setItem("saveFillColor", localStorage.getItem("fillColor"));
 
         if (localStorage.getItem("savefP") === "1") {
             localStorage.setItem("saveName", "Box");
@@ -49,7 +39,7 @@ const mainFunction = (htmlText) => {
         }
     }
 
-    if (htmlText === "Restore Drawing") {
+    if (htmlText === "Load Drawing") {
         localStorage.setItem("Restore", "true");
         returnFunction();
     }
@@ -109,6 +99,8 @@ const returnFunction = () => {
         var keepLineText = localStorage.getItem("saveLine");
 
         var linecolor = localStorage.getItem("saveLineColor");
+
+        var fillcolor = localStorage.getItem("saveFillColor");
     }
     else {  // when user does not wanna restore
 
@@ -143,13 +135,23 @@ const returnFunction = () => {
         var keepLineText = localStorage.getItem("lineWidth");
 
         var linecolor = localStorage.getItem("lineColor");
-    }
 
+        var fillcolor = localStorage.getItem("fillColor");
+    }
+    
+    // setting line color
     let cline = document.getElementById("actual-l-color");
     let lineColorPicker = document.getElementById("myColor");
     cline.innerHTML = linecolor;
     lineColorPicker.value = linecolor;
 
+    // setting fill color
+    let cfill = document.getElementById("actual-f-color");
+    let fillColorPicker = document.getElementById("myFillColor");
+    cfill.innerHTML = fillcolor;
+    fillColorPicker.value = fillcolor;
+
+    // slider inputs
     let slider = document.getElementById("myRange");
     let output = document.getElementById("line-w");
     output.innerHTML = keepLineText;
@@ -181,6 +183,7 @@ const initial = () => {
     }
 }
 
+// Box Drawing
 const box = () => {
     const canvas = document.getElementById('canv');
 
@@ -189,10 +192,12 @@ const box = () => {
 
         if (localStorage.getItem("Restore") === "true") {
             ctx.lineWidth = localStorage.getItem("saveLine");
+            ctx.strokeStyle = localStorage.getItem("saveLineColor");
             ctx.clearRect(0, 0, canvas.width, canvas.height);
         }
         else {
             ctx.lineWidth = localStorage.getItem("lineWidth");
+            ctx.strokeStyle = localStorage.getItem("lineColor"); // (line color)
         }
 
         ctx.beginPath();
@@ -205,6 +210,7 @@ const box = () => {
         if (localStorage.getItem("Restore") === "true") {
             if (localStorage.getItem("saveFill") === "true") {
                 // Filled Box if checked
+                ctx.fillStyle = localStorage.getItem("saveFillColor"); // (fill color)
                 ctx.fill();
             }
             ctx.stroke();
@@ -212,6 +218,7 @@ const box = () => {
         else {
             if (localStorage.getItem("checked") === "true") {
                 // Filled Box if checked
+                ctx.fillStyle = localStorage.getItem("fillColor");
                 ctx.fill();
             }
             ctx.stroke();
@@ -219,6 +226,7 @@ const box = () => {
     }
 }
 
+// Spiral Drawing
 const spiral = () => {
     const canvas = document.getElementById('canv');
     var radius = 0;
@@ -253,6 +261,7 @@ const spiral = () => {
     }
 }
 
+// Star Drawing
 const star = () => {
     const canvas = document.getElementById('canv');
 
@@ -261,10 +270,12 @@ const star = () => {
 
         if (localStorage.getItem("Restore") === "true") {
             ctx.lineWidth = localStorage.getItem("saveLine");
+            ctx.strokeStyle = localStorage.getItem("saveLineColor"); // (line color)
             ctx.clearRect(0, 0, canvas.width, canvas.height);
         }
         else {
             ctx.lineWidth = localStorage.getItem("lineWidth");
+            ctx.strokeStyle = localStorage.getItem("lineColor");
         }
 
         ctx.beginPath();
@@ -277,14 +288,16 @@ const star = () => {
 
         if (localStorage.getItem("Restore") === "true") {
             if (localStorage.getItem("saveFill") === "true") {
-                // Filled Box if checked
+                // Filled Star if checked
+                ctx.fillStyle = localStorage.getItem("saveFillColor"); // (fill color)
                 ctx.fill();
             }
             ctx.stroke();
         }
         else {
             if (localStorage.getItem("checked") === "true") {
-                // Filled Box if checked
+                // Filled Star if checked
+                ctx.fillStyle = localStorage.getItem("fillColor");
                 ctx.fill();
             }
             ctx.stroke();

@@ -1,6 +1,7 @@
 /* styling for color picker on sidebar */
 
-#all-lc-container, #line-color-container {
+/* line color picker */
+#all-lc-container, #all-fc-container, #line-color-container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -30,3 +31,6 @@
     margin-left: 5px;
     margin-top: -7.2px;
 }
+
+/* fill color picker */
+

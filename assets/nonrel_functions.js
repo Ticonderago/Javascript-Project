@@ -19,4 +19,12 @@ const lineColor = () => {
     localStorage.setItem("lineColor", linecolor);
 }
 
-module.exports = { reloadFunction, check, lineColor };
+/* fill color picker */
+
+const fillColor = () => {
+    let fillcolor = document.getElementById("myFillColor").value;
+    document.getElementById("actual-f-color").innerHTML = fillcolor;
+    localStorage.setItem("fillColor", fillcolor);
+}
+
+module.exports = { reloadFunction, check, lineColor, fillColor };

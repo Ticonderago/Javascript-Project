@@ -47,7 +47,7 @@
             explanation.
           </p>
         </div>
-        <button id="restore-drawing" onclick="mainFunction(document.getElementById('restore-drawing').textContent)">Restore Drawing</button>
+        <button id="restore-drawing" onclick="mainFunction(document.getElementById('restore-drawing').textContent)">Load Drawing</button>
         <button id="reload-page" onclick="reloadFunction()">Reload!</button>
         <div id="slide-container">
           <p id="p-w">Line Width: <span id="line-w"></span></p>
@@ -62,6 +62,13 @@
               <input type="color" id="myColor" onchange="lineColor()">
             </div>
             <h1 id="actual-l-color"></h1>
+          </div>
+          <div id="all-fc-container">
+            <div id="fill-color-container">
+              <h1 id="fill-color-title">Fill Color: </h1>
+              <input type="color" id="myFillColor" onchange="fillColor()">
+            </div>
+            <h1 id="actual-f-color"></h1>
           </div>
         </div>
       </div>
