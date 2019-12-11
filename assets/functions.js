@@ -16,6 +16,19 @@ for (let i = 0; i < keys.length; i++) {
 
 // functions for the canvas
 
+// getting mouse cursor position
+
+const getCursorPosition = (canvas, event) => {
+    const rect = canvas.getBoundingClientRect();
+    const x = event.clientX - rect.left;
+    const y = event.clientY - rect.top;
+
+    localStorage.setItem("useX", x);
+    localStorage.setItem("useY", y);
+    returnFunction();
+}
+
+// button function
 const mainFunction = (htmlText) => {
     var functionName = "";
 
@@ -27,6 +40,8 @@ const mainFunction = (htmlText) => {
         localStorage.setItem("saveLine", localStorage.getItem("lineWidth"));
         localStorage.setItem("saveLineColor", localStorage.getItem("lineColor"));
         localStorage.setItem("saveFillColor", localStorage.getItem("fillColor"));
+        localStorage.setItem("saveX", localStorage.getItem("useX"));
+        localStorage.setItem("saveY", localStorage.getItem("useY"));
 
         if (localStorage.getItem("savefP") === "1") {
             localStorage.setItem("saveName", "Box");
@@ -85,6 +100,7 @@ const mainFunction = (htmlText) => {
     }
 }
 
+// when the page is reloaded runs this function
 const returnFunction = () => {
 
     // when user calls to load the old drawing
@@ -203,23 +219,27 @@ const box = () => {
 
     if (canv.getContext) {
         const ctx = canvas.getContext('2d');
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
 
         // if load is true take from save
         if (localStorage.getItem("Restore") === "true") {
             ctx.lineWidth = localStorage.getItem("saveLine");
             ctx.strokeStyle = localStorage.getItem("saveLineColor");
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            var drawX = localStorage.getItem("saveX");
+            var drawY = localStorage.getItem("saveY");
         }
         else {  // when load is not true
             ctx.lineWidth = localStorage.getItem("lineWidth");
             ctx.strokeStyle = localStorage.getItem("lineColor"); // (line color)
+            var drawX = parseInt(localStorage.getItem("useX"), 10);
+            var drawY = parseInt(localStorage.getItem("useY"), 10);
         }
 
         ctx.beginPath();
-        ctx.moveTo((canvas.width / 2) - 45, (canvas.height / 2) - 45);
-        ctx.lineTo((canvas.width / 2) + 75, (canvas.height / 2) - 45);
-        ctx.lineTo((canvas.width / 2) + 75, (canvas.height / 2) + 75);
-        ctx.lineTo((canvas.width / 2) - 45, (canvas.height / 2) + 75);
+        ctx.moveTo(drawX, drawY);
+        ctx.lineTo((drawX + 75), drawY);
+        ctx.lineTo((drawX + 75), (drawY + 75));
+        ctx.lineTo(drawX, (drawY + 75));
         ctx.closePath();
 
         if (localStorage.getItem("Restore") === "true") {
@@ -322,4 +342,4 @@ const star = () => {
     }
 }
 
-module.exports = { returnFunction, mainFunction };
+module.exports = { returnFunction, mainFunction, getCursorPosition };

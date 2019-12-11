@@ -29,27 +29,3 @@
     color: rgb(0, 0, 0);
     box-shadow: rgba(0, 0, 0, 0.2) 0 0 5px;
 }
-
-/* reloading page */
-
-#reload-page {
-    margin-bottom: 15px;
-    margin-left: 135px;
-    color: rgb(48, 48, 48);
-    font-weight: bold;
-    font-size: 22px;
-    width: 40%;
-    background-color: rgb(166, 255, 228);
-    border-radius: 3px;
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-}
-
-#reload-page:hover {
-    cursor: pointer;
-    color: rgb(24, 24, 24);
-    background-color: rgb(137, 255, 220);
-    box-shadow: rgba(0, 0, 0, 0.2) 0 0 5px;
-}

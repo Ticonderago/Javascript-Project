@@ -46,7 +46,6 @@
             explanation.
           </p>
         </div>
-        <button id="reload-page" onclick="reloadFunction()">Reload!</button>
         <div id="slide-container">
           <p id="p-w">Line Width: <span id="line-w"></span></p>
           <input type="range" min="0" max="35" value="0" class="slider" id="myRange">
@@ -93,6 +92,13 @@
       output.innerHTML = this.value;
       localStorage.setItem("lineWidth", this.value)
     }
+  </script>
+
+  <script>
+    const drawcanv = document.getElementById('canv')
+    drawcanv.addEventListener('mousedown', (e) => {
+      getCursorPosition(drawcanv, e);
+    })
   </script>
 
 </body>
