@@ -2,7 +2,9 @@
 
 /* containers */
 
-#content-container, #nav-container, #title-container, #github-container {
+#content-container, #nav-container, #title-container, 
+#github-container, #save-restore-container,
+#save-container, #restore-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -15,7 +17,7 @@
 
 /* Details */
 
-#title, #github, #current-selection, #save-drawing {
+#title, #github, #current-selection, #save-drawing, #restore-drawing {
     font-weight: bold;
     transition: 1s;
 }
@@ -25,7 +27,7 @@
     margin-left: 80px;
 }
 
-#github, #save-drawing {
+#github, #save-drawing, #restore-drawing {
     color: rgb(48, 48, 48);
     font-size: 18px;
     background-color: rgb(166, 255, 228);
@@ -34,19 +36,45 @@
     padding-bottom: 8px;
 }
 
+#save-drawing, #restore-drawing {
+    padding-left: 12px;
+    padding-right: 12px;
+}
+
 #github {
     margin-right: 227px;
     padding-left: 10px;
     padding-right: 10px;
 }
 
-#save-drawing {
-    margin-left: 75px;
-    padding-left: 12px;
-    padding-right: 12px;
+#save-restore-container {
+    margin-top: 5px;
+    margin-bottom: 15px;
 }
 
-#github:hover, #save-drawing:hover {
+#save-drawing {
+    margin-left: 50px;
+}
+
+#restore-drawing {
+    margin-left: -50px;     /* fix margins */
+}
+
+#has-saved, #has-loaded {
+    font-weight: bold;
+    font-size: 20px;
+    margin-left: 5px;
+}
+
+#has-saved {
+
+}
+
+#has-loaded {
+
+}
+
+#github:hover, #save-drawing:hover, #restore-drawing:hover {
     cursor: pointer;
     color: rgb(24, 24, 24);
     background-color: rgb(137, 255, 220);

@@ -37,9 +37,18 @@ const mainFunction = (htmlText) => {
         else if (localStorage.getItem("savefP") === "3") {
             localStorage.setItem("saveName", "Star");
         }
+
+        document.getElementById("has-loaded").innerHTML = "";
+        let hasSaved = "Saved!"
+        document.getElementById("has-saved").innerHTML = hasSaved;
     }
 
     if (htmlText === "Load Drawing") {
+
+        document.getElementById("has-saved").innerHTML = "";
+        let hasLoaded = "Loaded!"
+        document.getElementById("has-loaded").innerHTML = hasLoaded;
+
         localStorage.setItem("Restore", "true");
         returnFunction();
     }

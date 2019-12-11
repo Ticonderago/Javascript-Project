@@ -1,36 +1,33 @@
 /* styling for color picker on sidebar */
 
-/* line color picker */
-#all-lc-container, #all-fc-container, #line-color-container {
+/* line color picker and fill color picker */
+#all-lc-container, #all-fc-container, #line-color-container, #fill-color-container {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-#line-color-container {
+#line-color-container, #fill-color-container {
     margin-bottom: 13px;
 }
 
-#line-color-title, #actual-l-color {
+#line-color-title, #actual-l-color, #fill-color-title, #actual-f-color {
     font-weight: bold;
 }
 
-#line-color-title {
+#line-color-title, #fill-color-title {
     font-size: 22px;
 }
 
-#myColor {
+#myColor, #myFillColor {
     margin-bottom: -3px;
     margin-left: 5px;
     height: 35px;
     width: 50px;
 }
 
-#actual-l-color {
+#actual-l-color, #actual-f-color {
     font-size: 18px;
     margin-left: 5px;
     margin-top: -7.2px;
 }
-
-/* fill color picker */
-

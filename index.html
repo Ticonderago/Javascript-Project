@@ -21,7 +21,6 @@
     <div id="nav-container">
         <div id="title-container">
           <h1 id="title">Canvas Time!</h1>
-          <button id="save-drawing" onclick="mainFunction(document.getElementById('save-drawing').textContent)">Save Drawing</button>
         </div>
         <div id="github-container">
             <h1 id="current-selection"></h1>
@@ -47,7 +46,6 @@
             explanation.
           </p>
         </div>
-        <button id="restore-drawing" onclick="mainFunction(document.getElementById('restore-drawing').textContent)">Load Drawing</button>
         <button id="reload-page" onclick="reloadFunction()">Reload!</button>
         <div id="slide-container">
           <p id="p-w">Line Width: <span id="line-w"></span></p>
@@ -69,6 +67,16 @@
               <input type="color" id="myFillColor" onchange="fillColor()">
             </div>
             <h1 id="actual-f-color"></h1>
+          </div>
+          <div id="save-restore-container">
+            <div id="save-container">
+              <button id="save-drawing" onclick="mainFunction(document.getElementById('save-drawing').textContent)">Save Drawing</button>
+              <h1 id="has-saved"></h1>
+            </div>
+            <div id="restore-container">
+              <button id="restore-drawing" onclick="mainFunction(document.getElementById('restore-drawing').textContent)">Load Drawing</button>
+              <h1 id="has-loaded"></h1>
+            </div>
           </div>
         </div>
       </div>
