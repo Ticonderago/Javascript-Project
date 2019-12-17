@@ -6,8 +6,17 @@
 #github-container, #save-restore-container,
 #save-container, #restore-container {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+}
+
+#nav-container, #title-container, 
+#github-container, #save-restore-container,
+#save-container, #restore-container {
+    justify-content: space-between;
+}
+
+#content-container {
+    justify-content: center;
 }
 
 #title-container, #github-container {
@@ -42,7 +51,7 @@
 }
 
 #github {
-    margin-right: 227px;
+    margin-right: 208px;
     padding-left: 10px;
     padding-right: 10px;
 }
@@ -81,11 +90,6 @@
 }
 
 #current-selection {
-    margin-right: 225px;
+    margin-left: 240px;
     font-size: 30px;
-}
-
-#trade-mark {
-    font-size: 16px;
-    margin-top: 200px;
 }

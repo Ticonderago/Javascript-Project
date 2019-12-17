@@ -34,6 +34,39 @@
     margin-bottom: 5px;
 }
 
+/* page detail */
+
+#first-detail, #second-detail, #third-detail {
+    background-color: rgb(166, 255, 228);
+    color: rgb(166, 255, 228);
+    transition: 1s;
+}
+
+#first-detail {
+    width: 70px;
+    height: 30px;
+    margin-top: -170px;
+}
+
+#second-detail {
+    width: 30px;
+    height: 260px;
+    margin-bottom: -225px;
+    margin-left: 20px;
+}
+
+#third-detail {
+    width: 70px;
+    height: 30px;
+    margin-top: 225px;
+}
+
+#first-detail:hover, #second-detail:hover,
+#third-detail:hover {
+    background-color: rgb(137, 255, 220);
+    color: rgb(137, 255, 220);
+}
+
 /* fill */
 
 #checkbox-container {
