@@ -18,13 +18,22 @@ for (let i = 0; i < keys.length; i++) {
 
 // getting mouse cursor position
 
-const getCursorPosition = (canvas, event) => {
+const getCursorPositionDown = (canvas, event) => {
     const rect = canvas.getBoundingClientRect();
-    const x = event.clientX - rect.left;
-    const y = event.clientY - rect.top;
+    let x = event.clientX - rect.left;
+    let y = event.clientY - rect.top;
 
     localStorage.setItem("useX", x);
     localStorage.setItem("useY", y);
+}
+
+const getCursorPositionUp = (canvas, event) => {
+    const rect = canvas.getBoundingClientRect();
+    let x = event.clientX - rect.left;
+    let y = event.clientY - rect.top;
+
+    localStorage.setItem("upX", x);
+    localStorage.setItem("upY", y);
     returnFunction();
 }
 
@@ -34,14 +43,26 @@ const mainFunction = (htmlText) => {
 
     // saves all properties for the restore to use
     if (htmlText === "Save Drawing") {
-        localStorage.setItem("Save", "true");
-        localStorage.setItem("savefP", localStorage.getItem("fP"));
-        localStorage.setItem("saveFill", localStorage.getItem("checked"));
-        localStorage.setItem("saveLine", localStorage.getItem("lineWidth"));
-        localStorage.setItem("saveLineColor", localStorage.getItem("lineColor"));
-        localStorage.setItem("saveFillColor", localStorage.getItem("fillColor"));
-        localStorage.setItem("saveX", localStorage.getItem("useX"));
-        localStorage.setItem("saveY", localStorage.getItem("useY"));
+
+        var newSaveKeys = ["Save", "savefP", "saveFill", "saveLine", 
+                            "saveLineColor", "saveFillColor", "saveX", 
+                            "saveY", "saveUpX", "saveUpY"
+                        ];
+
+        var savedValues = ["true", localStorage.getItem("fP"), 
+                            localStorage.getItem("checked"), 
+                            localStorage.getItem("lineWidth"), 
+                            localStorage.getItem("lineColor"), 
+                            localStorage.getItem("fillColor"),
+                            localStorage.getItem("useX"),
+                            localStorage.getItem("useY"),
+                            localStorage.getItem("upX"),
+                            localStorage.getItem("upY")
+                        ];
+
+        for (let i = 0; i < newSaveKeys.length; i++) {
+            localStorage.setItem(newSaveKeys[i], savedValues[i]);
+        }
 
         if (localStorage.getItem("savefP") === "1") {
             localStorage.setItem("saveName", "Box");
@@ -227,22 +248,34 @@ const box = () => {
         if (localStorage.getItem("Restore") === "true") {
             ctx.lineWidth = localStorage.getItem("saveLine");
             ctx.strokeStyle = localStorage.getItem("saveLineColor");
+
             var drawX = parseInt(localStorage.getItem("saveX"), 10);
             var drawY = parseInt(localStorage.getItem("saveY"), 10);
+
+            var drawEndX = parseInt(localStorage.getItem("saveUpX"), 10);
+            var drawEndY = parseInt(localStorage.getItem("saveUpY"), 10);
         }
         else {  // when load is not true
             document.getElementById("has-loaded").innerHTML = "";
             ctx.lineWidth = localStorage.getItem("lineWidth");
             ctx.strokeStyle = localStorage.getItem("lineColor"); // (line color)
+
             var drawX = parseInt(localStorage.getItem("useX"), 10);
             var drawY = parseInt(localStorage.getItem("useY"), 10);
+
+            var drawEndX = parseInt(localStorage.getItem("upX"), 10);
+            var drawEndY = parseInt(localStorage.getItem("upY"), 10);
         }
+
+        // checking the end point to make sure the drawing is properly constructed
+        var diffX = drawEndX - drawX;
+        var diffY = drawEndY - drawY;
 
         ctx.beginPath();
         ctx.moveTo(drawX, drawY);
-        ctx.lineTo((drawX + 75), drawY);
-        ctx.lineTo((drawX + 75), (drawY + 75));
-        ctx.lineTo(drawX, (drawY + 75));
+        ctx.lineTo((drawX + diffX), drawY);
+        ctx.lineTo((drawX + diffX), (drawY + diffY));
+        ctx.lineTo(drawX, (drawY + diffY));
         ctx.closePath();
 
         if (localStorage.getItem("Restore") === "true") {
@@ -356,4 +389,9 @@ const star = () => {
     }
 }
 
-module.exports = { returnFunction, mainFunction, getCursorPosition };
+module.exports = { 
+    returnFunction, 
+    mainFunction, 
+    getCursorPositionDown,
+    getCursorPositionUp
+};

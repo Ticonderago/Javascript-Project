@@ -99,9 +99,24 @@
   </script>
 
   <script>
+    var bool = false;
     const drawcanv = document.getElementById('canv')
+
     drawcanv.addEventListener('mousedown', (e) => {
-      getCursorPosition(drawcanv, e);
+      bool = true;
+      getCursorPositionDown(drawcanv, e);
+    })
+
+    drawcanv.addEventListener('mouseup', (e) => {
+      bool = false;
+      getCursorPositionUp(drawcanv, e);
+    })
+
+    drawcanv.addEventListener('mouseout', (e) => {
+      if (bool === true) {
+        bool = false;
+        getCursorPositionUp(drawcanv, e);
+      }
     })
   </script>
 
