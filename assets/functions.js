@@ -353,14 +353,33 @@ const star = () => {
             ctx.strokeStyle = localStorage.getItem("saveLineColor"); // (line color)
             var drawX = parseInt(localStorage.getItem("saveX"), 10);
             var drawY = parseInt(localStorage.getItem("saveY"), 10);
+
+            var drawEndX = parseInt(localStorage.getItem("saveUpX"), 10);
+            var drawEndY = parseInt(localStorage.getItem("saveUpY"), 10);
         }
         else {  // when load is not true
             document.getElementById("has-loaded").innerHTML = "";
             ctx.lineWidth = localStorage.getItem("lineWidth");
             ctx.strokeStyle = localStorage.getItem("lineColor");
+
             var drawX = parseInt(localStorage.getItem("useX"), 10);
             var drawY = parseInt(localStorage.getItem("useY"), 10);
+
+            var drawEndX = parseInt(localStorage.getItem("upX"), 10);
+            var drawEndY = parseInt(localStorage.getItem("upY"), 10);
         }
+
+        // checking the end point to make sure the drawing is properly constructed
+        var diffX = drawEndX - drawX;
+        var diffY = drawEndY - drawY;
+
+        // ctx.beginPath();
+        // ctx.moveTo((drawEndX + diffX) / 6, (drawY - drawEndY) / 8);
+        // ctx.lineTo(drawEndX - 25, diffY);
+        // ctx.lineTo(drawX, drawY);
+        // ctx.lineTo(drawEndX, drawY);
+        // ctx.lineTo(drawX + 30, diffY);
+        // ctx.closePath();
 
         ctx.beginPath();
         ctx.moveTo(drawX + 85, drawY - 55);
