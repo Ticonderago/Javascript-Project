@@ -373,20 +373,12 @@ const star = () => {
         var diffX = drawEndX - drawX;
         var diffY = drawEndY - drawY;
 
-        // ctx.beginPath();
-        // ctx.moveTo((drawEndX + diffX) / 6, (drawY - drawEndY) / 8);
-        // ctx.lineTo(drawEndX - 25, diffY);
-        // ctx.lineTo(drawX, drawY);
-        // ctx.lineTo(drawEndX, drawY);
-        // ctx.lineTo(drawX + 30, diffY);
-        // ctx.closePath();
-
         ctx.beginPath();
-        ctx.moveTo(drawX + 85, drawY - 55);
-        ctx.lineTo(drawX + 145, drawY + 75);
-        ctx.lineTo(drawX, drawY);
-        ctx.lineTo(drawX + 170, drawY);
-        ctx.lineTo(drawX + 30, drawY + 75);
+        ctx.moveTo(drawX + (diffX / 2), drawY);
+        ctx.lineTo(drawEndX - (diffX / 4), drawEndY);
+        ctx.lineTo(drawX, drawY + (diffY / 2.25));
+        ctx.lineTo(drawEndX, drawY + (diffY / 2.25));
+        ctx.lineTo(drawX + (diffX / 4), drawEndY);
         ctx.closePath();
 
         if (localStorage.getItem("Restore") === "true") {
