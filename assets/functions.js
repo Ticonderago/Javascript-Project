@@ -387,15 +387,28 @@ const star = () => {
 
         // checking the end point to make sure the drawing is properly constructed
         var diffX = drawEndX - drawX;
-        var diffY = drawEndY - drawY;
 
-        ctx.beginPath();
-        ctx.moveTo(drawX + (diffX / 2), drawY);
-        ctx.lineTo(drawEndX - (diffX / 4), drawEndY);
-        ctx.lineTo(drawX, drawY + (diffY / 2.25));
-        ctx.lineTo(drawEndX, drawY + (diffY / 2.25));
-        ctx.lineTo(drawX + (diffX / 4), drawEndY);
-        ctx.closePath();
+        if (drawEndY < drawY) {
+            var diffY = drawY - drawEndY;
+
+            ctx.beginPath();
+            ctx.moveTo(drawX + (diffX / 2), drawEndY);
+            ctx.lineTo(drawEndX - (diffX / 4), drawY);
+            ctx.lineTo(drawX, drawEndY + (diffY / 2.25));
+            ctx.lineTo(drawEndX, drawEndY + (diffY / 2.25));
+            ctx.lineTo(drawX + (diffX / 4), drawY);
+            ctx.closePath();
+        } else {
+            var diffY = drawEndY - drawY;
+
+            ctx.beginPath();
+            ctx.moveTo(drawX + (diffX / 2), drawY);
+            ctx.lineTo(drawEndX - (diffX / 4), drawEndY);
+            ctx.lineTo(drawX, drawY + (diffY / 2.25));
+            ctx.lineTo(drawEndX, drawY + (diffY / 2.25));
+            ctx.lineTo(drawX + (diffX / 4), drawEndY);
+            ctx.closePath();
+        }
 
         if (localStorage.getItem("Restore") === "true") {
             if (localStorage.getItem("saveFill") === "true") {
