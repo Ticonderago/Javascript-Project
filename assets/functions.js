@@ -311,29 +311,45 @@ const spiral = () => {
         if (localStorage.getItem("Restore") === "true") {
             ctx.lineWidth = localStorage.getItem("saveLine");
             ctx.strokeStyle = localStorage.getItem("saveLineColor");
+
             var drawX = parseInt(localStorage.getItem("saveX"), 10);
             var drawY = parseInt(localStorage.getItem("saveY"), 10);
+
+            var drawEndX = parseInt(localStorage.getItem("saveUpX"), 10);
+            var drawEndY = parseInt(localStorage.getItem("saveUpY"), 10);
         }
         else {  // when load is not true
             document.getElementById("has-loaded").innerHTML = "";
             ctx.lineWidth = localStorage.getItem("lineWidth");
             ctx.strokeStyle = localStorage.getItem("lineColor"); // (line color)
+
             var drawX = parseInt(localStorage.getItem("useX"), 10);
             var drawY = parseInt(localStorage.getItem("useY"), 10);
+
+            var drawEndX = parseInt(localStorage.getItem("saveUpX"), 10);
+            var drawEndY = parseInt(localStorage.getItem("saveUpY"), 10);
         }
+
+        // checking the end point to make sure the drawing is properly constructed
+        var diffX = drawEndX - drawX;
+        var diffY = drawEndY - drawY;
+
+        // to get the center of the spiral
+        var centerX = diffX / 2;
+        var centerY = diffY / 2;
 
         ctx.beginPath();
-        ctx.moveTo(drawX, drawY);
+        ctx.moveTo(centerX, centerY);
 
-        for (var n = 0; n < 200; n++) {
-            radius += 0.75;
-            // make a complete circle every 50 iterations
-            angle += (Math.PI * 2) / 50;
+        // while (radius * 2 > diffX) {
+        //     radius += 0.75;
+        //     // make a complete circle every 50 iterations
+        //     angle += (Math.PI * 2) / 50;
 
-            let spiralX = drawX + radius * Math.cos(angle);
-            let spiralY = drawY + radius * Math.sin(angle);
-            ctx.lineTo(spiralX, spiralY);
-        }
+        //     let spiralX = centerX + radius * Math.cos(angle);
+        //     let spiralY = centerY + radius * Math.sin(angle);
+        //     ctx.lineTo(spiralX, spiralY);
+        // }
 
         ctx.stroke();
     }
