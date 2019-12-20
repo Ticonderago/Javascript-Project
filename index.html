@@ -88,6 +88,7 @@
   </div>
 
   <script>
+    // slider script
     var slider = document.getElementById("myRange");
     var output = document.getElementById("line-w");
     output.innerHTML = slider.value;
@@ -96,25 +97,33 @@
       output.innerHTML = this.value;
       localStorage.setItem("lineWidth", this.value)
     }
-  </script>
 
-  <script>
+    // cursor event listeners
     var bool = false;
     const drawcanv = document.getElementById('canv')
 
     drawcanv.addEventListener('mousedown', (e) => {
       bool = true;
+      localStorage.setItem("downBool", "true");
       getCursorPositionDown(drawcanv, e);
+    })
+
+    drawcanv.addEventListener('mousemove', (e) => {
+      if (localStorage.getItem("downBool") === "true") {
+        getCursorPositionUp(drawcanv, e);
+      }
     })
 
     drawcanv.addEventListener('mouseup', (e) => {
       bool = false;
+      localStorage.setItem("downBool", "false")
       getCursorPositionUp(drawcanv, e);
     })
 
     drawcanv.addEventListener('mouseout', (e) => {
       if (bool === true) {
         bool = false;
+        localStorage.setItem("downBool", "false")
         getCursorPositionUp(drawcanv, e);
       }
     })

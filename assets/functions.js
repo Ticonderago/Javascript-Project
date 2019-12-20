@@ -5,8 +5,8 @@ if (localStorage.getItem("fP") === null) {
     localStorage.setItem("fP", functionPicker);
 }
 
-var keys = ["checked", "lineWidth", "Save", "Restore", "lineColor", "fillColor"];
-var values = ["false", "0", "false", "false", "#000000", "#000000"]
+var keys = ["checked", "lineWidth", "Save", "Restore", "lineColor", "fillColor", "downBool"];
+var values = ["false", "0", "false", "false", "#000000", "#000000", "false"]
 
 for (let i = 0; i < keys.length; i++) {
     if (localStorage.getItem(keys[i]) === null) {
