@@ -101,13 +101,13 @@ const mainFunction = (htmlText) => {
     }
 
     // selecting spiral to draw
-    if (htmlText === "Spiral") {
+    if (htmlText === "Pentagon") {
         functionPicker = "2";
-        functionName = "Spiral";
-        localStorage.setItem("Spiral", functionName)
+        functionName = "Pentagon";
+        localStorage.setItem("Pentagon", functionName)
         localStorage.setItem("fP", functionPicker);
         let output = document.getElementById("current-selection");
-        output.innerHTML = `Current Selection - ${localStorage.getItem("Spiral")}`;
+        output.innerHTML = `Current Selection - ${localStorage.getItem("Pentagon")}`;
     }
 
     // selecting star to draw
@@ -132,7 +132,7 @@ const returnFunction = () => {
         }
     
         if (localStorage.getItem("savefP") === "2") {
-            spiral();
+            pentagon();
         }
     
         if (localStorage.getItem("savefP") === "3") {
@@ -168,8 +168,8 @@ const returnFunction = () => {
     
         if (localStorage.getItem("fP") === "2") {
             let output = document.getElementById("current-selection");
-            output.innerHTML = `Current Selection - ${localStorage.getItem("Spiral")}`;
-            spiral();
+            output.innerHTML = `Current Selection - ${localStorage.getItem("Pentagon")}`;
+            pentagon();
         }
     
         if (localStorage.getItem("fP") === "3") {
@@ -278,30 +278,13 @@ const box = () => {
         ctx.lineTo(drawX, (drawY + diffY));
         ctx.closePath();
 
-        if (localStorage.getItem("Restore") === "true") {
-            if (localStorage.getItem("saveFill") === "true") {
-                // Filled Box if checked
-                ctx.fillStyle = localStorage.getItem("saveFillColor"); // (fill color)
-                ctx.fill();
-            }
-            ctx.stroke();
-        }
-        else {
-            if (localStorage.getItem("checked") === "true") {
-                // Filled Box if checked
-                ctx.fillStyle = localStorage.getItem("fillColor");
-                ctx.fill();
-            }
-            ctx.stroke();
-        }
+        fillChecking(ctx);
     }
 }
 
-// Spiral Drawing
-const spiral = () => {
+// Pentagon Drawing
+const pentagon = () => {
     const canvas = document.getElementById('canv');
-    var radius = 0;
-    var angle = 0;
 
     if (canv.getContext) {
         const ctx = canvas.getContext('2d');
@@ -326,32 +309,36 @@ const spiral = () => {
             var drawX = parseInt(localStorage.getItem("useX"), 10);
             var drawY = parseInt(localStorage.getItem("useY"), 10);
 
-            var drawEndX = parseInt(localStorage.getItem("saveUpX"), 10);
-            var drawEndY = parseInt(localStorage.getItem("saveUpY"), 10);
+            var drawEndX = parseInt(localStorage.getItem("upX"), 10);
+            var drawEndY = parseInt(localStorage.getItem("upY"), 10);
         }
 
         // checking the end point to make sure the drawing is properly constructed
         var diffX = drawEndX - drawX;
-        var diffY = drawEndY - drawY;
 
-        // to get the center of the spiral
-        var centerX = diffX / 2;
-        var centerY = diffY / 2;
+        if (drawEndY < drawY) {     // when the end Y is smaller than the start Y
+            var diffY = drawY - drawEndY;
 
-        ctx.beginPath();
-        ctx.moveTo(centerX, centerY);
+            ctx.beginPath();
+            ctx.moveTo(drawX + (diffX / 2), drawEndY);
+            ctx.lineTo(drawEndX, drawEndY + (diffY / 2.25));
+            ctx.lineTo(drawEndX - (diffX / 4), drawY);
+            ctx.lineTo(drawX + (diffX / 4), drawY);
+            ctx.lineTo(drawX, drawEndY + (diffY / 2.25));
+            ctx.closePath();
+        } else {    // when end Y is greater than start Y
+            var diffY = drawEndY - drawY;
 
-        // while (radius * 2 > diffX) {
-        //     radius += 0.75;
-        //     // make a complete circle every 50 iterations
-        //     angle += (Math.PI * 2) / 50;
+            ctx.beginPath();
+            ctx.moveTo(drawX + (diffX / 2), drawY);
+            ctx.lineTo(drawEndX, drawY + (diffY / 2.25));
+            ctx.lineTo(drawEndX - (diffX / 4), drawEndY);
+            ctx.lineTo(drawX + (diffX / 4), drawEndY);
+            ctx.lineTo(drawX, drawY + (diffY / 2.25));
+            ctx.closePath();
+        }
 
-        //     let spiralX = centerX + radius * Math.cos(angle);
-        //     let spiralY = centerY + radius * Math.sin(angle);
-        //     ctx.lineTo(spiralX, spiralY);
-        // }
-
-        ctx.stroke();
+        fillChecking(ctx);
     }
 }
 
@@ -367,6 +354,7 @@ const star = () => {
         if (localStorage.getItem("Restore") === "true") {
             ctx.lineWidth = localStorage.getItem("saveLine");
             ctx.strokeStyle = localStorage.getItem("saveLineColor"); // (line color)
+
             var drawX = parseInt(localStorage.getItem("saveX"), 10);
             var drawY = parseInt(localStorage.getItem("saveY"), 10);
 
@@ -388,7 +376,7 @@ const star = () => {
         // checking the end point to make sure the drawing is properly constructed
         var diffX = drawEndX - drawX;
 
-        if (drawEndY < drawY) {
+        if (drawEndY < drawY) {     // when the end Y is smaller than the start Y
             var diffY = drawY - drawEndY;
 
             ctx.beginPath();
@@ -398,7 +386,7 @@ const star = () => {
             ctx.lineTo(drawEndX, drawEndY + (diffY / 2.25));
             ctx.lineTo(drawX + (diffX / 4), drawY);
             ctx.closePath();
-        } else {
+        } else {    // when end Y is greater than start Y
             var diffY = drawEndY - drawY;
 
             ctx.beginPath();
@@ -410,22 +398,28 @@ const star = () => {
             ctx.closePath();
         }
 
-        if (localStorage.getItem("Restore") === "true") {
-            if (localStorage.getItem("saveFill") === "true") {
-                // Filled Star if checked
-                ctx.fillStyle = localStorage.getItem("saveFillColor"); // (fill color)
-                ctx.fill();
-            }
-            ctx.stroke();
+        fillChecking(ctx);
+    }
+}
+
+// Checking for fill function
+
+const fillChecking = (ctx) => {
+    if (localStorage.getItem("Restore") === "true") {
+        if (localStorage.getItem("saveFill") === "true") {
+            // Filled Star if checked
+            ctx.fillStyle = localStorage.getItem("saveFillColor"); // (fill color)
+            ctx.fill();
         }
-        else {
-            if (localStorage.getItem("checked") === "true") {
-                // Filled Star if checked
-                ctx.fillStyle = localStorage.getItem("fillColor");
-                ctx.fill();
-            }
-            ctx.stroke();
+        ctx.stroke();
+    }
+    else {
+        if (localStorage.getItem("checked") === "true") {
+            // Filled Star if checked
+            ctx.fillStyle = localStorage.getItem("fillColor");
+            ctx.fill();
         }
+        ctx.stroke();
     }
 }
 
