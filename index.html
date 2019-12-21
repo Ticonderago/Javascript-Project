@@ -105,6 +105,7 @@
     drawcanv.addEventListener('mousedown', (e) => {
       bool = true;
       localStorage.setItem("downBool", "true");
+      localStorage.setItem("opacity", "true");
       getCursorPositionDown(drawcanv, e);
     })
 
@@ -116,14 +117,16 @@
 
     drawcanv.addEventListener('mouseup', (e) => {
       bool = false;
-      localStorage.setItem("downBool", "false")
+      localStorage.setItem("downBool", "false");
+      localStorage.setItem("opacity", "false");
       getCursorPositionUp(drawcanv, e);
     })
 
     drawcanv.addEventListener('mouseout', (e) => {
       if (bool === true) {
         bool = false;
-        localStorage.setItem("downBool", "false")
+        localStorage.setItem("downBool", "false");
+        localStorage.setItem("opacity", "false");
         getCursorPositionUp(drawcanv, e);
       }
     })

@@ -5,8 +5,8 @@ if (localStorage.getItem("fP") === null) {
     localStorage.setItem("fP", functionPicker);
 }
 
-var keys = ["checked", "lineWidth", "Save", "Restore", "lineColor", "fillColor", "downBool"];
-var values = ["false", "0", "false", "false", "#000000", "#000000", "false"]
+var keys = ["checked", "lineWidth", "Save", "Restore", "lineColor", "fillColor", "downBool", "opacity"];
+var values = ["false", "0", "false", "false", "#000000", "#000000", "false", "false"]
 
 for (let i = 0; i < keys.length; i++) {
     if (localStorage.getItem(keys[i]) === null) {
@@ -260,6 +260,8 @@ const box = () => {
             ctx.lineWidth = localStorage.getItem("lineWidth");
             ctx.strokeStyle = localStorage.getItem("lineColor"); // (line color)
 
+            opacityCheck(ctx);
+
             var drawX = parseInt(localStorage.getItem("useX"), 10);
             var drawY = parseInt(localStorage.getItem("useY"), 10);
 
@@ -305,6 +307,8 @@ const pentagon = () => {
             document.getElementById("has-loaded").innerHTML = "";
             ctx.lineWidth = localStorage.getItem("lineWidth");
             ctx.strokeStyle = localStorage.getItem("lineColor"); // (line color)
+
+            opacityCheck(ctx);
 
             var drawX = parseInt(localStorage.getItem("useX"), 10);
             var drawY = parseInt(localStorage.getItem("useY"), 10);
@@ -366,6 +370,8 @@ const star = () => {
             ctx.lineWidth = localStorage.getItem("lineWidth");
             ctx.strokeStyle = localStorage.getItem("lineColor");
 
+            opacityCheck(ctx);
+
             var drawX = parseInt(localStorage.getItem("useX"), 10);
             var drawY = parseInt(localStorage.getItem("useY"), 10);
 
@@ -420,6 +426,17 @@ const fillChecking = (ctx) => {
             ctx.fill();
         }
         ctx.stroke();
+    }
+}
+
+// Checking for opacity
+
+const opacityCheck = (ctx) => {
+    if (localStorage.getItem("opacity") === "true") {
+        ctx.globalAlpha = 0.7;
+    }
+    else {
+        ctx.globalAlpha = 1;
     }
 }
 
