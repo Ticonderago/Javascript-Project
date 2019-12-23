@@ -8,7 +8,8 @@
     transition: 1s;
 }
 
-#slide-container:hover, #app-background:hover, #button-container:hover {
+#slide-container:hover, #app-background:hover, 
+#button-container:hover, #drawing-but-container:hover {
     background-color: rgb(255, 208, 255);
 }
   
