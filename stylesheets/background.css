@@ -1,11 +1,7 @@
 /* sidebar content */
 
-#side-bar {
-    margin-top: -80px;
-}
-
 #app-background {
-    margin-bottom: 95px;
+    margin-bottom: 110px;
     border: 1px dashed black;
     width: 500px;
     transition: 1s;
@@ -36,26 +32,39 @@
 
 /* page detail */
 
-#first-detail, #second-detail, #third-detail {
+#first-detail, #second-detail, #third-detail,
+#fourth-detail, #fifth-detail {
     background-color: rgb(166, 255, 228);
     color: rgb(166, 255, 228);
-    transition: 1s;
 }
 
 #first-detail {
     width: 70px;
     height: 30px;
-    margin-top: -170px;
+    margin-top: 25px;
 }
 
 #second-detail {
     width: 30px;
-    height: 260px;
+    height: 270px;
     margin-bottom: -225px;
     margin-left: 20px;
 }
 
 #third-detail {
+    width: 70px;
+    height: 30px;
+    margin-top: 225px;
+}
+
+#fourth-detail {
+    width: 30px;
+    height: 222px;
+    margin-bottom: -225px;
+    margin-left: 20px;
+}
+
+#fifth-detail {
     width: 70px;
     height: 30px;
     margin-top: 225px;
