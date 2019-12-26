@@ -44,21 +44,24 @@ const mainFunction = (htmlText) => {
     // saves all properties for the restore to use
     if (htmlText === "Save Drawing") {
 
-        var newSaveKeys = ["Save", "savefP", "saveFill", "saveLine", 
-                            "saveLineColor", "saveFillColor", "saveX", 
-                            "saveY", "saveUpX", "saveUpY"
-                        ];
+        var newSaveKeys = [
+            "Save", "savefP", "saveFill", "saveLine", 
+            "saveLineColor", "saveFillColor", "saveX", 
+            "saveY", "saveUpX", "saveUpY"
+        ];
 
-        var savedValues = ["true", localStorage.getItem("fP"), 
-                            localStorage.getItem("checked"), 
-                            localStorage.getItem("lineWidth"), 
-                            localStorage.getItem("lineColor"), 
-                            localStorage.getItem("fillColor"),
-                            localStorage.getItem("useX"),
-                            localStorage.getItem("useY"),
-                            localStorage.getItem("upX"),
-                            localStorage.getItem("upY")
-                        ];
+        var savedValues = [
+            "true", 
+            localStorage.getItem("fP"), 
+            localStorage.getItem("checked"), 
+            localStorage.getItem("lineWidth"), 
+            localStorage.getItem("lineColor"), 
+            localStorage.getItem("fillColor"),
+            localStorage.getItem("useX"),
+            localStorage.getItem("useY"),
+            localStorage.getItem("upX"),
+            localStorage.getItem("upY")
+        ];
 
         for (let i = 0; i < newSaveKeys.length; i++) {
             localStorage.setItem(newSaveKeys[i], savedValues[i]);
