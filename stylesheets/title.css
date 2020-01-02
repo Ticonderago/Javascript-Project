@@ -10,34 +10,30 @@
 }
 
 #github-container, #save-restore-container,
-#save-container, #restore-container,
-#title-container, #nav-container {
+#save-container, #restore-container {
     justify-content: space-between;
 }
 
-#content-container {
+#content-container, #title-container, #nav-container {
     justify-content: center;
 }
 
 #title-container, #github-container {
     margin-top: 15px;
     margin-bottom: 10px;
+    width: 490px;
 }
 
 #github-container {
-    margin-right: 75px;
+    margin-right: -435px;
+    margin-left: 310px;
 }
 
 /* Details */
 
-#title, #github, #current-selection, #save-drawing, #restore-drawing {
+#github, #current-selection, #save-drawing, #restore-drawing, #current-drawing {
     font-weight: bold;
     transition: 1s;
-}
-
-#title {
-    font-size: 30px;
-    margin-right: 260px;
 }
 
 #github, #save-drawing, #restore-drawing {
@@ -93,7 +89,13 @@
     box-shadow: rgba(0, 0, 0, 0.2) 0 0 5px;
 }
 
+/* selection titles */
+
 #current-selection {
     margin-right: 180px;
     font-size: 30px;
+}
+
+#current-drawing {
+    font-size: 22px;
 }
