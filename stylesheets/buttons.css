@@ -46,9 +46,17 @@
 
 /* below sidebar */
 
+#curr-drawing-cont {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 500px;
+    margin-top: 34px;
+    margin-bottom: 5px;
+}
+
 #drawing-but-container {
-    width: 480px;
-    margin-top: 40px;
+    width: 482px;
 }
 
 #drawing-1, #drawing-2, #drawing-3 {
