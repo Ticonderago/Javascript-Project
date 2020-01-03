@@ -2,12 +2,19 @@
 
 if (localStorage.getItem("fP") === null) {
     var functionPicker = "0";
-    document.getElementById("drawing-1").disabled = true;
     localStorage.setItem("fP", functionPicker);
 }
 
-var keys = ["checked", "lineWidth", "Save", "Restore", "lineColor", "fillColor", "downBool", "opacity"];
-var values = ["false", "0", "false", "false", "#000000", "#000000", "false", "false"]
+var keys = [
+            "checked", "lineWidth", "Save", "Restore",
+            "lineColor", "fillColor", "downBool", "opacity",
+            "D1Bol", "D2Bol", "D3Bol", "CurrD", "canvClearBol"
+        ];
+var values = [
+            "false", "0", "false", "false",
+            "#000000", "#000000", "false", "false",
+            "true", "false", "false", "D1", "true"
+        ];
 
 for (let i = 0; i < keys.length; i++) {
     if (localStorage.getItem(keys[i]) === null) {
@@ -24,8 +31,20 @@ const getCursorPositionDown = (canvas, event) => {
     let x = event.clientX - rect.left;
     let y = event.clientY - rect.top;
 
-    localStorage.setItem("useX", x);
-    localStorage.setItem("useY", y);
+    if (localStorage.getItem("CurrD") === "D1") {
+        localStorage.setItem("DD1X", x);
+        localStorage.setItem("DD1Y", y);
+    }
+
+    if (localStorage.getItem("CurrD") === "D2") {
+        localStorage.setItem("DD2X", x);
+        localStorage.setItem("DD2Y", y);
+    }
+
+    if (localStorage.getItem("CurrD") === "D3") {
+        localStorage.setItem("DD3X", x);
+        localStorage.setItem("DD3Y", y);
+    }
 }
 
 const getCursorPositionUp = (canvas, event) => {
@@ -33,8 +52,21 @@ const getCursorPositionUp = (canvas, event) => {
     let x = event.clientX - rect.left;
     let y = event.clientY - rect.top;
 
-    localStorage.setItem("upX", x);
-    localStorage.setItem("upY", y);
+    if (localStorage.getItem("CurrD") === "D1") {
+        localStorage.setItem("DU1X", x);
+        localStorage.setItem("DU1Y", y);
+    }
+
+    if (localStorage.getItem("CurrD") === "D2") {
+        localStorage.setItem("DU2X", x);
+        localStorage.setItem("DU2Y", y);
+    }
+
+    if (localStorage.getItem("CurrD") === "D3") {
+        localStorage.setItem("DU3X", x);
+        localStorage.setItem("DU3Y", y);
+    }
+
     returnFunction();
 }
 
@@ -56,7 +88,7 @@ const mainFunction = (htmlText) => {
     }
 
     // saves all properties for the restore to use
-    if (htmlText === "Save Drawing") {
+    if (htmlText === "Save Artwork") {
 
         var newSaveKeys = [
             "Save", "savefP", "saveFill", "saveLine", 
@@ -97,7 +129,7 @@ const mainFunction = (htmlText) => {
     }
     
     // if load drawing is clicked
-    if (htmlText === "Load Drawing") {
+    if (htmlText === "Load Artwork") {
 
         document.getElementById("has-saved").innerHTML = "";
         let hasLoaded = "Loaded!"
@@ -139,29 +171,29 @@ const mainFunction = (htmlText) => {
 
     // selecting drawing #1
     if (htmlText === "Drawing #1") {
+        localStorage.setItem("CurrD", "D1");
         draw1.id = "dis-d1";
         draw1.disabled = true;
-        draw2.disabled = false;
-        draw3.disabled = false;
 
         // change the id of drawing button back when a different button is clicked
         if (draw2.id === "dis-d2") {
             draw2.id = "drawing-2";
+            draw2.disabled = false;
         }
         if (draw3.id === "dis-d3") {
             draw3.id = "drawing-3";
+            draw3.disabled = false;
         }
 
-        functionPicker = "4";
         functionName = "Drawing #1";
         localStorage.setItem("D1", functionName)
-        localStorage.setItem("fP", functionPicker);
         let output = document.getElementById("current-drawing");
         output.innerHTML = `${localStorage.getItem("D1")} Selected`;
     }
 
     // selecting drawing #2
     if (htmlText === "Drawing #2") {
+        localStorage.setItem("CurrD", "D2");
         draw2.id = "dis-d2";
         draw2.disabled = true;
 
@@ -175,40 +207,67 @@ const mainFunction = (htmlText) => {
             draw3.disabled = false;
         }
 
-        functionPicker = "5";
         functionName = "Drawing #2";
         localStorage.setItem("D2", functionName)
-        localStorage.setItem("fP", functionPicker);
         let output = document.getElementById("current-drawing");
         output.innerHTML = `${localStorage.getItem("D2")} Selected`;
     }
 
     // selecting drawing #3
     if (htmlText === "Drawing #3") {
+        localStorage.setItem("CurrD", "D3");
         draw3.id = "dis-d3";
-        draw1.disabled = false;
-        draw2.disabled = false;
         draw3.disabled = true;
 
         // change the id of drawing button back when a different button is clicked
         if (draw1.id === "dis-d1") {
             draw1.id = "drawing-1";
+            draw1.disabled = false;
         }
         if (draw2.id === "dis-d2") {
             draw2.id = "drawing-2";
+            draw2.disabled = false;
         }
 
-        functionPicker = "6";
         functionName = "Drawing #3";
         localStorage.setItem("D3", functionName)
-        localStorage.setItem("fP", functionPicker);
         let output = document.getElementById("current-drawing");
         output.innerHTML = `${localStorage.getItem("D3")} Selected`;
     }
 }
 
+// This function makes sure that the current drawing will use the right draw function
+const correctDrawF = (drawType) => {
+    if (localStorage.getItem("CurrD") === "D1") {
+        localStorage.setItem("D1Function", drawType);
+    }
+
+    if (localStorage.getItem("CurrD") === "D2") {
+        localStorage.setItem("D2Function", drawType);
+    }
+
+    if (localStorage.getItem("CurrD") === "D3") {
+        localStorage.setItem("D3Function", drawType);
+    }
+}
+
+// When the specific drawing is ready to start being drawn
+const callingDrawF = (drawFunction) => {
+    if (localStorage.getItem(drawFunction) === "Box") {
+        box();
+    }
+    if (localStorage.getItem(drawFunction) === "Pentagon") {
+        pentagon();
+    }
+    if (localStorage.getItem(drawFunction) === "Star") {
+        star();
+    }
+}
+
 // when the page is reloaded runs this function
 const returnFunction = () => {
+
+    // save function needs updating later....
 
     // when user calls to load the old drawing
     if (localStorage.getItem("Restore") === "true") {
@@ -249,19 +308,19 @@ const returnFunction = () => {
         if (localStorage.getItem("fP") === "1") {
             let output = document.getElementById("current-selection");
             output.innerHTML = `Current Selection - ${localStorage.getItem("Box")}`;
-            box();
+            correctDrawF(localStorage.getItem("Box"));
         }
     
         if (localStorage.getItem("fP") === "2") {
             let output = document.getElementById("current-selection");
             output.innerHTML = `Current Selection - ${localStorage.getItem("Pentagon")}`;
-            pentagon();
+            correctDrawF(localStorage.getItem("Pentagon"));
         }
     
         if (localStorage.getItem("fP") === "3") {
             let output = document.getElementById("current-selection");
             output.innerHTML = `Current Selection - ${localStorage.getItem("Star")}`;
-            star();
+            correctDrawF(localStorage.getItem("Star"));
         }
     
         if (localStorage.getItem("checked") === "true") {
@@ -293,11 +352,51 @@ const returnFunction = () => {
     output.innerHTML = keepLineText;
     slider.value = keepLineText;
 
+    // reseting text for save and load function
     document.getElementById("has-saved").innerHTML = "";
 
     if (localStorage.getItem("Restore") === "true") {
         localStorage.setItem("Restore", "false");
     }
+    
+    // now to set all shape details for specific current drawing selected
+
+    if (localStorage.getItem("CurrD") === "D1") {
+        localStorage.setItem("D1Checked", localStorage.getItem("checked"));
+        localStorage.setItem("D1LWidth", localStorage.getItem("lineWidth"));
+        localStorage.setItem("D1LColor", localStorage.getItem("lineColor"));
+        localStorage.setItem("D1FillColor", localStorage.getItem("fillColor"));
+    }
+
+    if (localStorage.getItem("CurrD") === "D2") {
+        localStorage.setItem("D2Checked", localStorage.getItem("checked"));
+        localStorage.setItem("D2LWidth", localStorage.getItem("lineWidth"));
+        localStorage.setItem("D2LColor", localStorage.getItem("lineColor"));
+        localStorage.setItem("D2FillColor", localStorage.getItem("fillColor"));
+    }
+
+    if (localStorage.getItem("CurrD") === "D3") {
+        localStorage.setItem("D3Checked", localStorage.getItem("checked"));
+        localStorage.setItem("D3LWidth", localStorage.getItem("lineWidth"));
+        localStorage.setItem("D3LColor", localStorage.getItem("lineColor"));
+        localStorage.setItem("D3FillColor", localStorage.getItem("fillColor"));
+    }
+
+    // time to draw for specific slot
+
+    if (localStorage.getItem("D1Bol") === "true") {
+        callingDrawF(localStorage.getItem("D1Function"));
+    }
+
+    if (localStorage.getItem("D2Bol") === "true") {
+        callingDrawF(localStorage.getItem("D2Function"));
+    }
+
+    if (localStorage.getItem("D3Bol") === "true") {
+        callingDrawF(localStorage.getItem("D3Function"));
+    }
+
+    localStorage.setItem("canvClearBol", "true");
 }
 
 // drawing functions
@@ -323,12 +422,12 @@ const initial = () => {
 }
 
 // Box Drawing
-const box = () => {
+const box = (downX, downY, upX, upY, currD) => {
     const canvas = document.getElementById('canv');
 
     if (canv.getContext) {
         const ctx = canvas.getContext('2d');
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        canvasClear(ctx);
 
         // if load is true take from save
         if (localStorage.getItem("Restore") === "true") {
@@ -348,11 +447,11 @@ const box = () => {
 
             opacityCheck(ctx);
 
-            var drawX = parseInt(localStorage.getItem("useX"), 10);
-            var drawY = parseInt(localStorage.getItem("useY"), 10);
+            var drawX = parseInt(downX, 10);
+            var drawY = parseInt(downY, 10);
 
-            var drawEndX = parseInt(localStorage.getItem("upX"), 10);
-            var drawEndY = parseInt(localStorage.getItem("upY"), 10);
+            var drawEndX = parseInt(upX, 10);
+            var drawEndY = parseInt(upY, 10);
         }
 
         // checking the end point to make sure the drawing is properly constructed
@@ -491,6 +590,14 @@ const star = () => {
         }
 
         fillChecking(ctx);
+    }
+}
+
+// Function to clear canvas only if the first drawing is being drawn
+const canvasClear = (ctx) => {
+    if (localStorage.getItem("canvClearBol") === "true") {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        localStorage.setItem("canvClearBol", "false");
     }
 }
 
