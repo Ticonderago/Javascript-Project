@@ -17,7 +17,8 @@
 }
 
 #box, #pentagon, #star,
-#drawing-1, #drawing-2, #drawing-3 {
+#drawing-1, #drawing-2, #drawing-3,
+#dis-d1, #dis-d2, #dis-d3 {
     font-weight: bold;
     font-size: 16px;
     color: rgb(25, 25, 25);
@@ -27,6 +28,10 @@
     padding-right: 25px;
     padding-top: 10px;
     padding-bottom: 10px;
+}
+
+#dis-d1, #dis-d2, #dis-d3 {
+    background-color: rgb(210, 170, 255);
 }
 
 #box:hover, #pentagon:hover, #star:hover,
@@ -65,4 +70,10 @@
 
 #drawing-1:hover, #drawing-2:hover, #drawing-3:hover {
     background-color: rgb(200, 142, 255);
+}
+
+/* disabled buttons */ 
+
+#dis-d1, #dis-d2, #dis-d3 {
+    background-color: rgb(211, 192, 233);
 }

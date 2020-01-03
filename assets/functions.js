@@ -2,6 +2,7 @@
 
 if (localStorage.getItem("fP") === null) {
     var functionPicker = "0";
+    document.getElementById("drawing-1").disabled = true;
     localStorage.setItem("fP", functionPicker);
 }
 
@@ -121,6 +122,53 @@ const mainFunction = (htmlText) => {
         localStorage.setItem("fP", functionPicker);
         let output = document.getElementById("current-selection");
         output.innerHTML = `Current Selection - ${localStorage.getItem("Star")}`;
+    }
+
+    // selecting drawing #1
+    if (htmlText === "Drawing #1") {
+        const idName = document.getElementById("drawing-1");
+        idName.id = "dis-d1";
+        idName.disabled = true;
+        document.getElementById("drawing-2").disabled = false;
+        document.getElementById("drawing-3").disabled = false;
+        functionPicker = "4";
+        functionName = "Drawing #1";
+        localStorage.setItem("D1", functionName)
+        localStorage.setItem("fP", functionPicker);
+        let output = document.getElementById("current-drawing");
+        output.innerHTML = `${localStorage.getItem("D1")} Selected`;
+    }
+
+    // make sure to check if the id is different than before!!
+
+    // selecting drawing #2
+    if (htmlText === "Drawing #2") {
+        const idName = document.getElementById("drawing-2");
+        idName.id = "dis-d2";
+        idName.disabled = true;
+        document.getElementById("drawing-1").disabled = false;
+        document.getElementById("drawing-3").disabled = false;
+        functionPicker = "5";
+        functionName = "Drawing #2";
+        localStorage.setItem("D2", functionName)
+        localStorage.setItem("fP", functionPicker);
+        let output = document.getElementById("current-drawing");
+        output.innerHTML = `${localStorage.getItem("D2")} Selected`;
+    }
+
+    // selecting drawing #3
+    if (htmlText === "Drawing #3") {
+        const idName = document.getElementById("drawing-3");
+        idName.id = "dis-d3";
+        idName.disabled = true;
+        document.getElementById("drawing-1").disabled = false;
+        document.getElementById("drawing-2").disabled = false;
+        functionPicker = "6";
+        functionName = "Drawing #3";
+        localStorage.setItem("D3", functionName)
+        localStorage.setItem("fP", functionPicker);
+        let output = document.getElementById("current-drawing");
+        output.innerHTML = `${localStorage.getItem("D3")} Selected`;
     }
 }
 
