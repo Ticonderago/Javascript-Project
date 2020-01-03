@@ -41,6 +41,19 @@ const getCursorPositionUp = (canvas, event) => {
 // button function
 const mainFunction = (htmlText) => {
     var functionName = "";
+    var draw1 = document.getElementById("drawing-1");
+    var draw2 = document.getElementById("drawing-2");
+    var draw3 = document.getElementById("drawing-3");
+    // checking if the id has been changed of the button
+    if (draw1 === null) {
+        draw1 = document.getElementById("dis-d1");
+    }
+    if (draw2 === null) {
+        draw2 = document.getElementById("dis-d2");
+    }
+    if (draw3 === null) {
+        draw3 = document.getElementById("dis-d3");
+    }
 
     // saves all properties for the restore to use
     if (htmlText === "Save Drawing") {
@@ -126,11 +139,19 @@ const mainFunction = (htmlText) => {
 
     // selecting drawing #1
     if (htmlText === "Drawing #1") {
-        const idName = document.getElementById("drawing-1");
-        idName.id = "dis-d1";
-        idName.disabled = true;
-        document.getElementById("drawing-2").disabled = false;
-        document.getElementById("drawing-3").disabled = false;
+        draw1.id = "dis-d1";
+        draw1.disabled = true;
+        draw2.disabled = false;
+        draw3.disabled = false;
+
+        // change the id of drawing button back when a different button is clicked
+        if (draw2.id === "dis-d2") {
+            draw2.id = "drawing-2";
+        }
+        if (draw3.id === "dis-d3") {
+            draw3.id = "drawing-3";
+        }
+
         functionPicker = "4";
         functionName = "Drawing #1";
         localStorage.setItem("D1", functionName)
@@ -139,15 +160,21 @@ const mainFunction = (htmlText) => {
         output.innerHTML = `${localStorage.getItem("D1")} Selected`;
     }
 
-    // make sure to check if the id is different than before!!
-
     // selecting drawing #2
     if (htmlText === "Drawing #2") {
-        const idName = document.getElementById("drawing-2");
-        idName.id = "dis-d2";
-        idName.disabled = true;
-        document.getElementById("drawing-1").disabled = false;
-        document.getElementById("drawing-3").disabled = false;
+        draw2.id = "dis-d2";
+        draw2.disabled = true;
+
+        // change the id of drawing button back when a different button is clicked
+        if (draw1.id === "dis-d1") {
+            draw1.id = "drawing-1";
+            draw1.disabled = false;
+        }
+        if (draw3.id === "dis-d3") {
+            draw3.id = "drawing-3";
+            draw3.disabled = false;
+        }
+
         functionPicker = "5";
         functionName = "Drawing #2";
         localStorage.setItem("D2", functionName)
@@ -158,11 +185,19 @@ const mainFunction = (htmlText) => {
 
     // selecting drawing #3
     if (htmlText === "Drawing #3") {
-        const idName = document.getElementById("drawing-3");
-        idName.id = "dis-d3";
-        idName.disabled = true;
-        document.getElementById("drawing-1").disabled = false;
-        document.getElementById("drawing-2").disabled = false;
+        draw3.id = "dis-d3";
+        draw1.disabled = false;
+        draw2.disabled = false;
+        draw3.disabled = true;
+
+        // change the id of drawing button back when a different button is clicked
+        if (draw1.id === "dis-d1") {
+            draw1.id = "drawing-1";
+        }
+        if (draw2.id === "dis-d2") {
+            draw2.id = "drawing-2";
+        }
+
         functionPicker = "6";
         functionName = "Drawing #3";
         localStorage.setItem("D3", functionName)
