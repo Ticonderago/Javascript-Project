@@ -619,7 +619,7 @@ const canvasClear = (ctx, canvas) => {
 
 // Checking for fill function
 
-const fillChecking = (ctx, currD) => {
+const fillChecking = (ctx) => {
     if (localStorage.getItem("Restore") === "true") {
         if (localStorage.getItem("saveFill") === "true") {
             // Filled Star if checked
@@ -660,8 +660,13 @@ const fillChecking = (ctx, currD) => {
 
 const opacityCheck = (ctx) => {
     if (localStorage.getItem("CurrD") === localStorage.getItem("drawNum")) {
-        if (localStorage.getItem("opacity") === "true") {
-            ctx.globalAlpha = 0.7;
+        if (localStorage.getItem("resetopacity") === "false") {
+            if (localStorage.getItem("opacity") === "true") {
+                ctx.globalAlpha = 0.7;
+            }
+            else {
+                ctx.globalAlpha = 1;
+            }
         }
         else {
             ctx.globalAlpha = 1;
