@@ -181,6 +181,9 @@ const mainFunction = (htmlText) => {
             draw3.disabled = false;
         }
 
+        // when a new drawing is selected I want to keep the old attributes of the drawing
+        resetAttr(localStorage.getItem("CurrD"));
+
         functionName = "Drawing #1";
         localStorage.setItem("D1", functionName)
         let output = document.getElementById("current-drawing");
@@ -204,6 +207,9 @@ const mainFunction = (htmlText) => {
             draw3.disabled = false;
         }
 
+        // when a new drawing is selected I want to keep the old attributes of the drawing
+        resetAttr(localStorage.getItem("CurrD"));
+
         functionName = "Drawing #2";
         localStorage.setItem("D2", functionName)
         let output = document.getElementById("current-drawing");
@@ -215,7 +221,7 @@ const mainFunction = (htmlText) => {
         localStorage.setItem("CurrD", "D3");
         draw3.id = "dis-d3";
         draw3.disabled = true;
-        localStorage.setItem("D2Bol", "true");
+        localStorage.setItem("D3Bol", "true");
 
         // change the id of drawing button back when a different button is clicked
         if (draw1.id === "dis-d1") {
@@ -227,10 +233,37 @@ const mainFunction = (htmlText) => {
             draw2.disabled = false;
         }
 
+        // when a new drawing is selected I want to keep the old attributes of the drawing
+        resetAttr(localStorage.getItem("CurrD"));
+
         functionName = "Drawing #3";
         localStorage.setItem("D3", functionName)
         let output = document.getElementById("current-drawing");
         output.innerHTML = `${localStorage.getItem("D3")} Selected`;
+    }
+}
+
+// carrying over previous attributes of a drawing
+const resetAttr = (CurrD) => {
+    if (CurrD === "D1") {
+        localStorage.setItem("checked", localStorage.getItem("D1Checked"));
+        localStorage.setItem("lineWidth", localStorage.getItem("D1LWidth"));
+        localStorage.setItem("lineColor", localStorage.getItem("D1LColor"));
+        localStorage.setItem("fillColor", localStorage.getItem("D1FillColor"));
+    }
+
+    if (CurrD === "D2") {
+        localStorage.setItem("checked", localStorage.getItem("D2Checked"));
+        localStorage.setItem("lineWidth", localStorage.getItem("D2LWidth"));
+        localStorage.setItem("lineColor", localStorage.getItem("D2LColor"));
+        localStorage.setItem("fillColor", localStorage.getItem("D2FillColor"));
+    }
+
+    if (CurrD === "D3") {
+        localStorage.setItem("checked", localStorage.getItem("D3Checked"));
+        localStorage.setItem("lineWidth", localStorage.getItem("D3LWidth"));
+        localStorage.setItem("lineColor", localStorage.getItem("D3LColor"));
+        localStorage.setItem("fillColor", localStorage.getItem("D3FillColor"));
     }
 }
 
