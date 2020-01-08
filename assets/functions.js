@@ -8,12 +8,14 @@ if (localStorage.getItem("fP") === null) {
 var keys = [
             "checked", "lineWidth", "Save", "Restore",
             "lineColor", "fillColor", "downBool", "opacity",
-            "D1Bol", "D2Bol", "D3Bol", "CurrD", "canvClearBol"
+            "D1Bol", "D2Bol", "D3Bol", "CurrD", "canvClearBol",
+            "D1DrawFunction", "D2DrawFunction", "D3DrawFunction"
         ];
 var values = [
             "false", "0", "false", "false",
             "#000000", "#000000", "false", "false",
-            "true", "false", "false", "D1", "true"
+            "true", "false", "false", "D1", "true",
+            "Box", "Pentagon", "Star"
         ];
 
 for (let i = 0; i < keys.length; i++) {
@@ -142,6 +144,7 @@ const mainFunction = (htmlText) => {
         localStorage.setItem("fP", functionPicker);
         let output = document.getElementById("current-selection");
         output.innerHTML = `Current Selection - ${localStorage.getItem("Box")}`;
+        resetDrawSelection("Box");
     }
 
     // selecting spiral to draw
@@ -152,6 +155,7 @@ const mainFunction = (htmlText) => {
         localStorage.setItem("fP", functionPicker);
         let output = document.getElementById("current-selection");
         output.innerHTML = `Current Selection - ${localStorage.getItem("Pentagon")}`;
+        resetDrawSelection("Pentagon");
     }
 
     // selecting star to draw
@@ -162,6 +166,7 @@ const mainFunction = (htmlText) => {
         localStorage.setItem("fP", functionPicker);
         let output = document.getElementById("current-selection");
         output.innerHTML = `Current Selection - ${localStorage.getItem("Star")}`;
+        resetDrawSelection("Star");
     }
 
     // selecting drawing #1
@@ -243,6 +248,39 @@ const mainFunction = (htmlText) => {
     }
 }
 
+// when switching drawings, after calling "resetDrawSelection", I want
+// the function picker to pick the current selection above the canvas
+const fpSetter = (Shape) => {
+    if (Shape === "Box") {
+        localStorage.setItem("fP", "1");
+    }
+
+    if (Shape === "Pentagon") {
+        localStorage.setItem("fP", "2");
+    }
+
+    if (Shape === "Star") {
+        localStorage.setItem("fP", "3");
+    }
+}
+
+// carrying over draw functions when switching drawings
+const resetDrawSelection = (Shape) => {
+    if (localStorage.getItem("CurrD") === "D1") {
+        localStorage.setItem("D1DrawFunction", Shape);
+    }
+
+    if (localStorage.getItem("CurrD") === "D2") {
+        localStorage.setItem("D2DrawFunction", Shape);
+    }
+
+    if (localStorage.getItem("CurrD") === "D3") {
+        localStorage.setItem("D3DrawFunction", Shape);
+    }
+
+    fpSetter(Shape);
+}
+
 // carrying over previous attributes of a drawing
 const resetAttr = (CurrD) => {
     if (CurrD === "D1") {
@@ -250,6 +288,9 @@ const resetAttr = (CurrD) => {
         localStorage.setItem("lineWidth", localStorage.getItem("D1LWidth"));
         localStorage.setItem("lineColor", localStorage.getItem("D1LColor"));
         localStorage.setItem("fillColor", localStorage.getItem("D1FillColor"));
+        let selectTitle = document.getElementById("current-selection");
+        selectTitle.innerHTML = `Current Selection - ${localStorage.getItem("D1DrawFunction")}`;
+        resetDrawSelection(localStorage.getItem("D1DrawFunction"));
     }
 
     if (CurrD === "D2") {
@@ -257,6 +298,9 @@ const resetAttr = (CurrD) => {
         localStorage.setItem("lineWidth", localStorage.getItem("D2LWidth"));
         localStorage.setItem("lineColor", localStorage.getItem("D2LColor"));
         localStorage.setItem("fillColor", localStorage.getItem("D2FillColor"));
+        let selectTitle = document.getElementById("current-selection");
+        selectTitle.innerHTML = `Current Selection - ${localStorage.getItem("D2DrawFunction")}`;
+        resetDrawSelection(localStorage.getItem("D2DrawFunction"));
     }
 
     if (CurrD === "D3") {
@@ -264,7 +308,43 @@ const resetAttr = (CurrD) => {
         localStorage.setItem("lineWidth", localStorage.getItem("D3LWidth"));
         localStorage.setItem("lineColor", localStorage.getItem("D3LColor"));
         localStorage.setItem("fillColor", localStorage.getItem("D3FillColor"));
+        let selectTitle = document.getElementById("current-selection");
+        selectTitle.innerHTML = `Current Selection - ${localStorage.getItem("D3DrawFunction")}`;
+        resetDrawSelection(localStorage.getItem("D3DrawFunction"));
     }
+
+    sidebarUpdate(
+        localStorage.getItem("checked"), localStorage.getItem("lineColor"),
+        localStorage.getItem("fillColor"), localStorage.getItem("lineWidth")
+    );
+}
+
+const sidebarUpdate = (checked, linecolor, fillcolor, keepLineText) => {
+    // setting checkbox for fill to be unchecked or checked
+    if (checked === "true") {
+        document.getElementById("myCheck").checked = true;
+    }
+    if (checked === "false") {
+        document.getElementById("myCheck").checked = false;
+    }
+    
+    // setting line color
+    let cline = document.getElementById("actual-l-color");
+    let lineColorPicker = document.getElementById("myColor");
+    cline.innerHTML = linecolor;
+    lineColorPicker.value = linecolor;
+
+    // setting fill color
+    let cfill = document.getElementById("actual-f-color");
+    let fillColorPicker = document.getElementById("myFillColor");
+    cfill.innerHTML = fillcolor;
+    fillColorPicker.value = fillcolor;
+
+    // slider inputs
+    let slider = document.getElementById("myRange");
+    let output = document.getElementById("line-w");
+    output.innerHTML = keepLineText;
+    slider.value = keepLineText;
 }
 
 // This function makes sure that the current drawing will use the right draw function
