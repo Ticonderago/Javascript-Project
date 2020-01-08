@@ -491,7 +491,7 @@ const box = (downX, downY, upX, upY, LWidth, LColor) => {
         }
         else {  // when load is not true
             document.getElementById("has-loaded").innerHTML = "";
-            ctx.lineWidth = LWidth;
+            ctx.lineWidth = LWidth;   // (line width)
             ctx.strokeStyle = LColor; // (line color)
 
             opacityCheck(ctx);
@@ -519,12 +519,12 @@ const box = (downX, downY, upX, upY, LWidth, LColor) => {
 }
 
 // Pentagon Drawing
-const pentagon = (downX, downY, upX, upY) => {
+const pentagon = (downX, downY, upX, upY, LWidth, LColor) => {
     const canvas = document.getElementById('canv');
 
     if (canv.getContext) {
         const ctx = canvas.getContext('2d');
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        canvasClear(ctx, canvas);
 
         // if load is true take from save
         if (localStorage.getItem("Restore") === "true") {
@@ -539,8 +539,8 @@ const pentagon = (downX, downY, upX, upY) => {
         }
         else {  // when load is not true
             document.getElementById("has-loaded").innerHTML = "";
-            ctx.lineWidth = localStorage.getItem("lineWidth");
-            ctx.strokeStyle = localStorage.getItem("lineColor"); // (line color)
+            ctx.lineWidth = LWidth;   // (line width)
+            ctx.strokeStyle = LColor; // (line color)
 
             opacityCheck(ctx);
 
@@ -581,12 +581,12 @@ const pentagon = (downX, downY, upX, upY) => {
 }
 
 // Star Drawing
-const star = (downX, downY, upX, upY) => {
+const star = (downX, downY, upX, upY, LWidth, LColor) => {
     const canvas = document.getElementById('canv');
 
     if (canv.getContext) {
         const ctx = canvas.getContext('2d');
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        canvasClear(ctx, canvas);
 
         // if load is true take from save
         if (localStorage.getItem("Restore") === "true") {
@@ -601,8 +601,8 @@ const star = (downX, downY, upX, upY) => {
         }
         else {  // when load is not true
             document.getElementById("has-loaded").innerHTML = "";
-            ctx.lineWidth = localStorage.getItem("lineWidth");
-            ctx.strokeStyle = localStorage.getItem("lineColor");
+            ctx.lineWidth = LWidth;   // (line width)
+            ctx.strokeStyle = LColor; // (line color)
 
             opacityCheck(ctx);
 
