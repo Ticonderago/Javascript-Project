@@ -26,7 +26,7 @@ for (let i = 0; i < keys.length; i++) {
 
 // functions for the canvas
 
-// getting mouse cursor position
+// getting mouse cursor positions
 
 const getCursorPositionDown = (canvas, event) => {
     const rect = canvas.getBoundingClientRect();
@@ -75,6 +75,7 @@ const getCursorPositionUp = (canvas, event) => {
 // button function
 const mainFunction = (htmlText) => {
     var functionName = "";
+
     var draw1 = document.getElementById("drawing-1");
     var draw2 = document.getElementById("drawing-2");
     var draw3 = document.getElementById("drawing-3");
@@ -284,33 +285,15 @@ const resetDrawSelection = (Shape) => {
 // carrying over previous attributes of a drawing
 const resetAttr = (CurrD) => {
     if (CurrD === "D1") {
-        localStorage.setItem("checked", localStorage.getItem("D1Checked"));
-        localStorage.setItem("lineWidth", localStorage.getItem("D1LWidth"));
-        localStorage.setItem("lineColor", localStorage.getItem("D1LColor"));
-        localStorage.setItem("fillColor", localStorage.getItem("D1FillColor"));
-        let selectTitle = document.getElementById("current-selection");
-        selectTitle.innerHTML = `Current Selection - ${localStorage.getItem("D1DrawFunction")}`;
-        resetDrawSelection(localStorage.getItem("D1DrawFunction"));
+        resetAttrHelper(CurrD);
     }
 
     if (CurrD === "D2") {
-        localStorage.setItem("checked", localStorage.getItem("D2Checked"));
-        localStorage.setItem("lineWidth", localStorage.getItem("D2LWidth"));
-        localStorage.setItem("lineColor", localStorage.getItem("D2LColor"));
-        localStorage.setItem("fillColor", localStorage.getItem("D2FillColor"));
-        let selectTitle = document.getElementById("current-selection");
-        selectTitle.innerHTML = `Current Selection - ${localStorage.getItem("D2DrawFunction")}`;
-        resetDrawSelection(localStorage.getItem("D2DrawFunction"));
+        resetAttrHelper(CurrD);
     }
 
     if (CurrD === "D3") {
-        localStorage.setItem("checked", localStorage.getItem("D3Checked"));
-        localStorage.setItem("lineWidth", localStorage.getItem("D3LWidth"));
-        localStorage.setItem("lineColor", localStorage.getItem("D3LColor"));
-        localStorage.setItem("fillColor", localStorage.getItem("D3FillColor"));
-        let selectTitle = document.getElementById("current-selection");
-        selectTitle.innerHTML = `Current Selection - ${localStorage.getItem("D3DrawFunction")}`;
-        resetDrawSelection(localStorage.getItem("D3DrawFunction"));
+        resetAttrHelper(CurrD);
     }
 
     sidebarUpdate(
@@ -319,6 +302,18 @@ const resetAttr = (CurrD) => {
     );
 }
 
+// does all the setting and getting for information carrying over to the sidebar
+const resetAttrHelper = (CurrD) => {
+    localStorage.setItem("checked", localStorage.getItem(`${CurrD}Checked`));
+    localStorage.setItem("lineWidth", localStorage.getItem(`${CurrD}LWidth`));
+    localStorage.setItem("lineColor", localStorage.getItem(`${CurrD}LColor`));
+    localStorage.setItem("fillColor", localStorage.getItem(`${CurrD}D3FillColor`));
+    let selectTitle = document.getElementById("current-selection");
+    selectTitle.innerHTML = `Current Selection - ${localStorage.getItem(`${CurrD}DrawFunction`)}`;
+    resetDrawSelection(localStorage.getItem(`${CurrD}DrawFunction`));
+}
+
+// updates the sidebar when switching drawings
 const sidebarUpdate = (checked, linecolor, fillcolor, keepLineText) => {
     // setting checkbox for fill to be unchecked or checked
     if (checked === "true") {
@@ -373,6 +368,15 @@ const callingDrawF = (drawFunction, downX, downY, upX, upY, LWidth, LColor) => {
     if (localStorage.getItem(drawFunction) === "Star") {
         star(downX, downY, upX, upY, LWidth, LColor);
     }
+}
+
+// when the properties of a drawing are changed by a user, update the
+// information for the drawing to use
+const updateDrawInfo = (CurrD) => {
+    localStorage.setItem(`${CurrD}Checked`, localStorage.getItem("checked"));
+    localStorage.setItem(`${CurrD}LWidth`, localStorage.getItem("lineWidth"));
+    localStorage.setItem(`${CurrD}LColor`, localStorage.getItem("lineColor"));
+    localStorage.setItem(`${CurrD}FillColor`, localStorage.getItem("fillColor"));
 }
 
 // when the page is reloaded runs this function
@@ -472,25 +476,18 @@ const returnFunction = () => {
     
     // now to set all shape details for specific current drawing selected
 
-    if (localStorage.getItem("CurrD") === "D1") {
-        localStorage.setItem("D1Checked", localStorage.getItem("checked"));
-        localStorage.setItem("D1LWidth", localStorage.getItem("lineWidth"));
-        localStorage.setItem("D1LColor", localStorage.getItem("lineColor"));
-        localStorage.setItem("D1FillColor", localStorage.getItem("fillColor"));
+    var currentDrawing = localStorage.getItem("CurrD");
+
+    if (currentDrawing === "D1") {
+        updateDrawInfo(currentDrawing);
     }
 
-    if (localStorage.getItem("CurrD") === "D2") {
-        localStorage.setItem("D2Checked", localStorage.getItem("checked"));
-        localStorage.setItem("D2LWidth", localStorage.getItem("lineWidth"));
-        localStorage.setItem("D2LColor", localStorage.getItem("lineColor"));
-        localStorage.setItem("D2FillColor", localStorage.getItem("fillColor"));
+    if (currentDrawing === "D2") {
+        updateDrawInfo(currentDrawing);
     }
 
-    if (localStorage.getItem("CurrD") === "D3") {
-        localStorage.setItem("D3Checked", localStorage.getItem("checked"));
-        localStorage.setItem("D3LWidth", localStorage.getItem("lineWidth"));
-        localStorage.setItem("D3LColor", localStorage.getItem("lineColor"));
-        localStorage.setItem("D3FillColor", localStorage.getItem("fillColor"));
+    if (currentDrawing === "D3") {
+        updateDrawInfo(currentDrawing);
     }
 
     // time to draw for specific slot
