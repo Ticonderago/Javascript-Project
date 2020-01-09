@@ -307,7 +307,7 @@ const resetAttrHelper = (CurrD) => {
     localStorage.setItem("checked", localStorage.getItem(`${CurrD}Checked`));
     localStorage.setItem("lineWidth", localStorage.getItem(`${CurrD}LWidth`));
     localStorage.setItem("lineColor", localStorage.getItem(`${CurrD}LColor`));
-    localStorage.setItem("fillColor", localStorage.getItem(`${CurrD}D3FillColor`));
+    localStorage.setItem("fillColor", localStorage.getItem(`${CurrD}FillColor`));
     let selectTitle = document.getElementById("current-selection");
     selectTitle.innerHTML = `Current Selection - ${localStorage.getItem(`${CurrD}DrawFunction`)}`;
     resetDrawSelection(localStorage.getItem(`${CurrD}DrawFunction`));
