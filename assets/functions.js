@@ -72,7 +72,7 @@ const getCursorPositionUp = (canvas, event) => {
     returnFunction();
 }
 
-// button function
+// when a button is clicked this occurs
 const mainFunction = (htmlText) => {
     var functionName = "";
 
@@ -379,6 +379,21 @@ const updateDrawInfo = (CurrD) => {
     localStorage.setItem(`${CurrD}FillColor`, localStorage.getItem("fillColor"));
 }
 
+// onload for drawing selected
+const selectedDrawing = () => {
+    let selectDraw = document.getElementById("current-drawing");
+    let curr = localStorage.getItem("CurrD");
+    if (curr === "D1") {
+        selectDraw.innerHTML = "Drawing #1 Selected";
+    }
+    else if (curr === "D2") {
+        selectDraw.innerHTML = "Drawing #2 Selected";
+    }
+    else {
+        selectDraw.innerHTML = "Drawing #3 Selected";
+    }
+}
+
 // when the page is reloaded runs this function
 const returnFunction = () => {
 
@@ -413,6 +428,8 @@ const returnFunction = () => {
         var fillcolor = localStorage.getItem("saveFillColor");
     }
     else {  // when user does not wanna load drawing
+
+        selectedDrawing();
 
         if (localStorage.getItem("fP") === "0") {
             let output = document.getElementById("current-selection");
