@@ -93,6 +93,10 @@ const mainFunction = (htmlText) => {
     // saves all properties for the restore to use
     if (htmlText === "Save Artwork") {
 
+        if (localStorage.getItem("Save") === undefined) {
+            // once new keys have been added and set in local move code here!
+        }
+
         var newSaveKeys = [
             "Save", "savefP", "saveFill", "saveLine", 
             "saveLineColor", "saveFillColor"
@@ -122,8 +126,7 @@ const mainFunction = (htmlText) => {
         }
 
         document.getElementById("has-loaded").innerHTML = "";
-        let hasSaved = "Saved!"
-        document.getElementById("has-saved").innerHTML = hasSaved;
+        document.getElementById("has-saved").innerHTML = "Saved!";
     }
     
     // if load drawing is clicked
