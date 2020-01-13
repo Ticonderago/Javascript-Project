@@ -1,27 +1,29 @@
-// null cases covered
+// null cases covered, first time visiting the website
 
-if (localStorage.getItem("fP") === null) {
+if (localStorage.getItem("firstTime") === null) {
     var functionPicker = "0";
     localStorage.setItem("fP", functionPicker);
-}
 
-var keys = [
-            "checked", "lineWidth", "Save", "Restore",
-            "lineColor", "fillColor", "downBool", "opacity",
-            "D1Bol", "D2Bol", "D3Bol", "CurrD", "canvClearBol",
-            "D1DrawFunction", "D2DrawFunction", "D3DrawFunction"
-        ];
-var values = [
-            "false", "0", "false", "false",
-            "#000000", "#000000", "false", "false",
-            "true", "false", "false", "D1", "true",
-            "Box", "Pentagon", "Star"
-        ];
+    var keys = [
+        "checked", "lineWidth", "Save", "Restore",
+        "lineColor", "fillColor", "downBool", "opacity",
+        "D1Bol", "D2Bol", "D3Bol", "CurrD", "canvClearBol",
+        "D1DrawFunction", "D2DrawFunction", "D3DrawFunction"
+    ];
+    var values = [
+        "false", "0", "false", "false",
+        "#000000", "#000000", "false", "false",
+        "true", "false", "false", "D1", "true",
+        "Box", "Pentagon", "Star"
+    ];
 
-for (let i = 0; i < keys.length; i++) {
-    if (localStorage.getItem(keys[i]) === null) {
-        localStorage.setItem(keys[i], values[i]);
+    for (let i = 0; i < keys.length; i++) {
+        if (localStorage.getItem(keys[i]) === null) {
+            localStorage.setItem(keys[i], values[i]);
+        }
     }
+
+    localStorage.setItem("firstTime", "false");
 }
 
 // functions for the canvas
@@ -98,17 +100,12 @@ const mainFunction = (htmlText) => {
         }
 
         var newSaveKeys = [
-            "Save", "savefP", "saveFill", "saveLine", 
-            "saveLineColor", "saveFillColor"
+            "Save", "saveFill", "saveLine", "saveLineColor", "saveFillColor"
         ];
 
         var savedValues = [
-            "true", 
-            localStorage.getItem("fP"), 
-            localStorage.getItem("checked"), 
-            localStorage.getItem("lineWidth"), 
-            localStorage.getItem("lineColor"), 
-            localStorage.getItem("fillColor")
+            "true", localStorage.getItem("checked"), localStorage.getItem("lineWidth"), 
+            localStorage.getItem("lineColor"), localStorage.getItem("fillColor")
         ];
 
         for (let i = 0; i < newSaveKeys.length; i++) {
@@ -751,12 +748,30 @@ const canvasClear = (ctx, canvas) => {
 
 const fillChecking = (ctx) => {
     if (localStorage.getItem("Restore") === "true") {
-        if (localStorage.getItem("saveFill") === "true") {
-            // Filled Star if checked
-            ctx.fillStyle = localStorage.getItem("saveFillColor"); // (fill color)
-            ctx.fill();
+        if (localStorage.getItem("drawNum") === "D1") {
+            if (localStorage.getItem("saveFill") === "true") {
+                // Filled Star if checked
+                ctx.fillStyle = localStorage.getItem("saveFillColor"); // (fill color)
+                ctx.fill();
+            }
+            ctx.stroke();
         }
-        ctx.stroke();
+        if (localStorage.getItem("drawNum") === "D2") {
+            if (localStorage.getItem("saveFill") === "true") {
+                // Filled Star if checked
+                ctx.fillStyle = localStorage.getItem("saveFillColor"); // (fill color)
+                ctx.fill();
+            }
+            ctx.stroke();
+        }
+        if (localStorage.getItem("drawNum") === "D3") {
+            if (localStorage.getItem("saveFill") === "true") {
+                // Filled Star if checked
+                ctx.fillStyle = localStorage.getItem("saveFillColor"); // (fill color)
+                ctx.fill();
+            }
+            ctx.stroke();
+        }
     }
     else {
         if (localStorage.getItem("drawNum") === "D1") {
