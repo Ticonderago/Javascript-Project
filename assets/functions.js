@@ -95,31 +95,27 @@ const mainFunction = (htmlText) => {
     // saves all properties for the restore to use
     if (htmlText === "Save Artwork") {
 
-        if (localStorage.getItem("Save") === undefined) {
-            // once new keys have been added and set in local move code here!
-        }
-
         var newSaveKeys = [
-            "Save", "saveFill", "saveLine", "saveLineColor", "saveFillColor"
+            "SD1X", "SD1Y", "SD2X", "SD2Y", "SD3X", "SD3Y", "SU1X", "SU1Y", "SU2X", "SU2Y", "SU3X", "SU3Y",
+            "SD1Checked", "SD2Checked", "SD3Checked", "SD1FillColor", "SD2FillColor", "SD3FillColor",
+            "SD1LColor", "SD2LColor", "SD3LColor", "SD1LWidth", "SD2LWidth", "SD3LWidth", "SD1Bol", "SD2Bol", "SD3Bol",
+            "SD1Function", "SD2Function", "SD3Function"
         ];
 
         var savedValues = [
-            "true", localStorage.getItem("checked"), localStorage.getItem("lineWidth"), 
-            localStorage.getItem("lineColor"), localStorage.getItem("fillColor")
+            localStorage.getItem("DD1X"), localStorage.getItem("DD1Y"), localStorage.getItem("DD2X"),
+            localStorage.getItem("DD2Y"), localStorage.getItem("DD3X"), localStorage.getItem("DD3Y"),
+            localStorage.getItem("DU1X"), localStorage.getItem("DU1Y"), localStorage.getItem("DU2X"),
+            localStorage.getItem("DU2Y"), localStorage.getItem("DU3X"), localStorage.getItem("DU3Y"),
+            localStorage.getItem("D1Checked"), localStorage.getItem("D2Checked"), localStorage.getItem("D3Checked"),
+            localStorage.getItem("D1FillColor"), localStorage.getItem("D2FillColor"), localStorage.getItem("D3FillColor"),
+            localStorage.getItem("D1LColor"), localStorage.getItem("D2LColor"), localStorage.getItem("D3LColor"),
+            localStorage.getItem("D1LWidth"), localStorage.getItem("D2LWidth"), localStorage.getItem("D3LWidth"),
+            localStorage.getItem("D1Bol"), localStorage.getItem("D2Bol"), localStorage.getItem("D3Bol"),
         ];
 
         for (let i = 0; i < newSaveKeys.length; i++) {
             localStorage.setItem(newSaveKeys[i], savedValues[i]);
-        }
-
-        if (localStorage.getItem("savefP") === "1") {
-            localStorage.setItem("saveName", "Box");
-        }
-        else if (localStorage.getItem("savefP") === "2") {
-            localStorage.setItem("saveName", "Pentagon");
-        }
-        else if (localStorage.getItem("savefP") === "3") {
-            localStorage.setItem("saveName", "Star");
         }
 
         document.getElementById("has-loaded").innerHTML = "";
@@ -130,8 +126,7 @@ const mainFunction = (htmlText) => {
     if (htmlText === "Load Artwork") {
 
         document.getElementById("has-saved").innerHTML = "";
-        let hasLoaded = "Loaded!"
-        document.getElementById("has-loaded").innerHTML = hasLoaded;
+        document.getElementById("has-loaded").innerHTML = "Loaded!";
 
         localStorage.setItem("Restore", "true");
         returnFunction();
@@ -401,9 +396,12 @@ const returnFunction = () => {
 
     // when user calls to load the old drawing
     if (localStorage.getItem("Restore") === "true") {
+
+        selectedDrawing();  // might not need
     
-        if (localStorage.getItem("savefP") === "1") {
-            box();
+        if (localStorage.getItem("SD1Function") === "Box") {
+            let output = document.getElementById("current-selection");
+            output.innerHTML = `Current Selection - ${localStorage.getItem("Box")}`;
         }
     
         if (localStorage.getItem("savefP") === "2") {
@@ -420,12 +418,6 @@ const returnFunction = () => {
         if (localStorage.getItem("saveFill") === "true") {
             document.getElementById("myCheck").checked = true;
         }
-
-        var keepLineText = localStorage.getItem("saveLine");
-
-        var linecolor = localStorage.getItem("saveLineColor");
-
-        var fillcolor = localStorage.getItem("saveFillColor");
     }
     else {  // when user does not wanna load drawing
 
@@ -458,13 +450,13 @@ const returnFunction = () => {
         if (localStorage.getItem("checked") === "true") {
             document.getElementById("myCheck").checked = true;
         }
-    
-        var keepLineText = localStorage.getItem("lineWidth");
-
-        var linecolor = localStorage.getItem("lineColor");
-
-        var fillcolor = localStorage.getItem("fillColor");
     }
+
+    var keepLineText = localStorage.getItem("lineWidth");
+
+    var linecolor = localStorage.getItem("lineColor");
+
+    var fillcolor = localStorage.getItem("fillColor");
     
     // setting line color
     let cline = document.getElementById("actual-l-color");
@@ -576,12 +568,6 @@ const box = (downX, downY, upX, upY, LWidth, LColor) => {
         if (localStorage.getItem("Restore") === "true") {
             ctx.lineWidth = localStorage.getItem("saveLine");
             ctx.strokeStyle = localStorage.getItem("saveLineColor");
-
-            var drawX = parseInt(localStorage.getItem("saveX"), 10);
-            var drawY = parseInt(localStorage.getItem("saveY"), 10);
-
-            var drawEndX = parseInt(localStorage.getItem("saveUpX"), 10);
-            var drawEndY = parseInt(localStorage.getItem("saveUpY"), 10);
         }
         else {  // when load is not true
             document.getElementById("has-loaded").innerHTML = "";
@@ -589,13 +575,13 @@ const box = (downX, downY, upX, upY, LWidth, LColor) => {
             ctx.strokeStyle = LColor; // (line color)
 
             opacityCheck(ctx);
-
-            var drawX = parseInt(downX, 10);
-            var drawY = parseInt(downY, 10);
-
-            var drawEndX = parseInt(upX, 10);
-            var drawEndY = parseInt(upY, 10);
         }
+
+        var drawX = parseInt(downX, 10);
+        var drawY = parseInt(downY, 10);
+
+        var drawEndX = parseInt(upX, 10);
+        var drawEndY = parseInt(upY, 10);
 
         // checking the end point to make sure the drawing is properly constructed
         var diffX = drawEndX - drawX;
@@ -624,12 +610,6 @@ const pentagon = (downX, downY, upX, upY, LWidth, LColor) => {
         if (localStorage.getItem("Restore") === "true") {
             ctx.lineWidth = localStorage.getItem("saveLine");
             ctx.strokeStyle = localStorage.getItem("saveLineColor");
-
-            var drawX = parseInt(localStorage.getItem("saveX"), 10);
-            var drawY = parseInt(localStorage.getItem("saveY"), 10);
-
-            var drawEndX = parseInt(localStorage.getItem("saveUpX"), 10);
-            var drawEndY = parseInt(localStorage.getItem("saveUpY"), 10);
         }
         else {  // when load is not true
             document.getElementById("has-loaded").innerHTML = "";
@@ -637,13 +617,13 @@ const pentagon = (downX, downY, upX, upY, LWidth, LColor) => {
             ctx.strokeStyle = LColor; // (line color)
 
             opacityCheck(ctx);
-
-            var drawX = parseInt(downX, 10);
-            var drawY = parseInt(downY, 10);
-
-            var drawEndX = parseInt(upX, 10);
-            var drawEndY = parseInt(upY, 10);
         }
+
+        var drawX = parseInt(downX, 10);
+        var drawY = parseInt(downY, 10);
+
+        var drawEndX = parseInt(upX, 10);
+        var drawEndY = parseInt(upY, 10);
 
         // checking the end point to make sure the drawing is properly constructed
         var diffX = drawEndX - drawX;
@@ -686,12 +666,6 @@ const star = (downX, downY, upX, upY, LWidth, LColor) => {
         if (localStorage.getItem("Restore") === "true") {
             ctx.lineWidth = localStorage.getItem("saveLine");
             ctx.strokeStyle = localStorage.getItem("saveLineColor"); // (line color)
-
-            var drawX = parseInt(localStorage.getItem("saveX"), 10);
-            var drawY = parseInt(localStorage.getItem("saveY"), 10);
-
-            var drawEndX = parseInt(localStorage.getItem("saveUpX"), 10);
-            var drawEndY = parseInt(localStorage.getItem("saveUpY"), 10);
         }
         else {  // when load is not true
             document.getElementById("has-loaded").innerHTML = "";
@@ -699,13 +673,13 @@ const star = (downX, downY, upX, upY, LWidth, LColor) => {
             ctx.strokeStyle = LColor; // (line color)
 
             opacityCheck(ctx);
-
-            var drawX = parseInt(downX, 10);
-            var drawY = parseInt(downY, 10);
-
-            var drawEndX = parseInt(upX, 10);
-            var drawEndY = parseInt(upY, 10);
         }
+
+        var drawX = parseInt(downX, 10);
+        var drawY = parseInt(downY, 10);
+
+        var drawEndX = parseInt(upX, 10);
+        var drawEndY = parseInt(upY, 10);
 
         // checking the end point to make sure the drawing is properly constructed
         var diffX = drawEndX - drawX;
@@ -749,25 +723,25 @@ const canvasClear = (ctx, canvas) => {
 const fillChecking = (ctx) => {
     if (localStorage.getItem("Restore") === "true") {
         if (localStorage.getItem("drawNum") === "D1") {
-            if (localStorage.getItem("saveFill") === "true") {
+            if (localStorage.getItem("SD1Checked") === "true") {
                 // Filled Star if checked
-                ctx.fillStyle = localStorage.getItem("saveFillColor"); // (fill color)
+                ctx.fillStyle = localStorage.getItem("SD1FillColor"); // (fill color)
                 ctx.fill();
             }
             ctx.stroke();
         }
         if (localStorage.getItem("drawNum") === "D2") {
-            if (localStorage.getItem("saveFill") === "true") {
+            if (localStorage.getItem("SD2Checked") === "true") {
                 // Filled Star if checked
-                ctx.fillStyle = localStorage.getItem("saveFillColor"); // (fill color)
+                ctx.fillStyle = localStorage.getItem("SD2FillColor"); // (fill color)
                 ctx.fill();
             }
             ctx.stroke();
         }
         if (localStorage.getItem("drawNum") === "D3") {
-            if (localStorage.getItem("saveFill") === "true") {
+            if (localStorage.getItem("SD3Checked") === "true") {
                 // Filled Star if checked
-                ctx.fillStyle = localStorage.getItem("saveFillColor"); // (fill color)
+                ctx.fillStyle = localStorage.getItem("SD3FillColor"); // (fill color)
                 ctx.fill();
             }
             ctx.stroke();
