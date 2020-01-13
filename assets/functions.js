@@ -112,6 +112,7 @@ const mainFunction = (htmlText) => {
             localStorage.getItem("D1LColor"), localStorage.getItem("D2LColor"), localStorage.getItem("D3LColor"),
             localStorage.getItem("D1LWidth"), localStorage.getItem("D2LWidth"), localStorage.getItem("D3LWidth"),
             localStorage.getItem("D1Bol"), localStorage.getItem("D2Bol"), localStorage.getItem("D3Bol"),
+            localStorage.getItem("D1Function"), localStorage.getItem("D2Function"), localStorage.getItem("D3Function")
         ];
 
         for (let i = 0; i < newSaveKeys.length; i++) {
@@ -389,6 +390,22 @@ const selectedDrawing = () => {
     }
 }
 
+// saveOutput is when the page is being loaded with an artwork,
+// it takes the current drawing you are on and makes sure that the selection matches once loaded
+const saveOutputSelection = (SCurrD) => {
+    var saveOutput = document.getElementById("current-selection");
+
+    if (localStorage.getItem(`${SCurrD}Function`) === "Box") {
+        saveOutput.innerHTML = `Current Selection - ${localStorage.getItem("Box")}`;
+    }
+    if (localStorage.getItem(`${SCurrD}Function`) === "Pentagon") {
+        saveOutput.innerHTML = `Current Selection - ${localStorage.getItem("Pentagon")}`;
+    }
+    if (localStorage.getItem(`${SCurrD}Function`) === "Star") {
+        saveOutput.innerHTML = `Current Selection - ${localStorage.getItem("Star")}`;
+    }
+}
+
 // when the page is reloaded runs this function
 const returnFunction = () => {
 
@@ -398,25 +415,27 @@ const returnFunction = () => {
     if (localStorage.getItem("Restore") === "true") {
 
         selectedDrawing();  // might not need
-    
-        if (localStorage.getItem("SD1Function") === "Box") {
-            let output = document.getElementById("current-selection");
-            output.innerHTML = `Current Selection - ${localStorage.getItem("Box")}`;
-        }
-    
-        if (localStorage.getItem("savefP") === "2") {
-            pentagon();
-        }
-    
-        if (localStorage.getItem("savefP") === "3") {
-            star();
-        }
 
-        let output = document.getElementById("current-selection");
-        output.innerHTML = `Current Selection - ${localStorage.getItem("saveName")}`;
-    
-        if (localStorage.getItem("saveFill") === "true") {
-            document.getElementById("myCheck").checked = true;
+        if (localStorage.getItem("CurrD") === "D1") {
+            let input = "S" + `${localStorage.getItem("CurrD")}`;
+            saveOutputSelection(input);
+            if (localStorage.getItem("SD1Checked") === "true") {
+                document.getElementById("myCheck").checked = true;
+            }
+        }
+        else if (localStorage.getItem("CurrD") === "D2") {
+            let input = "S" + `${localStorage.getItem("CurrD")}`;
+            saveOutputSelection(input);
+            if (localStorage.getItem("SD2Checked") === "true") {
+                document.getElementById("myCheck").checked = true;
+            }
+        }
+        else {
+            let input = "S" + `${localStorage.getItem("CurrD")}`;
+            saveOutputSelection(input);
+            if (localStorage.getItem("SD3Checked") === "true") {
+                document.getElementById("myCheck").checked = true;
+            }
         }
     }
     else {  // when user does not wanna load drawing
@@ -446,7 +465,7 @@ const returnFunction = () => {
             output.innerHTML = `Current Selection - ${localStorage.getItem("Star")}`;
             correctDrawF(localStorage.getItem("Star"));
         }
-    
+
         if (localStorage.getItem("checked") === "true") {
             document.getElementById("myCheck").checked = true;
         }
