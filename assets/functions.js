@@ -437,6 +437,33 @@ const returnFunction = () => {
                 document.getElementById("myCheck").checked = true;
             }
         }
+
+        // replace all D keys with the SD keys
+
+        localStorage.setItem("DD1X", localStorage.getItem("SD1X"));
+        localStorage.setItem("DD1Y", localStorage.getItem("SD1Y"));
+        localStorage.setItem("DD2X", localStorage.getItem("SD2X"));
+        localStorage.setItem("DD2Y", localStorage.getItem("SD2Y"));
+        localStorage.setItem("DD3X", localStorage.getItem("SD3X"));
+        localStorage.setItem("DD3Y", localStorage.getItem("SD3Y"));
+        localStorage.setItem("D1Checked", localStorage.getItem("SD1Checked"));
+        localStorage.setItem("D2Checked", localStorage.getItem("SD2Checked"));
+        localStorage.setItem("D3Checked", localStorage.getItem("SD3Checked"));
+        localStorage.setItem("D1FillColor", localStorage.getItem("SD1FillColor"));
+        localStorage.setItem("D2FillColor", localStorage.getItem("SD2FillColor"));
+        localStorage.setItem("D3FillColor", localStorage.getItem("SD3FillColor"));
+        localStorage.setItem("D1LColor", localStorage.getItem("SD1LColor"));
+        localStorage.setItem("D2LColor", localStorage.getItem("SD2LColor"));
+        localStorage.setItem("D3LColor", localStorage.getItem("SD3LColor"));
+        localStorage.setItem("D1LWidth", localStorage.getItem("SD1LWidth"));
+        localStorage.setItem("D2LWidth", localStorage.getItem("SD2LWidth"));
+        localStorage.setItem("D3LWidth", localStorage.getItem("SD3LWidth"));
+        localStorage.setItem("D1Bol", localStorage.getItem("SD1Bol"));
+        localStorage.setItem("D2Bol", localStorage.getItem("SD2Bol"));
+        localStorage.setItem("D3Bol", localStorage.getItem("SD3Bol"));
+        localStorage.setItem("D1Function", localStorage.getItem("SD1Function"));
+        localStorage.setItem("D2Function", localStorage.getItem("SD2Function"));
+        localStorage.setItem("D3Function", localStorage.getItem("SD3Function"));
     }
     else {  // when user does not wanna load drawing
 
@@ -497,10 +524,6 @@ const returnFunction = () => {
 
     // reseting text for save and load function
     document.getElementById("has-saved").innerHTML = "";
-
-    if (localStorage.getItem("Restore") === "true") {
-        localStorage.setItem("Restore", "false");
-    }
     
     // now to set all shape details for specific current drawing selected
 
@@ -518,7 +541,8 @@ const returnFunction = () => {
         updateDrawInfo(currentDrawing);
     }
 
-    // time to draw for specific slot
+    // time to draw for specific slot or to draw an entire artwork
+    // that has been saved
 
     localStorage.setItem("drawNum", "D1");
 
@@ -548,6 +572,10 @@ const returnFunction = () => {
             localStorage.getItem("DU3X"), localStorage.getItem("DU3Y"), 
             localStorage.getItem("D3LWidth"), localStorage.getItem("D3LColor")
         );
+    }
+
+    if (localStorage.getItem("Restore") === "true") {
+        localStorage.setItem("Restore", "false");
     }
 
     localStorage.setItem("canvClearBol", "true");
@@ -583,18 +611,14 @@ const box = (downX, downY, upX, upY, LWidth, LColor) => {
         const ctx = canvas.getContext('2d');
         canvasClear(ctx, canvas);
 
-        // if load is true take from save
-        if (localStorage.getItem("Restore") === "true") {
-            ctx.lineWidth = localStorage.getItem("saveLine");
-            ctx.strokeStyle = localStorage.getItem("saveLineColor");
-        }
-        else {  // when load is not true
+        // if restore is false than have opacity and clear has-loaded
+        if (localStorage.getItem("Restore") !== "true") {
             document.getElementById("has-loaded").innerHTML = "";
-            ctx.lineWidth = LWidth;   // (line width)
-            ctx.strokeStyle = LColor; // (line color)
-
             opacityCheck(ctx);
         }
+
+        ctx.lineWidth = LWidth;   // (line width)
+        ctx.strokeStyle = LColor; // (line color)
 
         var drawX = parseInt(downX, 10);
         var drawY = parseInt(downY, 10);
@@ -625,18 +649,14 @@ const pentagon = (downX, downY, upX, upY, LWidth, LColor) => {
         const ctx = canvas.getContext('2d');
         canvasClear(ctx, canvas);
 
-        // if load is true take from save
-        if (localStorage.getItem("Restore") === "true") {
-            ctx.lineWidth = localStorage.getItem("saveLine");
-            ctx.strokeStyle = localStorage.getItem("saveLineColor");
-        }
-        else {  // when load is not true
+        // if restore is false than have opacity and clear has-loaded
+        if (localStorage.getItem("Restore") !== "true") {
             document.getElementById("has-loaded").innerHTML = "";
-            ctx.lineWidth = LWidth;   // (line width)
-            ctx.strokeStyle = LColor; // (line color)
-
             opacityCheck(ctx);
         }
+
+        ctx.lineWidth = LWidth;   // (line width)
+        ctx.strokeStyle = LColor; // (line color)
 
         var drawX = parseInt(downX, 10);
         var drawY = parseInt(downY, 10);
@@ -681,18 +701,14 @@ const star = (downX, downY, upX, upY, LWidth, LColor) => {
         const ctx = canvas.getContext('2d');
         canvasClear(ctx, canvas);
 
-        // if load is true take from save
-        if (localStorage.getItem("Restore") === "true") {
-            ctx.lineWidth = localStorage.getItem("saveLine");
-            ctx.strokeStyle = localStorage.getItem("saveLineColor"); // (line color)
-        }
-        else {  // when load is not true
+        // if restore is false than have opacity and clear has-loaded
+        if (localStorage.getItem("Restore") !== "true") {
             document.getElementById("has-loaded").innerHTML = "";
-            ctx.lineWidth = LWidth;   // (line width)
-            ctx.strokeStyle = LColor; // (line color)
-
             opacityCheck(ctx);
         }
+
+        ctx.lineWidth = LWidth;   // (line width)
+        ctx.strokeStyle = LColor; // (line color)
 
         var drawX = parseInt(downX, 10);
         var drawY = parseInt(downY, 10);
@@ -740,57 +756,29 @@ const canvasClear = (ctx, canvas) => {
 // Checking for fill function
 
 const fillChecking = (ctx) => {
-    if (localStorage.getItem("Restore") === "true") {
-        if (localStorage.getItem("drawNum") === "D1") {
-            if (localStorage.getItem("SD1Checked") === "true") {
-                // Filled Star if checked
-                ctx.fillStyle = localStorage.getItem("SD1FillColor"); // (fill color)
-                ctx.fill();
-            }
-            ctx.stroke();
+    if (localStorage.getItem("drawNum") === "D1") {
+        if (localStorage.getItem("D1Checked") === "true") {
+            // Filled Star if checked
+            ctx.fillStyle = localStorage.getItem("D1FillColor");
+            ctx.fill();
         }
-        if (localStorage.getItem("drawNum") === "D2") {
-            if (localStorage.getItem("SD2Checked") === "true") {
-                // Filled Star if checked
-                ctx.fillStyle = localStorage.getItem("SD2FillColor"); // (fill color)
-                ctx.fill();
-            }
-            ctx.stroke();
-        }
-        if (localStorage.getItem("drawNum") === "D3") {
-            if (localStorage.getItem("SD3Checked") === "true") {
-                // Filled Star if checked
-                ctx.fillStyle = localStorage.getItem("SD3FillColor"); // (fill color)
-                ctx.fill();
-            }
-            ctx.stroke();
-        }
+        ctx.stroke();
     }
-    else {
-        if (localStorage.getItem("drawNum") === "D1") {
-            if (localStorage.getItem("D1Checked") === "true") {
-                // Filled Star if checked
-                ctx.fillStyle = localStorage.getItem("D1FillColor");
-                ctx.fill();
-            }
-            ctx.stroke();
+    if (localStorage.getItem("drawNum") === "D2") {
+        if (localStorage.getItem("D2Checked") === "true") {
+            // Filled Star if checked
+            ctx.fillStyle = localStorage.getItem("D2FillColor");
+            ctx.fill();
         }
-        if (localStorage.getItem("drawNum") === "D2") {
-            if (localStorage.getItem("D2Checked") === "true") {
-                // Filled Star if checked
-                ctx.fillStyle = localStorage.getItem("D2FillColor");
-                ctx.fill();
-            }
-            ctx.stroke();
+        ctx.stroke();
+    }
+    if (localStorage.getItem("drawNum") === "D3") {
+        if (localStorage.getItem("D3Checked") === "true") {
+            // Filled Star if checked
+            ctx.fillStyle = localStorage.getItem("D3FillColor");
+            ctx.fill();
         }
-        if (localStorage.getItem("drawNum") === "D3") {
-            if (localStorage.getItem("D3Checked") === "true") {
-                // Filled Star if checked
-                ctx.fillStyle = localStorage.getItem("D3FillColor");
-                ctx.fill();
-            }
-            ctx.stroke();
-        }
+        ctx.stroke();
     }
 }
 
