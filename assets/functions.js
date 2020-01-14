@@ -397,12 +397,15 @@ const saveOutputSelection = (SCurrD) => {
 
     if (localStorage.getItem(`${SCurrD}Function`) === "Box") {
         saveOutput.innerHTML = `Current Selection - ${localStorage.getItem("Box")}`;
+        localStorage.setItem("fP", "1");
     }
     if (localStorage.getItem(`${SCurrD}Function`) === "Pentagon") {
         saveOutput.innerHTML = `Current Selection - ${localStorage.getItem("Pentagon")}`;
+        localStorage.setItem("fP", "2");
     }
     if (localStorage.getItem(`${SCurrD}Function`) === "Star") {
         saveOutput.innerHTML = `Current Selection - ${localStorage.getItem("Star")}`;
+        localStorage.setItem("fP", "3");
     }
 }
 
@@ -419,23 +422,14 @@ const returnFunction = () => {
         if (localStorage.getItem("CurrD") === "D1") {
             let input = "S" + `${localStorage.getItem("CurrD")}`;
             saveOutputSelection(input);
-            if (localStorage.getItem("SD1Checked") === "true") {
-                document.getElementById("myCheck").checked = true;
-            }
         }
         else if (localStorage.getItem("CurrD") === "D2") {
             let input = "S" + `${localStorage.getItem("CurrD")}`;
             saveOutputSelection(input);
-            if (localStorage.getItem("SD2Checked") === "true") {
-                document.getElementById("myCheck").checked = true;
-            }
         }
         else {
             let input = "S" + `${localStorage.getItem("CurrD")}`;
             saveOutputSelection(input);
-            if (localStorage.getItem("SD3Checked") === "true") {
-                document.getElementById("myCheck").checked = true;
-            }
         }
 
         // replace all D keys with the SD keys
@@ -470,8 +464,6 @@ const returnFunction = () => {
         localStorage.setItem("D1Function", localStorage.getItem("SD1Function"));
         localStorage.setItem("D2Function", localStorage.getItem("SD2Function"));
         localStorage.setItem("D3Function", localStorage.getItem("SD3Function"));
-
-        resetAttr(localStorage.getItem("CurrD"));
     }
     else {  // when user does not wanna load drawing
 
@@ -500,10 +492,26 @@ const returnFunction = () => {
             output.innerHTML = `Current Selection - ${localStorage.getItem("Star")}`;
             correctDrawF(localStorage.getItem("Star"));
         }
+    }
 
-        if (localStorage.getItem("checked") === "true") {
-            document.getElementById("myCheck").checked = true;
-        }
+    // now to set all shape details for specific current drawing selected
+
+    var currentDrawing = localStorage.getItem("CurrD");
+
+    if (currentDrawing === "D1") {
+        updateDrawInfo(currentDrawing);
+    }
+
+    if (currentDrawing === "D2") {
+        updateDrawInfo(currentDrawing);
+    }
+
+    if (currentDrawing === "D3") {
+        updateDrawInfo(currentDrawing);
+    }
+
+    if (localStorage.getItem("checked") === "true") {
+        document.getElementById("myCheck").checked = true;
     }
 
     var keepLineText = localStorage.getItem("lineWidth");
@@ -537,16 +545,18 @@ const returnFunction = () => {
 
     var currentDrawing = localStorage.getItem("CurrD");
 
-    if (currentDrawing === "D1") {
-        updateDrawInfo(currentDrawing);
-    }
-
-    if (currentDrawing === "D2") {
-        updateDrawInfo(currentDrawing);
-    }
-
-    if (currentDrawing === "D3") {
-        updateDrawInfo(currentDrawing);
+    if (localStorage.getItem("Restore") !== "true") {
+        if (currentDrawing === "D1") {
+            updateDrawInfo(currentDrawing);
+        }
+    
+        if (currentDrawing === "D2") {
+            updateDrawInfo(currentDrawing);
+        }
+    
+        if (currentDrawing === "D3") {
+            updateDrawInfo(currentDrawing);
+        }
     }
 
     // time to draw for specific slot or to draw an entire artwork
