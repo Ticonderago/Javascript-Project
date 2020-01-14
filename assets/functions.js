@@ -414,7 +414,7 @@ const returnFunction = () => {
     // when user calls to load the old drawing
     if (localStorage.getItem("Restore") === "true") {
 
-        selectedDrawing();  // might not need
+        selectedDrawing();
 
         if (localStorage.getItem("CurrD") === "D1") {
             let input = "S" + `${localStorage.getItem("CurrD")}`;
@@ -446,6 +446,12 @@ const returnFunction = () => {
         localStorage.setItem("DD2Y", localStorage.getItem("SD2Y"));
         localStorage.setItem("DD3X", localStorage.getItem("SD3X"));
         localStorage.setItem("DD3Y", localStorage.getItem("SD3Y"));
+        localStorage.setItem("DU1X", localStorage.getItem("SU1X"));
+        localStorage.setItem("DU1Y", localStorage.getItem("SU1Y"));
+        localStorage.setItem("DU2X", localStorage.getItem("SU2X"));
+        localStorage.setItem("DU2Y", localStorage.getItem("SU2Y"));
+        localStorage.setItem("DU3X", localStorage.getItem("SU3X"));
+        localStorage.setItem("DU3Y", localStorage.getItem("SU3Y"));
         localStorage.setItem("D1Checked", localStorage.getItem("SD1Checked"));
         localStorage.setItem("D2Checked", localStorage.getItem("SD2Checked"));
         localStorage.setItem("D3Checked", localStorage.getItem("SD3Checked"));
@@ -464,6 +470,8 @@ const returnFunction = () => {
         localStorage.setItem("D1Function", localStorage.getItem("SD1Function"));
         localStorage.setItem("D2Function", localStorage.getItem("SD2Function"));
         localStorage.setItem("D3Function", localStorage.getItem("SD3Function"));
+
+        resetAttr(localStorage.getItem("CurrD"));
     }
     else {  // when user does not wanna load drawing
 
