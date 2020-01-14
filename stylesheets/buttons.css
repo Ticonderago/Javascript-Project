@@ -51,12 +51,19 @@
 
 /* below sidebar */
 
-#curr-drawing-cont {
+#clear-container, #curr-drawing-cont {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 500px;
-    margin-top: 34px;
+}
+
+#clear-container {
+    margin-top: 7px;
+}
+
+#curr-drawing-cont {
+    margin-top: 5px;
     margin-bottom: 5px;
 }
 
@@ -70,6 +77,14 @@
 
 #drawing-1:hover, #drawing-2:hover, #drawing-3:hover {
     background-color: rgb(200, 142, 255);
+}
+
+#clear-but {
+    font-weight: bold;
+    transition: 0.7s;
+    border-radius: 3px;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
 /* disabled buttons */ 

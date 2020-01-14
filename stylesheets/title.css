@@ -36,7 +36,7 @@
     transition: 1s;
 }
 
-#github, #save-drawing, #restore-drawing {
+#github, #save-drawing, #restore-drawing, #clear-but {
     color: rgb(48, 48, 48);
     font-size: 18px;
     background-color: rgb(166, 255, 228);
@@ -82,7 +82,8 @@
     margin-right: 5px;
 }
 
-#github:hover, #save-drawing:hover, #restore-drawing:hover {
+#github:hover, #save-drawing:hover, 
+#restore-drawing:hover, #clear-but:hover {
     cursor: pointer;
     color: rgb(24, 24, 24);
     background-color: rgb(137, 255, 220);
