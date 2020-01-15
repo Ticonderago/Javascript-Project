@@ -9,13 +9,13 @@ if (localStorage.getItem("firstTime") === null) {
         "lineColor", "fillColor", "downBool", "opacity",
         "D1Bol", "D2Bol", "D3Bol", "CurrD", "canvClearBol",
         "D1DrawFunction", "D2DrawFunction", "D3DrawFunction",
-        "fP"
+        "fP", "refresh"
     ];
     var values = [
         "false", "0", "false", "false", "D1",
         "#000000", "#000000", "false", "false",
         "true", "false", "false", "D1", "true",
-        "Box", "Pentagon", "Star", "1"
+        "Box", "Pentagon", "Star", "1", "false"
     ];
 
     for (let i = 0; i < keys.length; i++) {
@@ -35,6 +35,25 @@ if (localStorage.getItem("firstTime") === null) {
     output.innerHTML = `${localStorage.getItem("D1")} Selected`;
 
     localStorage.setItem("firstTime", "false");
+}
+
+// if the user refreshes the page using buttons or refresh icon on browser
+window.onbeforeunload = function() {
+    localStorage.setItem("refresh", "true");
+}
+
+// if a refresh has occured do this
+if (localStorage.getItem("refresh") === "true") {
+    let setDrawingNum = localStorage.getItem("CurrD");
+    if (setDrawingNum === "D1") {
+        
+    }
+    else if (setDrawingNum === "D2") {
+
+    }
+    else {
+        
+    }
 }
 
 // functions for the canvas
@@ -266,13 +285,43 @@ const mainFunction = (htmlText) => {
 const clearButtonHelper = (CurrD) => {
     localStorage.setItem(`${CurrD}Bol`, "false");
     if (CurrD === "D1") {
-        // start here when you get back
+        let D2Bol = localStorage.getItem("D2Bol");
+        let D3Bol = localStorage.getItem("D3Bol");
+        if (D2Bol === "false" && D3Bol === "false") {
+            // when no drawing is on the canvas
+        } 
+        else if (D2Bol === "false" && D3Bol === "true") {
+
+        }
+        else {
+            
+        }
     }
     else if (CurrD === "D2") {
+        let D1Bol = localStorage.getItem("D1Bol");
+        let D3Bol = localStorage.getItem("D3Bol");
+        if (D1Bol === "false" && D3Bol === "false") {
+            // when no drawing is on the canvas
+        } 
+        else if (D1Bol === "false" && D3Bol === "true") {
 
+        }
+        else {
+            
+        }
     }
     else {
-        
+        let D1Bol = localStorage.getItem("D1Bol");
+        let D2Bol = localStorage.getItem("D2Bol");
+        if (D1Bol === "false" && D2Bol === "false") {
+            // when no drawing is on the canvas
+        } 
+        else if (D1Bol === "false" && D2Bol === "true") {
+
+        }
+        else {
+            
+        }
     }
 }
 
