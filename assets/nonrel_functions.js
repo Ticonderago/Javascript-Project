@@ -27,4 +27,4 @@ const fillColor = () => {
     localStorage.setItem("fillColor", fillcolor);
 }
 
-module.exports = { reloadFunction, check, lineColor, fillColor };
+module.exports = { check, lineColor, fillColor };

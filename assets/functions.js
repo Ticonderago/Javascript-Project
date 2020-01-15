@@ -5,16 +5,17 @@ if (localStorage.getItem("firstTime") === null) {
     localStorage.setItem("fP", functionPicker);
 
     var keys = [
-        "checked", "lineWidth", "Save", "Restore",
+        "checked", "lineWidth", "Save", "Restore", "CurrD",
         "lineColor", "fillColor", "downBool", "opacity",
         "D1Bol", "D2Bol", "D3Bol", "CurrD", "canvClearBol",
-        "D1DrawFunction", "D2DrawFunction", "D3DrawFunction"
+        "D1DrawFunction", "D2DrawFunction", "D3DrawFunction",
+        "fP"
     ];
     var values = [
-        "false", "0", "false", "false",
+        "false", "0", "false", "false", "D1",
         "#000000", "#000000", "false", "false",
         "true", "false", "false", "D1", "true",
-        "Box", "Pentagon", "Star"
+        "Box", "Pentagon", "Star", "1"
     ];
 
     for (let i = 0; i < keys.length; i++) {
@@ -22,6 +23,16 @@ if (localStorage.getItem("firstTime") === null) {
             localStorage.setItem(keys[i], values[i]);
         }
     }
+    draw1.id = "dis-d1";
+    draw1.disabled = true;
+    localStorage.setItem("D1Bol", "true");
+
+    resetAttr(localStorage.getItem("CurrD"));
+
+    let name = "Drawing #1";
+    localStorage.setItem("D1", name)
+    let output = document.getElementById("current-drawing");
+    output.innerHTML = `${localStorage.getItem("D1")} Selected`;
 
     localStorage.setItem("firstTime", "false");
 }
@@ -135,16 +146,8 @@ const mainFunction = (htmlText) => {
 
     // when the user wants to clear a drawing currently selected (erase it)
     else if (htmlText === "Clear") {
-        let thisDrawing = localStorage.getItem("CurrD");
-        if (thisDrawing === "D1") {
-
-        }
-        else if (thisDrawing === "D2") {
-
-        }
-        else {
-
-        }
+        clearButtonHelper(localStorage.getItem("CurrD"));
+        returnFunction();
     }
 
     // selecting box to draw
@@ -256,6 +259,20 @@ const mainFunction = (htmlText) => {
         localStorage.setItem("D3", functionName)
         let output = document.getElementById("current-drawing");
         output.innerHTML = `${localStorage.getItem("D3")} Selected`;
+    }
+}
+
+// helper function for clearing drawings
+const clearButtonHelper = (CurrD) => {
+    localStorage.setItem(`${CurrD}Bol`, "false");
+    if (CurrD === "D1") {
+        // start here when you get back
+    }
+    else if (CurrD === "D2") {
+
+    }
+    else {
+        
     }
 }
 
@@ -471,14 +488,8 @@ const returnFunction = () => {
     else {  // when user does not wanna load drawing
 
         selectedDrawing();
-
-        if (localStorage.getItem("fP") === "0") {
-            let output = document.getElementById("current-selection");
-            output.innerHTML = `Current Selection - none`;
-            initial();
-        }
     
-        else if (localStorage.getItem("fP") === "1") {
+        if (localStorage.getItem("fP") === "1") {
             let output = document.getElementById("current-selection");
             output.innerHTML = `Current Selection - ${localStorage.getItem("Box")}`;
             correctDrawF(localStorage.getItem("Box"));
@@ -579,26 +590,6 @@ const returnFunction = () => {
 }
 
 // drawing functions
-
-// placeholder function for first time on site
-const initial = () => {
-    const canvas = document.getElementById('canv');
-
-    if (canv.getContext) {
-        const ctx = canvas.getContext('2d');
-
-        ctx.lineWidth = localStorage.getItem("lineWidth");
-        
-        // Non Filled Box
-        ctx.beginPath();
-        ctx.moveTo(225, 225);
-        ctx.lineTo(305, 225);
-        ctx.lineTo(305, 305);
-        ctx.lineTo(225, 305)
-        ctx.closePath();
-        ctx.stroke();
-    }
-}
 
 // Box Drawing
 const box = (downX, downY, upX, upY, LWidth, LColor) => {
