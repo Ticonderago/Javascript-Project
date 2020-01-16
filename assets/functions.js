@@ -45,15 +45,22 @@ window.onbeforeunload = function() {
 // if a refresh has occured do this
 if (localStorage.getItem("refresh") === "true") {
     let setDrawingNum = localStorage.getItem("CurrD");
+    let button1 = document.getElementById("drawing-1");
+    let button2 = document.getElementById("drawing-2");
+    let button3 = document.getElementById("drawing-3");
     if (setDrawingNum === "D1") {
-        
+        button1.id = "dis-d1";
+        button1.disabled = true;
     }
     else if (setDrawingNum === "D2") {
-
+        button2.id = "dis-d2";
+        button2.disabled = true;
     }
     else {
-        
+        button3.id = "dis-d3";
+        button3.disabled = true;
     }
+    localStorage.setItem("refresh", "false");
 }
 
 // functions for the canvas
@@ -115,10 +122,10 @@ const mainFunction = (htmlText) => {
     if (draw1 === null) {
         draw1 = document.getElementById("dis-d1");
     }
-    if (draw2 === null) {
+    else if (draw2 === null) {
         draw2 = document.getElementById("dis-d2");
     }
-    if (draw3 === null) {
+    else if (draw3 === null) {
         draw3 = document.getElementById("dis-d3");
     }
 
@@ -166,7 +173,7 @@ const mainFunction = (htmlText) => {
     // when the user wants to clear a drawing currently selected (erase it)
     else if (htmlText === "Clear") {
         clearButtonHelper(localStorage.getItem("CurrD"));
-        returnFunction();
+        location.reload();
     }
 
     // selecting box to draw
@@ -284,17 +291,39 @@ const mainFunction = (htmlText) => {
 // helper function for clearing drawings
 const clearButtonHelper = (CurrD) => {
     localStorage.setItem(`${CurrD}Bol`, "false");
+    let button1 = document.getElementById("drawing-1");
+    let button2 = document.getElementById("drawing-2");
+    let button3 = document.getElementById("drawing-3");
+    // checking if the id has been changed of the button
+    if (button1 === null) {
+        button1 = document.getElementById("dis-d1");
+    }
+    else if (button2 === null) {
+        button2 = document.getElementById("dis-d2");
+    }
+    else if (button3 === null) {
+        button3 = document.getElementById("dis-d3");
+    }
+
     if (CurrD === "D1") {
         let D2Bol = localStorage.getItem("D2Bol");
         let D3Bol = localStorage.getItem("D3Bol");
+        button1.id = "drawing-1";
+        button1.disabled = false;
         if (D2Bol === "false" && D3Bol === "false") {
             // when no drawing is on the canvas
-        } 
-        else if (D2Bol === "false" && D3Bol === "true") {
-
         }
         else {
-            
+            if (D2Bol === "false" && D3Bol === "true") {
+                button3.id = "dis-d3";
+                button3.disabled = true;
+                localStorage.setItem("CurrD", "D3");
+            }
+            else {
+                button2.id = "dis-d2";
+                button2.disabled = true;
+                localStorage.setItem("CurrD", "D2");
+            }
         }
     }
     else if (CurrD === "D2") {
@@ -302,12 +331,18 @@ const clearButtonHelper = (CurrD) => {
         let D3Bol = localStorage.getItem("D3Bol");
         if (D1Bol === "false" && D3Bol === "false") {
             // when no drawing is on the canvas
-        } 
-        else if (D1Bol === "false" && D3Bol === "true") {
-
         }
         else {
-            
+            if (D1Bol === "false" && D3Bol === "true") {
+                button3.id = "dis-d3";
+                button3.disabled = true;
+                localStorage.setItem("CurrD", "D3");
+            }
+            else {
+                button1.id = "dis-d1";
+                button1.disabled = true;
+                localStorage.setItem("CurrD", "D1");
+            }
         }
     }
     else {
@@ -315,14 +350,21 @@ const clearButtonHelper = (CurrD) => {
         let D2Bol = localStorage.getItem("D2Bol");
         if (D1Bol === "false" && D2Bol === "false") {
             // when no drawing is on the canvas
-        } 
-        else if (D1Bol === "false" && D2Bol === "true") {
-
         }
         else {
-            
+            if (D1Bol === "false" && D2Bol === "true") {
+                button2.id = "dis-d2";
+                button2.disabled = true;
+                localStorage.setItem("CurrD", "D2");
+            }
+            else {
+                button1.id = "dis-d1";
+                button1.disabled = true;
+                localStorage.setItem("CurrD", "D1");
+            }
         }
     }
+    resetAttr(localStorage.getItem("CurrD"));
 }
 
 // when switching drawings, after calling "resetDrawSelection", I want
