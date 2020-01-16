@@ -1,3 +1,7 @@
+// PLEASE READ
+// CurrD just means "Current Drawing"
+// it is used a lot through out the code to check which drawing you are currently working with
+
 // null cases covered, first time visiting the website
 
 if (localStorage.getItem("firstTime") === null) {
@@ -9,13 +13,14 @@ if (localStorage.getItem("firstTime") === null) {
         "lineColor", "fillColor", "downBool", "opacity",
         "D1Bol", "D2Bol", "D3Bol", "CurrD", "canvClearBol",
         "D1DrawFunction", "D2DrawFunction", "D3DrawFunction",
-        "fP", "refresh"
+        "fP", "refresh", "DNChecked", "DNLWidth", "DNLColor", "DNFillColor"
     ];
     var values = [
         "false", "0", "false", "false", "D1",
         "#000000", "#000000", "false", "false",
         "true", "false", "false", "D1", "true",
-        "Box", "Pentagon", "Star", "1", "false"
+        "Box", "Pentagon", "Star", "1", "false",
+        "false", "1", "#000000", "#000000"
     ];
 
     for (let i = 0; i < keys.length; i++) {
@@ -23,8 +28,10 @@ if (localStorage.getItem("firstTime") === null) {
             localStorage.setItem(keys[i], values[i]);
         }
     }
-    draw1.id = "dis-d1";
-    draw1.disabled = true;
+
+    let firstTimeDraw = document.getElementById("drawing-1");
+    firstTimeDraw.id = "dis-d1";
+    firstTimeDraw.disabled = true;
     localStorage.setItem("D1Bol", "true");
 
     resetAttr(localStorage.getItem("CurrD"));
@@ -35,6 +42,15 @@ if (localStorage.getItem("firstTime") === null) {
     output.innerHTML = `${localStorage.getItem("D1")} Selected`;
 
     localStorage.setItem("firstTime", "false");
+}
+
+// when the properties of a drawing are changed by a user, update the
+// information for the drawing to use
+const updateDrawInfo = (CurrD) => {
+    localStorage.setItem(`${CurrD}Checked`, localStorage.getItem("checked"));
+    localStorage.setItem(`${CurrD}LWidth`, localStorage.getItem("lineWidth"));
+    localStorage.setItem(`${CurrD}LColor`, localStorage.getItem("lineColor"));
+    localStorage.setItem(`${CurrD}FillColor`, localStorage.getItem("fillColor"));
 }
 
 // if the user refreshes the page using buttons or refresh icon on browser
@@ -56,9 +72,14 @@ if (localStorage.getItem("refresh") === "true") {
         button2.id = "dis-d2";
         button2.disabled = true;
     }
-    else {
+    else if (setDrawingNum === "D3") {
         button3.id = "dis-d3";
         button3.disabled = true;
+    }
+    else {
+        let output = document.getElementById("current-drawing");
+        output.innerHTML = "No Drawing Selected!";
+        updateDrawInfo(localStorage.getItem("CurrD"));
     }
     localStorage.setItem("refresh", "false");
 }
@@ -82,7 +103,7 @@ const getCursorPositionDown = (canvas, event) => {
         localStorage.setItem("DD2Y", y);
     }
 
-    else {
+    else if (localStorage.getItem("CurrD") === "D3") {
         localStorage.setItem("DD3X", x);
         localStorage.setItem("DD3Y", y);
     }
@@ -103,7 +124,7 @@ const getCursorPositionUp = (canvas, event) => {
         localStorage.setItem("DU2Y", y);
     }
 
-    else {
+    else if (localStorage.getItem("CurrD") === "D3") {
         localStorage.setItem("DU3X", x);
         localStorage.setItem("DU3Y", y);
     }
@@ -305,15 +326,19 @@ const clearButtonHelper = (CurrD) => {
         button3 = document.getElementById("dis-d3");
     }
 
-    if (CurrD === "D1") {
-        let D2Bol = localStorage.getItem("D2Bol");
-        let D3Bol = localStorage.getItem("D3Bol");
-        button1.id = "drawing-1";
-        button1.disabled = false;
-        if (D2Bol === "false" && D3Bol === "false") {
-            // when no drawing is on the canvas
-        }
-        else {
+    let D1Bol = localStorage.getItem("D1Bol");
+    let D2Bol = localStorage.getItem("D2Bol");
+    let D3Bol = localStorage.getItem("D3Bol");
+
+    if (D1Bol === "false" && D2Bol === "false" && D3Bol === "false") {
+        let output = document.getElementById("current-drawing");
+        output.innerHTML = "No Drawing Selected!";
+        localStorage.setItem("CurrD", "DN");
+    }
+    else {
+        if (CurrD === "D1") {
+            button1.id = "drawing-1";
+            button1.disabled = false;
             if (D2Bol === "false" && D3Bol === "true") {
                 button3.id = "dis-d3";
                 button3.disabled = true;
@@ -325,14 +350,7 @@ const clearButtonHelper = (CurrD) => {
                 localStorage.setItem("CurrD", "D2");
             }
         }
-    }
-    else if (CurrD === "D2") {
-        let D1Bol = localStorage.getItem("D1Bol");
-        let D3Bol = localStorage.getItem("D3Bol");
-        if (D1Bol === "false" && D3Bol === "false") {
-            // when no drawing is on the canvas
-        }
-        else {
+        else if (CurrD === "D2") {
             if (D1Bol === "false" && D3Bol === "true") {
                 button3.id = "dis-d3";
                 button3.disabled = true;
@@ -343,13 +361,6 @@ const clearButtonHelper = (CurrD) => {
                 button1.disabled = true;
                 localStorage.setItem("CurrD", "D1");
             }
-        }
-    }
-    else {
-        let D1Bol = localStorage.getItem("D1Bol");
-        let D2Bol = localStorage.getItem("D2Bol");
-        if (D1Bol === "false" && D2Bol === "false") {
-            // when no drawing is on the canvas
         }
         else {
             if (D1Bol === "false" && D2Bol === "true") {
@@ -363,8 +374,8 @@ const clearButtonHelper = (CurrD) => {
                 localStorage.setItem("CurrD", "D1");
             }
         }
+        resetAttr(localStorage.getItem("CurrD"));
     }
-    resetAttr(localStorage.getItem("CurrD"));
 }
 
 // when switching drawings, after calling "resetDrawSelection", I want
@@ -393,7 +404,7 @@ const resetDrawSelection = (Shape) => {
         localStorage.setItem("D2DrawFunction", Shape);
     }
 
-    else {
+    else if (localStorage.getItem("CurrD") === "D3") {
         localStorage.setItem("D3DrawFunction", Shape);
     }
 
@@ -459,7 +470,7 @@ const correctDrawF = (drawType) => {
         localStorage.setItem("D2Function", drawType);
     }
 
-    else {
+    else if (localStorage.getItem("CurrD") === "D3") {
         localStorage.setItem("D3Function", drawType);
     }
 }
@@ -477,15 +488,6 @@ const callingDrawF = (drawFunction, downX, downY, upX, upY, LWidth, LColor) => {
     }
 }
 
-// when the properties of a drawing are changed by a user, update the
-// information for the drawing to use
-const updateDrawInfo = (CurrD) => {
-    localStorage.setItem(`${CurrD}Checked`, localStorage.getItem("checked"));
-    localStorage.setItem(`${CurrD}LWidth`, localStorage.getItem("lineWidth"));
-    localStorage.setItem(`${CurrD}LColor`, localStorage.getItem("lineColor"));
-    localStorage.setItem(`${CurrD}FillColor`, localStorage.getItem("fillColor"));
-}
-
 // onload for drawing selected
 const selectedDrawing = () => {
     let selectDraw = document.getElementById("current-drawing");
@@ -496,7 +498,7 @@ const selectedDrawing = () => {
     else if (curr === "D2") {
         selectDraw.innerHTML = "Drawing #2 Selected";
     }
-    else {
+    else if (curr === "D3") {
         selectDraw.innerHTML = "Drawing #3 Selected";
     }
 }
@@ -607,11 +609,16 @@ const returnFunction = () => {
         document.getElementById("myCheck").checked = true;
     }
 
-    var keepLineText = localStorage.getItem("lineWidth");
-
-    var linecolor = localStorage.getItem("lineColor");
-
-    var fillcolor = localStorage.getItem("fillColor");
+    if (localStorage.getItem("CurrD") === "DN") {
+        var keepLineText = localStorage.getItem("DNLWidth");
+        var linecolor = localStorage.getItem("DNLColor");
+        var fillcolor = localStorage.getItem("DNFillColor");
+    }
+    else {
+        var keepLineText = localStorage.getItem("lineWidth");
+        var linecolor = localStorage.getItem("lineColor");
+        var fillcolor = localStorage.getItem("fillColor");
+    }
     
     // setting line color
     let cline = document.getElementById("actual-l-color");

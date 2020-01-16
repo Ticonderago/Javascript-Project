@@ -1,8 +1,3 @@
-/*  reload the page */
-
-// const reloadFunction = () => {
-//     location.reload();
-// }
 
 /* checkbox function */
 
