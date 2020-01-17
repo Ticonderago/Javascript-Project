@@ -524,13 +524,13 @@ const saveOutputSelection = (SCurrD) => {
 
 // when the page is reloaded runs this function
 const returnFunction = () => {
-
-    // save function needs updating later....
+    // checking which drawing is the current one saving to variable
+    var CurrDraw = localStorage.getItem("CurrD");
 
     // when user calls to load the old drawing
-    if (localStorage.getItem("Restore") === "true") {
+    selectedDrawing();
 
-        selectedDrawing();
+    if (localStorage.getItem("Restore") === "true") {
 
         if (localStorage.getItem("CurrD") === "D1") {
             let input = "S" + `${localStorage.getItem("CurrD")}`;
@@ -577,47 +577,47 @@ const returnFunction = () => {
         localStorage.setItem("D1Function", localStorage.getItem("SD1Function"));
         localStorage.setItem("D2Function", localStorage.getItem("SD2Function"));
         localStorage.setItem("D3Function", localStorage.getItem("SD3Function"));
-    }
-    else {  // when user does not wanna load drawing
 
-        selectedDrawing();
+        resetAttr(CurrDraw);
+    }
     
-        if (localStorage.getItem("fP") === "1") {
-            let output = document.getElementById("current-selection");
-            output.innerHTML = `Current Selection - ${localStorage.getItem("Box")}`;
-            correctDrawF(localStorage.getItem("Box"));
-        }
-    
-        else if (localStorage.getItem("fP") === "2") {
-            let output = document.getElementById("current-selection");
-            output.innerHTML = `Current Selection - ${localStorage.getItem("Pentagon")}`;
-            correctDrawF(localStorage.getItem("Pentagon"));
-        }
-    
-        else if (localStorage.getItem("fP") === "3") {
-            let output = document.getElementById("current-selection");
-            output.innerHTML = `Current Selection - ${localStorage.getItem("Star")}`;
-            correctDrawF(localStorage.getItem("Star"));
-        }
+    if (localStorage.getItem("fP") === "1") {
+        let output = document.getElementById("current-selection");
+        output.innerHTML = `Current Selection - ${localStorage.getItem("Box")}`;
+        correctDrawF(localStorage.getItem("Box"));
+    }
+
+    else if (localStorage.getItem("fP") === "2") {
+        let output = document.getElementById("current-selection");
+        output.innerHTML = `Current Selection - ${localStorage.getItem("Pentagon")}`;
+        correctDrawF(localStorage.getItem("Pentagon"));
+    }
+
+    else if (localStorage.getItem("fP") === "3") {
+        let output = document.getElementById("current-selection");
+        output.innerHTML = `Current Selection - ${localStorage.getItem("Star")}`;
+        correctDrawF(localStorage.getItem("Star"));
     }
 
     // now to set all shape details for specific current drawing selected
 
-    updateDrawInfo(localStorage.getItem("CurrD"));
+    updateDrawInfo(CurrDraw);
 
-    if (localStorage.getItem("checked") === "true") {
+    if (localStorage.getItem(`${CurrDraw}Checked`) === "true") {
         document.getElementById("myCheck").checked = true;
     }
-
-    if (localStorage.getItem("CurrD") === "DN") {
-        var keepLineText = localStorage.getItem("DNLWidth");
-        var linecolor = localStorage.getItem("DNLColor");
-        var fillcolor = localStorage.getItem("DNFillColor");
-    }
     else {
-        var keepLineText = localStorage.getItem("lineWidth");
-        var linecolor = localStorage.getItem("lineColor");
-        var fillcolor = localStorage.getItem("fillColor");
+        document.getElementById("myCheck").checked = false;
+    }
+
+    var keepLineText = localStorage.getItem(`${CurrDraw}LWidth`);
+    var linecolor = localStorage.getItem(`${CurrDraw}LColor`);
+    var fillcolor = localStorage.getItem(`${CurrDraw}FillColor`);
+
+    if (CurrDraw === "DN") {
+        keepLineText = localStorage.getItem("DNLWidth");
+        linecolor = localStorage.getItem("DNLColor");
+        fillcolor = localStorage.getItem("DNFillColor");
     }
     
     // setting line color
@@ -640,12 +640,6 @@ const returnFunction = () => {
 
     // reseting text for save and load function
     document.getElementById("has-saved").innerHTML = "";
-    
-    // now to set all shape details for specific current drawing selected
-
-    if (localStorage.getItem("Restore") !== "true") {
-        updateDrawInfo(localStorage.getItem("CurrD"));
-    }
 
     // time to draw for specific slot or to draw an entire artwork
     // that has been saved
