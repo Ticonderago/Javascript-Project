@@ -326,10 +326,12 @@ const clearButtonHelper = (CurrD) => {
         button3 = document.getElementById("dis-d3");
     }
 
+    // grabing whether or not a drawing can be drawn or not
     let D1Bol = localStorage.getItem("D1Bol");
     let D2Bol = localStorage.getItem("D2Bol");
     let D3Bol = localStorage.getItem("D3Bol");
 
+    // check each type of edgecase to determine which drawing to switch to when another gets cleared
     if (D1Bol === "false" && D2Bol === "false" && D3Bol === "false") {
         let output = document.getElementById("current-drawing");
         output.innerHTML = "No Drawing Selected!";
