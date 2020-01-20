@@ -223,7 +223,42 @@ const mainFunction = (htmlText) => {
         localStorage.setItem("D2fP", localStorage.getItem("SD2fP"));
         localStorage.setItem("D3fP", localStorage.getItem("SD3fP"));
 
-        resetAttr(currD);
+        let button1 = document.getElementById("drawing-1");
+        let button2 = document.getElementById("drawing-2");
+        let button3 = document.getElementById("drawing-3");
+        // checking if the id has been changed of the button
+        if (button1 === null) {
+            button1 = document.getElementById("dis-d1");
+        }
+        else if (button2 === null) {
+            button2 = document.getElementById("dis-d2");
+        }
+        else if (button3 === null) {
+            button3 = document.getElementById("dis-d3");
+        }
+
+        button2.id = "drawing-2";
+        button2.disabled = false;
+        button3.id = "drawing-3";
+        button3.disabled = false;
+
+        if (localStorage.getItem("D1Bol") === "true") {
+            localStorage.setItem("CurrD", "D1");
+            button1.id = "dis-d1";
+            button1.disabled = true;
+        }
+        else if (localStorage.getItem("D2Bol") === "true") {
+            localStorage.setItem("CurrD", "D2");
+            button2.id = "dis-d2";
+            button2.disabled = true;
+        }
+        else if (localStorage.getItem("D3Bol") === "true") {
+            localStorage.setItem("CurrD", "D3");
+            button3.id = "dis-d3";
+            button3.disabled = true;
+        }
+
+        resetAttr(localStorage.getItem("CurrD"));
 
         document.getElementById("has-saved").innerHTML = "";
         document.getElementById("has-loaded").innerHTML = "Loaded!";
@@ -434,7 +469,6 @@ const fpSetter = (Shape, CurrD) => {
 // carrying over draw functions when switching drawings
 const resetDrawSelection = (Shape, CurrD) => {
     localStorage.setItem(`${CurrD}DrawFunction`, Shape);
-    correctDrawF(Shape);
     fpSetter(Shape, CurrD);
 }
 
@@ -493,21 +527,6 @@ const sidebarUpdate = (checked, linecolor, fillcolor, keepLineText) => {
     let output = document.getElementById("line-w");
     output.innerHTML = keepLineText;
     slider.value = keepLineText;
-}
-
-// This function makes sure that the current drawing will use the right draw function
-const correctDrawF = (drawType) => {
-    if (localStorage.getItem("CurrD") === "D1") {
-        localStorage.setItem("D1DrawFunction", drawType);
-    }
-
-    else if (localStorage.getItem("CurrD") === "D2") {
-        localStorage.setItem("D2DrawFunction", drawType);
-    }
-
-    else if (localStorage.getItem("CurrD") === "D3") {
-        localStorage.setItem("D3DrawFunction", drawType);
-    }
 }
 
 // When the specific drawing is ready to start being drawn
