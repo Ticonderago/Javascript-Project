@@ -241,27 +241,27 @@ const mainFunction = (htmlText) => {
     // selecting box to draw
     else if (htmlText === "Box") {
         functionName = "Box";
-        localStorage.setItem("Box", functionName)
+        localStorage.setItem("Box", functionName);
         let output = document.getElementById("current-selection");
-        output.innerHTML = `Current Selection - ${localStorage.getItem("Box")}`;
+        output.innerHTML = "Current Selection - Box";
         resetDrawSelection("Box", currD);
     }
 
     // selecting spiral to draw
     else if (htmlText === "Pentagon") {
         functionName = "Pentagon";
-        localStorage.setItem("Pentagon", functionName)
+        localStorage.setItem("Pentagon", functionName);
         let output = document.getElementById("current-selection");
-        output.innerHTML = `Current Selection - ${localStorage.getItem("Pentagon")}`;
+        output.innerHTML = "Current Selection - Pentagon";
         resetDrawSelection("Pentagon", currD);
     }
 
     // selecting star to draw
     else if (htmlText === "Star") {
         functionName = "Star";
-        localStorage.setItem("Star", functionName)
+        localStorage.setItem("Star", functionName);
         let output = document.getElementById("current-selection");
-        output.innerHTML = `Current Selection - ${localStorage.getItem("Star")}`;
+        output.innerHTML = "Current Selection - Star";
         resetDrawSelection("Star", currD);
     }
 
@@ -453,7 +453,15 @@ const resetAttrHelper = (CurrD) => {
     localStorage.setItem("lineColor", localStorage.getItem(`${CurrD}LColor`));
     localStorage.setItem("fillColor", localStorage.getItem(`${CurrD}FillColor`));
     let selectTitle = document.getElementById("current-selection");
-    selectTitle.innerHTML = `Current Selection - ${localStorage.getItem(`${CurrD}DrawFunction`)}`;
+    if (localStorage.getItem(`${CurrD}fP`) === "1") {
+        selectTitle.innerHTML = "Current Selection - Box";
+    }
+    else if (localStorage.getItem(`${CurrD}fP`) === "2") {
+        selectTitle.innerHTML = "Current Selection - Pentagon";
+    }
+    else {
+        selectTitle.innerHTML = "Current Selection - Star";
+    }
     resetDrawSelection(localStorage.getItem(`${CurrD}DrawFunction`), CurrD);
 }
 
