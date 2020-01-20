@@ -160,7 +160,7 @@ const mainFunction = (htmlText) => {
             "SD1X", "SD1Y", "SD2X", "SD2Y", "SD3X", "SD3Y", "SU1X", "SU1Y", "SU2X", "SU2Y", "SU3X", "SU3Y",
             "SD1Checked", "SD2Checked", "SD3Checked", "SD1FillColor", "SD2FillColor", "SD3FillColor",
             "SD1LColor", "SD2LColor", "SD3LColor", "SD1LWidth", "SD2LWidth", "SD3LWidth", "SD1Bol", "SD2Bol", "SD3Bol",
-            "SD1Function", "SD2Function", "SD3Function", "SD1fP", "SD2fP", "SD3fP"
+            "SD1DrawFunction", "SD2DrawFunction", "SD3DrawFunction", "SD1fP", "SD2fP", "SD3fP"
         ];
 
         var savedValues = [
@@ -173,7 +173,7 @@ const mainFunction = (htmlText) => {
             localStorage.getItem("D1LColor"), localStorage.getItem("D2LColor"), localStorage.getItem("D3LColor"),
             localStorage.getItem("D1LWidth"), localStorage.getItem("D2LWidth"), localStorage.getItem("D3LWidth"),
             localStorage.getItem("D1Bol"), localStorage.getItem("D2Bol"), localStorage.getItem("D3Bol"),
-            localStorage.getItem("D1Function"), localStorage.getItem("D2Function"), localStorage.getItem("D3Function"),
+            localStorage.getItem("D1DrawFunction"), localStorage.getItem("D2DrawFunction"), localStorage.getItem("D3DrawFunction"),
             localStorage.getItem("D1fP"), localStorage.getItem("D2fP"), localStorage.getItem("D3fP")
         ];
 
@@ -434,6 +434,7 @@ const fpSetter = (Shape, CurrD) => {
 // carrying over draw functions when switching drawings
 const resetDrawSelection = (Shape, CurrD) => {
     localStorage.setItem(`${CurrD}DrawFunction`, Shape);
+    correctDrawF(Shape);
     fpSetter(Shape, CurrD);
 }
 
@@ -497,15 +498,15 @@ const sidebarUpdate = (checked, linecolor, fillcolor, keepLineText) => {
 // This function makes sure that the current drawing will use the right draw function
 const correctDrawF = (drawType) => {
     if (localStorage.getItem("CurrD") === "D1") {
-        localStorage.setItem("D1Function", drawType);
+        localStorage.setItem("D1DrawFunction", drawType);
     }
 
     else if (localStorage.getItem("CurrD") === "D2") {
-        localStorage.setItem("D2Function", drawType);
+        localStorage.setItem("D2DrawFunction", drawType);
     }
 
     else if (localStorage.getItem("CurrD") === "D3") {
-        localStorage.setItem("D3Function", drawType);
+        localStorage.setItem("D3DrawFunction", drawType);
     }
 }
 
@@ -544,23 +545,18 @@ const returnFunction = () => {
 
     // when user calls to load the old drawing
     selectedDrawing();
-    
+    let outSelection = document.getElementById("current-selection");
+
     if (localStorage.getItem(`${CurrDraw}fP`) === "1") {
-        let output = document.getElementById("current-selection");
-        output.innerHTML = `Current Selection - ${localStorage.getItem("Box")}`;
-        correctDrawF(localStorage.getItem("Box"));
+        outSelection.innerHTML = "Current Selection - Box";
     }
 
     else if (localStorage.getItem(`${CurrDraw}fP`) === "2") {
-        let output = document.getElementById("current-selection");
-        output.innerHTML = `Current Selection - ${localStorage.getItem("Pentagon")}`;
-        correctDrawF(localStorage.getItem("Pentagon"));
+        outSelection.innerHTML = "Current Selection - Pentagon";
     }
 
     else if (localStorage.getItem(`${CurrDraw}fP`) === "3") {
-        let output = document.getElementById("current-selection");
-        output.innerHTML = `Current Selection - ${localStorage.getItem("Star")}`;
-        correctDrawF(localStorage.getItem("Star"));
+        outSelection.innerHTML = "Current Selection - Star";
     }
 
     // now to set all shape details for specific current drawing selected
@@ -612,7 +608,7 @@ const returnFunction = () => {
 
     if (localStorage.getItem("D1Bol") === "true") {
         callingDrawF(
-            localStorage.getItem("D1Function"), localStorage.getItem("DD1X"), localStorage.getItem("DD1Y"),
+            localStorage.getItem("D1DrawFunction"), localStorage.getItem("DD1X"), localStorage.getItem("DD1Y"),
             localStorage.getItem("DU1X"), localStorage.getItem("DU1Y"), 
             localStorage.getItem("D1LWidth"), localStorage.getItem("D1LColor")
         );
@@ -622,7 +618,7 @@ const returnFunction = () => {
 
     if (localStorage.getItem("D2Bol") === "true") {
         callingDrawF(
-            localStorage.getItem("D2Function"), localStorage.getItem("DD2X"), localStorage.getItem("DD2Y"),
+            localStorage.getItem("D2DrawFunction"), localStorage.getItem("DD2X"), localStorage.getItem("DD2Y"),
             localStorage.getItem("DU2X"), localStorage.getItem("DU2Y"), 
             localStorage.getItem("D2LWidth"), localStorage.getItem("D2LColor")
         );
@@ -632,7 +628,7 @@ const returnFunction = () => {
 
     if (localStorage.getItem("D3Bol") === "true") {
         callingDrawF(
-            localStorage.getItem("D3Function"), localStorage.getItem("DD3X"), localStorage.getItem("DD3Y"),
+            localStorage.getItem("D3DrawFunction"), localStorage.getItem("DD3X"), localStorage.getItem("DD3Y"),
             localStorage.getItem("DU3X"), localStorage.getItem("DU3Y"), 
             localStorage.getItem("D3LWidth"), localStorage.getItem("D3LColor")
         );
