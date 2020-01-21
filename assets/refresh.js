@@ -34,3 +34,15 @@ if (localStorage.getItem("refresh") === "true") {
     }
     localStorage.setItem("refresh", "false");
 }
+
+// first time running website, making first drawing button disabled
+if (localStorage.getItem("firstTime") === "true") {
+    let firstTimeDraw = document.getElementById("drawing-1");
+    if (firstTimeDraw === null) {
+        firstTimeDraw = document.getElementById("dis-d1");
+    }
+    else {
+        firstTimeDraw.id = "dis-d1";
+        firstTimeDraw.disabled = true;
+    }
+}
