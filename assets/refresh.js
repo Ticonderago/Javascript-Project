@@ -4,6 +4,17 @@ if (localStorage.getItem("refresh") === "true") {
     let button1 = document.getElementById("drawing-1");
     let button2 = document.getElementById("drawing-2");
     let button3 = document.getElementById("drawing-3");
+
+    if (button1 === null) {
+        button1 = document.getElementById("dis-d1");
+    }
+    else if (button2 === null) {
+        button2 = document.getElementById("dis-d2");
+    }
+    else if (button3 === null) {
+        button3 = document.getElementById("dis-d3");
+    }
+
     if (setDrawingNum === "D1") {
         button1.id = "dis-d1";
         button1.disabled = true;
