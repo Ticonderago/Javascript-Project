@@ -4,6 +4,11 @@
 
 // functions that need to be initialized at the start
 
+// delete later
+if (localStorage.getItem("firstTime") === "false") {
+    localStorage.setItem("firstTime", "true");
+}
+
 // carrying over previous attributes of a drawing
 const resetAttr = (CurrD) => {
     resetAttrHelper(CurrD);
@@ -85,7 +90,7 @@ const sidebarUpdate = (checked, linecolor, fillcolor, keepLineText) => {
 
 // null cases covered, first time visiting the website
 
-if (localStorage.getItem("firstTime") === null) {
+if (localStorage.getItem("firstTime") === "true") {
     var functionPicker = "0";
     localStorage.setItem("fP", functionPicker);
 
@@ -95,7 +100,9 @@ if (localStorage.getItem("firstTime") === null) {
         "D1Bol", "D2Bol", "D3Bol", "CurrD", "canvClearBol",
         "D1DrawFunction", "D2DrawFunction", "D3DrawFunction",
         "fP", "refresh", "DNChecked", "DNLWidth", "DNLColor", "DNFillColor",
-        "D1fP", "D2fP", "D3fP"
+        "D1fP", "D2fP", "D3fP", "D1Checked", "D2Checked", "D3Checked",
+        "D1FillColor", "D2FillColor", "D3FillColor", "D1LWidth", "D2LWidth",
+        "D3LWidth", "D1LColor", "D2LColor", "D3LColor"
     ];
     var values = [
         "false", "0", "false", "false", "D1",
@@ -103,7 +110,9 @@ if (localStorage.getItem("firstTime") === null) {
         "true", "false", "false", "D1", "true",
         "Box", "Pentagon", "Star", "1", "false",
         "false", "1", "#000000", "#000000",
-        "1", "2", "3"
+        "1", "2", "3", "false", "false", "false",
+        "#000000", "#000000", "#000000", "0", "0", "0",
+        "#000000", "#000000", "#000000"
     ];
 
     for (let i = 0; i < keys.length; i++) {
