@@ -2,6 +2,87 @@
 // CurrD just means "Current Drawing"
 // it is used a lot through out the code to check which drawing you are currently working with
 
+// functions that need to be initialized at the start
+
+// carrying over previous attributes of a drawing
+const resetAttr = (CurrD) => {
+    resetAttrHelper(CurrD);
+    sidebarUpdate(
+        localStorage.getItem("checked"), localStorage.getItem("lineColor"),
+        localStorage.getItem("fillColor"), localStorage.getItem("lineWidth")
+    );
+}
+
+// does all the setting and getting for information carrying over to the sidebar
+const resetAttrHelper = (CurrD) => {
+    localStorage.setItem("checked", localStorage.getItem(`${CurrD}Checked`));
+    localStorage.setItem("lineWidth", localStorage.getItem(`${CurrD}LWidth`));
+    localStorage.setItem("lineColor", localStorage.getItem(`${CurrD}LColor`));
+    localStorage.setItem("fillColor", localStorage.getItem(`${CurrD}FillColor`));
+    let selectTitle = document.getElementById("current-selection");
+    if (localStorage.getItem(`${CurrD}fP`) === "1") {
+        selectTitle.innerHTML = "Current Selection - Box";
+    }
+    else if (localStorage.getItem(`${CurrD}fP`) === "2") {
+        selectTitle.innerHTML = "Current Selection - Pentagon";
+    }
+    else {
+        selectTitle.innerHTML = "Current Selection - Star";
+    }
+    resetDrawSelection(localStorage.getItem(`${CurrD}DrawFunction`), CurrD);
+}
+
+// carrying over draw functions when switching drawings
+const resetDrawSelection = (Shape, CurrD) => {
+    localStorage.setItem(`${CurrD}DrawFunction`, Shape);
+    fpSetter(Shape, CurrD);
+}
+
+// when switching drawings, after calling "resetDrawSelection", I want
+// the function picker to pick the current selection above the canvas
+const fpSetter = (Shape, CurrD) => {
+    if (Shape === "Box") {
+        localStorage.setItem(`${CurrD}fP`, "1");
+    }
+
+    else if (Shape === "Pentagon") {
+        localStorage.setItem(`${CurrD}fP`, "2");
+    }
+
+    else if (Shape === "Star") {
+        localStorage.setItem(`${CurrD}fP`, "3");
+    }
+}
+
+// updates the sidebar when switching drawings
+const sidebarUpdate = (checked, linecolor, fillcolor, keepLineText) => {
+    // setting checkbox for fill to be unchecked or checked
+    if (checked === "true") {
+        document.getElementById("myCheck").checked = true;
+    }
+    else if (checked === "false") {
+        document.getElementById("myCheck").checked = false;
+    }
+    
+    // setting line color
+    let cline = document.getElementById("actual-l-color");
+    let lineColorPicker = document.getElementById("myColor");
+    cline.innerHTML = linecolor;
+    lineColorPicker.value = linecolor;
+
+    // setting fill color
+    let cfill = document.getElementById("actual-f-color");
+    let fillColorPicker = document.getElementById("myFillColor");
+    cfill.innerHTML = fillcolor;
+    fillColorPicker.value = fillcolor;
+
+    // slider inputs
+    let slider = document.getElementById("myRange");
+    let output = document.getElementById("line-w");
+    output.innerHTML = keepLineText;
+    slider.value = keepLineText;
+}
+
 // null cases covered, first time visiting the website
 
 if (localStorage.getItem("firstTime") === null) {
@@ -448,85 +529,6 @@ const clearButtonHelper = (CurrD) => {
         }
         resetAttr(localStorage.getItem("CurrD"));
     }
-}
-
-// when switching drawings, after calling "resetDrawSelection", I want
-// the function picker to pick the current selection above the canvas
-const fpSetter = (Shape, CurrD) => {
-    if (Shape === "Box") {
-        localStorage.setItem(`${CurrD}fP`, "1");
-    }
-
-    else if (Shape === "Pentagon") {
-        localStorage.setItem(`${CurrD}fP`, "2");
-    }
-
-    else if (Shape === "Star") {
-        localStorage.setItem(`${CurrD}fP`, "3");
-    }
-}
-
-// carrying over draw functions when switching drawings
-const resetDrawSelection = (Shape, CurrD) => {
-    localStorage.setItem(`${CurrD}DrawFunction`, Shape);
-    fpSetter(Shape, CurrD);
-}
-
-// carrying over previous attributes of a drawing
-const resetAttr = (CurrD) => {
-    resetAttrHelper(CurrD);
-    sidebarUpdate(
-        localStorage.getItem("checked"), localStorage.getItem("lineColor"),
-        localStorage.getItem("fillColor"), localStorage.getItem("lineWidth")
-    );
-}
-
-// does all the setting and getting for information carrying over to the sidebar
-const resetAttrHelper = (CurrD) => {
-    localStorage.setItem("checked", localStorage.getItem(`${CurrD}Checked`));
-    localStorage.setItem("lineWidth", localStorage.getItem(`${CurrD}LWidth`));
-    localStorage.setItem("lineColor", localStorage.getItem(`${CurrD}LColor`));
-    localStorage.setItem("fillColor", localStorage.getItem(`${CurrD}FillColor`));
-    let selectTitle = document.getElementById("current-selection");
-    if (localStorage.getItem(`${CurrD}fP`) === "1") {
-        selectTitle.innerHTML = "Current Selection - Box";
-    }
-    else if (localStorage.getItem(`${CurrD}fP`) === "2") {
-        selectTitle.innerHTML = "Current Selection - Pentagon";
-    }
-    else {
-        selectTitle.innerHTML = "Current Selection - Star";
-    }
-    resetDrawSelection(localStorage.getItem(`${CurrD}DrawFunction`), CurrD);
-}
-
-// updates the sidebar when switching drawings
-const sidebarUpdate = (checked, linecolor, fillcolor, keepLineText) => {
-    // setting checkbox for fill to be unchecked or checked
-    if (checked === "true") {
-        document.getElementById("myCheck").checked = true;
-    }
-    else if (checked === "false") {
-        document.getElementById("myCheck").checked = false;
-    }
-    
-    // setting line color
-    let cline = document.getElementById("actual-l-color");
-    let lineColorPicker = document.getElementById("myColor");
-    cline.innerHTML = linecolor;
-    lineColorPicker.value = linecolor;
-
-    // setting fill color
-    let cfill = document.getElementById("actual-f-color");
-    let fillColorPicker = document.getElementById("myFillColor");
-    cfill.innerHTML = fillcolor;
-    fillColorPicker.value = fillcolor;
-
-    // slider inputs
-    let slider = document.getElementById("myRange");
-    let output = document.getElementById("line-w");
-    output.innerHTML = keepLineText;
-    slider.value = keepLineText;
 }
 
 // When the specific drawing is ready to start being drawn
