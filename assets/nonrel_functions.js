@@ -21,5 +21,3 @@ const fillColor = () => {
     document.getElementById("actual-f-color").innerHTML = fillcolor;
     localStorage.setItem("fillColor", fillcolor);
 }
-
-// module.exports = { check, lineColor, fillColor };

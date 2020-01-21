@@ -835,10 +835,3 @@ const opacityCheck = (ctx) => {
         }
     }
 }
-
-// module.exports = { 
-//     returnFunction, 
-//     mainFunction, 
-//     getCursorPositionDown,
-//     getCursorPositionUp
-// };
