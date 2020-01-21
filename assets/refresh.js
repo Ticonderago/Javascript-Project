@@ -33,6 +33,7 @@ if (localStorage.getItem("refresh") === "true") {
         updateDrawInfo(localStorage.getItem("CurrD"));
     }
     localStorage.setItem("refresh", "false");
+    returnFunction();
 }
 
 // first time running website, making first drawing button disabled

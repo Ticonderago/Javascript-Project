@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <script type="application/javascript" src="./assets/nonrel_functions.js"></script>
-  <script type="application/javascript" src="./assets/functions.js"></script>
+  <script type="application/javascript" src="./assets/before_load_functions.js"></script>
   <link rel="stylesheet" href="./stylesheets/reset.css">
   <link rel="stylesheet" href="./stylesheets/title.css">
   <link rel="stylesheet" href="./stylesheets/canvas.css">
@@ -15,7 +15,7 @@
   <link rel="stylesheet" href="./stylesheets/colorpicker.css">
   <title>Canvas App</title>
 </head>
-<body onload="returnFunction()">
+<body>
   <div id="root">
     <div id="nav-container">
       <div id="title-container">
@@ -102,6 +102,7 @@
   </div>
 
   <!-- these script tags are below cause they need html rendered to function. -->
+  <script type="application/javascript" src="./assets/functions.js"></script>
   <script type="application/javascript" src="./assets/refresh.js"></script>
   <script>
     // slider script
