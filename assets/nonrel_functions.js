@@ -22,4 +22,4 @@ const fillColor = () => {
     localStorage.setItem("fillColor", fillcolor);
 }
 
-module.exports = { check, lineColor, fillColor };
+// module.exports = { check, lineColor, fillColor };
