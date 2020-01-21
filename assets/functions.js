@@ -4,11 +4,6 @@
 
 // functions that need to be initialized at the start
 
-// delete later
-if (localStorage.getItem("firstTime") === "false") {
-    localStorage.setItem("firstTime", "true");
-}
-
 // carrying over previous attributes of a drawing
 const resetAttr = (CurrD) => {
     resetAttrHelper(CurrD);
