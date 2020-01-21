@@ -122,7 +122,12 @@ if (localStorage.getItem("firstTime") === "true") {
     }
 
     let firstTimeDraw = document.getElementById("drawing-1");
-    firstTimeDraw.id = "dis-d1";
+    if (firstTimeDraw === null) {
+        firstTimeDraw = document.getElementById("dis-d1");
+    }
+    else {
+        firstTimeDraw.id = "dis-d1";
+    }
     firstTimeDraw.disabled = true;
     localStorage.setItem("D1Bol", "true");
 
