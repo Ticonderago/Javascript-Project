@@ -452,52 +452,50 @@ const clearButtonHelper = (CurrD) => {
     localStorage.setItem(`${CurrD}LColor`, "#000000");
 
     // check each type of edgecase to determine which drawing to switch to when another gets cleared
+    if (CurrD === "D1") {
+        button1.id = "drawing-1";
+        button1.disabled = false;
+        if (D2Bol === "false" && D3Bol === "true") {
+            button3.id = "dis-d3";
+            button3.disabled = true;
+            localStorage.setItem("CurrD", "D3");
+        }
+        else if (D2Bol === "true" && D3Bol === "false" || D2Bol === "true" && D3Bol === "true") {
+            button2.id = "dis-d2";
+            button2.disabled = true;
+            localStorage.setItem("CurrD", "D2");
+        }
+    }
+    else if (CurrD === "D2") {
+        if (D1Bol === "false" && D3Bol === "true") {
+            button3.id = "dis-d3";
+            button3.disabled = true;
+            localStorage.setItem("CurrD", "D3");
+        }
+        else if (D1Bol === "true" && D3Bol === "false" || D1Bol === "true" && D3Bol === "true") {
+            button1.id = "dis-d1";
+            button1.disabled = true;
+            localStorage.setItem("CurrD", "D1");
+        }
+    }
+    else if (CurrD === "D3") {
+        if (D1Bol === "false" && D2Bol === "true") {
+            button2.id = "dis-d2";
+            button2.disabled = true;
+            localStorage.setItem("CurrD", "D2");
+        }
+        else if (D1Bol === "true" && D2Bol === "false" || D1Bol === "true" && D2Bol === "true") {
+            button1.id = "dis-d1";
+            button1.disabled = true;
+            localStorage.setItem("CurrD", "D1");
+        }
+    }
     if (D1Bol === "false" && D2Bol === "false" && D3Bol === "false") {
         let output = document.getElementById("current-drawing");
         output.innerHTML = "No Drawing Selected!";
         localStorage.setItem("CurrD", "DN");
     }
-    else {
-        if (CurrD === "D1") {
-            button1.id = "drawing-1";
-            button1.disabled = false;
-            if (D2Bol === "false" && D3Bol === "true") {
-                button3.id = "dis-d3";
-                button3.disabled = true;
-                localStorage.setItem("CurrD", "D3");
-            }
-            else {
-                button2.id = "dis-d2";
-                button2.disabled = true;
-                localStorage.setItem("CurrD", "D2");
-            }
-        }
-        else if (CurrD === "D2") {
-            if (D1Bol === "false" && D3Bol === "true") {
-                button3.id = "dis-d3";
-                button3.disabled = true;
-                localStorage.setItem("CurrD", "D3");
-            }
-            else {
-                button1.id = "dis-d1";
-                button1.disabled = true;
-                localStorage.setItem("CurrD", "D1");
-            }
-        }
-        else {
-            if (D1Bol === "false" && D2Bol === "true") {
-                button2.id = "dis-d2";
-                button2.disabled = true;
-                localStorage.setItem("CurrD", "D2");
-            }
-            else {
-                button1.id = "dis-d1";
-                button1.disabled = true;
-                localStorage.setItem("CurrD", "D1");
-            }
-        }
-        resetAttr(localStorage.getItem("CurrD"));
-    }
+    resetAttr(localStorage.getItem("CurrD"));
 }
 
 // onload for drawing selected
@@ -865,7 +863,7 @@ if (localStorage.getItem("refresh") === "true") {
         output.innerHTML = "No Drawing Selected!";
         updateDrawInfo(localStorage.getItem("CurrD"));
     }
-    
+
     resetAttr(setDrawingNum);
     localStorage.setItem("refresh", "false");
     returnFunction();
