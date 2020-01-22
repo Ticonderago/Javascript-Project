@@ -25,7 +25,10 @@ const resetAttrHelper = (CurrD) => {
     localStorage.setItem("lineColor", localStorage.getItem(`${CurrD}LColor`));
     localStorage.setItem("fillColor", localStorage.getItem(`${CurrD}FillColor`));
     let selectTitle = document.getElementById("current-selection");
-    if (localStorage.getItem(`${CurrD}fP`) === "1") {
+    if (localStorage.getItem(`${CurrD}fP`) === "0") {
+        selectTitle.innerHTML = "Current Selection - None";
+    }
+    else if (localStorage.getItem(`${CurrD}fP`) === "1") {
         selectTitle.innerHTML = "Current Selection - Box";
     }
     else if (localStorage.getItem(`${CurrD}fP`) === "2") {
@@ -117,10 +120,10 @@ if (localStorage.getItem("firstTime") === null) {
         "false", "5", "false", "false", "D1",
         "#000000", "#000000", "false", "false",
         "true", "false", "false", "D1", "true",
-        "Box", "Pentagon", "Star", "1", "false",
+        "None", "None", "None", "1", "false",
         "false", "1", "#000000", "#000000",
-        "1", "2", "3", "false", "false", "false",
-        "#000000", "#000000", "#000000", "0", "0", "0",
+        "0", "0", "0", "false", "false", "false",
+        "#000000", "#000000", "#000000", "5", "5", "5",
         "#000000", "#000000", "#000000"
     ];
 
@@ -296,8 +299,6 @@ const mainFunction = (htmlText) => {
     else if (htmlText === "Box") {
         functionName = "Box";
         localStorage.setItem("Box", functionName);
-        let output = document.getElementById("current-selection");
-        output.innerHTML = "Current Selection - Box";
         resetDrawSelection("Box", currD);
     }
 
@@ -305,8 +306,6 @@ const mainFunction = (htmlText) => {
     else if (htmlText === "Pentagon") {
         functionName = "Pentagon";
         localStorage.setItem("Pentagon", functionName);
-        let output = document.getElementById("current-selection");
-        output.innerHTML = "Current Selection - Pentagon";
         resetDrawSelection("Pentagon", currD);
     }
 
@@ -314,8 +313,6 @@ const mainFunction = (htmlText) => {
     else if (htmlText === "Star") {
         functionName = "Star";
         localStorage.setItem("Star", functionName);
-        let output = document.getElementById("current-selection");
-        output.innerHTML = "Current Selection - Star";
         resetDrawSelection("Star", currD);
     }
 
@@ -395,6 +392,10 @@ const mainFunction = (htmlText) => {
         localStorage.setItem("D3", functionName)
         let output = document.getElementById("current-drawing");
         output.innerHTML = `${localStorage.getItem("D3")} Selected`;
+    }
+
+    if (htmlText === "Box" || htmlText === "Pentagon" || htmlText === "Star") {
+        location.reload();
     }
 }
 
