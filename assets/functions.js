@@ -114,7 +114,7 @@ if (localStorage.getItem("firstTime") === null) {
         "D3LWidth", "D1LColor", "D2LColor", "D3LColor"
     ];
     var values = [
-        "false", "0", "false", "false", "D1",
+        "false", "5", "false", "false", "D1",
         "#000000", "#000000", "false", "false",
         "true", "false", "false", "D1", "true",
         "Box", "Pentagon", "Star", "1", "false",
