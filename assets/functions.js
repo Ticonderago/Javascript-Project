@@ -111,7 +111,7 @@ if (localStorage.getItem("firstTime") === null) {
         "lineColor", "fillColor", "downBool", "opacity",
         "D1Bol", "D2Bol", "D3Bol", "CurrD", "canvClearBol",
         "D1DrawFunction", "D2DrawFunction", "D3DrawFunction",
-        "fP", "refresh", "DNChecked", "DNLWidth", "DNLColor", "DNFillColor",
+        "refresh", "DNChecked", "DNLWidth", "DNLColor", "DNFillColor",
         "D1fP", "D2fP", "D3fP", "D1Checked", "D2Checked", "D3Checked",
         "D1FillColor", "D2FillColor", "D3FillColor", "D1LWidth", "D2LWidth",
         "D3LWidth", "D1LColor", "D2LColor", "D3LColor"
@@ -120,7 +120,7 @@ if (localStorage.getItem("firstTime") === null) {
         "false", "5", "false", "false", "D1",
         "#000000", "#000000", "false", "false",
         "true", "false", "false", "D1", "true",
-        "None", "None", "None", "1", "false",
+        "None", "None", "None", "false",
         "false", "1", "#000000", "#000000",
         "0", "0", "0", "false", "false", "false",
         "#000000", "#000000", "#000000", "5", "5", "5",
@@ -159,7 +159,9 @@ if (localStorage.getItem("firstTime") === null) {
 // when a button is clicked this occurs
 const mainFunction = (htmlText) => {
     var functionName = "";
+
     var currD = localStorage.getItem("CurrD");
+    let prevShape = localStorage.getItem(`${currD}DrawFunction`);
 
     var draw1 = document.getElementById("drawing-1");
     var draw2 = document.getElementById("drawing-2");
@@ -394,14 +396,33 @@ const mainFunction = (htmlText) => {
         output.innerHTML = `${localStorage.getItem("D3")} Selected`;
     }
 
+    // reseting x and y postions to draw nothing
     if (htmlText === "Box" || htmlText === "Pentagon" || htmlText === "Star") {
+        let newShape = localStorage.getItem(`${currD}DrawFunction`)
+
+        if (newShape !== prevShape) {
+            localStorage.setItem(`D${currD}X`, "0");
+            localStorage.setItem(`D${currD}Y`, "0");
+            if (currD === "D1") {
+                localStorage.setItem(`DU1X`, "0");
+                localStorage.setItem(`DU1Y`, "0");
+            }
+            else if (currD === "D2") {
+                localStorage.setItem(`DU2X`, "0");
+                localStorage.setItem(`DU2Y`, "0");
+            }
+            else if (currD === "D3") {
+                localStorage.setItem(`DU3X`, "0");
+                localStorage.setItem(`DU3Y`, "0");
+            }
+        }
         location.reload();
     }
 }
 
 // helper function for clearing drawings
 const clearButtonHelper = (CurrD) => {
-    localStorage.setItem(`${CurrD}Bol`, "false");
+    
     let button1 = document.getElementById("drawing-1");
     let button2 = document.getElementById("drawing-2");
     let button3 = document.getElementById("drawing-3");
@@ -420,6 +441,15 @@ const clearButtonHelper = (CurrD) => {
     let D1Bol = localStorage.getItem("D1Bol");
     let D2Bol = localStorage.getItem("D2Bol");
     let D3Bol = localStorage.getItem("D3Bol");
+
+    // reseting all the current drawings attributes to be default
+    localStorage.setItem(`${CurrD}Bol`, "false");
+    localStorage.setItem(`${CurrD}DrawFunction`, "None");
+    localStorage.setItem(`${CurrD}fP`, "0");
+    localStorage.setItem(`${CurrD}Checked`, "false");
+    localStorage.setItem(`${CurrD}FillColor`, "#000000");
+    localStorage.setItem(`${CurrD}LWidth`, "5");
+    localStorage.setItem(`${CurrD}LColor`, "#000000");
 
     // check each type of edgecase to determine which drawing to switch to when another gets cleared
     if (D1Bol === "false" && D2Bol === "false" && D3Bol === "false") {
@@ -835,6 +865,8 @@ if (localStorage.getItem("refresh") === "true") {
         output.innerHTML = "No Drawing Selected!";
         updateDrawInfo(localStorage.getItem("CurrD"));
     }
+    
+    resetAttr(setDrawingNum);
     localStorage.setItem("refresh", "false");
     returnFunction();
 }
