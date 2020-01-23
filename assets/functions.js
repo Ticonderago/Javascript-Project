@@ -260,42 +260,31 @@ const mainFunction = (htmlText) => {
         else if (button3 === null) {
             button3 = document.getElementById("dis-d3");
         }
+        
+        button1.id = "drawing-1";
+        button1.disabled = false;
+        button2.id = "drawing-2";
+        button2.disabled = false;
+        button3.id = "drawing-3";
+        button3.disabled = false;
 
         if (localStorage.getItem("D1Bol") === "true") {
             localStorage.setItem("CurrD", "D1");
             button1.id = "dis-d1";
             button1.disabled = true;
-            button2.id = "drawing-2";
-            button2.disabled = false;
-            button3.id = "drawing-3";
-            button3.disabled = false;
         }
         else if (localStorage.getItem("D2Bol") === "true") {
             localStorage.setItem("CurrD", "D2");
             button2.id = "dis-d2";
             button2.disabled = true;
-            button1.id = "drawing-1";
-            button1.disabled = false;
-            button3.id = "drawing-3";
-            button3.disabled = false;
         }
         else if (localStorage.getItem("D3Bol") === "true") {
             localStorage.setItem("CurrD", "D3");
             button3.id = "dis-d3";
             button3.disabled = true;
-            button2.id = "drawing-2";
-            button2.disabled = false;
-            button1.id = "drawing-1";
-            button1.disabled = false;
         }
         else {
             localStorage.setItem("CurrD", "DN");
-            button1.id = "drawing-1";
-            button1.disabled = false;
-            button2.id = "drawing-2";
-            button2.disabled = false;
-            button3.id = "drawing-3";
-            button3.disabled = false;
         }
 
         resetAttr(localStorage.getItem("CurrD"));
