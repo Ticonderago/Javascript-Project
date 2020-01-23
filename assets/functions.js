@@ -422,7 +422,8 @@ const mainFunction = (htmlText) => {
 
 // helper function for clearing drawings
 const clearButtonHelper = (CurrD) => {
-    
+    localStorage.setItem(`${CurrD}Bol`, "false");
+
     let button1 = document.getElementById("drawing-1");
     let button2 = document.getElementById("drawing-2");
     let button3 = document.getElementById("drawing-3");
@@ -443,7 +444,6 @@ const clearButtonHelper = (CurrD) => {
     let D3Bol = localStorage.getItem("D3Bol");
 
     // reseting all the current drawings attributes to be default
-    localStorage.setItem(`${CurrD}Bol`, "false");
     localStorage.setItem(`${CurrD}DrawFunction`, "None");
     localStorage.setItem(`${CurrD}fP`, "0");
     localStorage.setItem(`${CurrD}Checked`, "false");
@@ -510,6 +510,9 @@ const selectedDrawing = () => {
     }
     else if (curr === "D3") {
         selectDraw.innerHTML = "Drawing #3 Selected";
+    }
+    else {
+        selectDraw.innerHTML = "No Drawing Selected!";
     }
 }
 
