@@ -12,8 +12,9 @@
 }
 
 #button-container {
-    width: 782px;
-    margin-top: 15px;
+    width: 482px;
+    margin-top: 5px;
+    margin-bottom: 20px;
 }
 
 #box, #pentagon, #star,
@@ -59,7 +60,7 @@
 }
 
 #clear-container {
-    margin-top: 7px;
+    margin-top: 8px;
 }
 
 #curr-drawing-cont {

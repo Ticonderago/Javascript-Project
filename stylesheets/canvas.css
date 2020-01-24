@@ -1,9 +1,5 @@
 /* canvas */
 
-#canvas-back {
-    padding-left: 60px;
-}
-
 #canv {
     border: 2px solid black;
     background-color: white;

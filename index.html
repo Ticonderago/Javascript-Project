@@ -16,42 +16,23 @@
 </head>
 <body>
   <div id="root">
-    <div id="nav-container">
-      <div id="title-container">
-        <h1 id="current-selection"></h1>
-      </div>
-      <div id="github-container">
-        <a id="github" href="https://github.com/Ticonderago/Javascript-Project" target="_blank">Draw Shapes Github</a>
-      </div>
-    </div>
     <div id="content-container">
-      <div id="canvas-back">
-        <canvas id="canv" width="800" height="550"></canvas>
+      <div id="side-bar">
+        <div id="curr-drawing-cont">
+          <h1 id="current-drawing"></h1>
+        </div>
+        <div id="drawing-but-container">
+          <button id="drawing-1" onclick="mainFunction(document.getElementById('drawing-1').textContent)">Drawing #1</button>
+          <button id="drawing-2" onclick="mainFunction(document.getElementById('drawing-2').textContent)">Drawing #2</button>
+          <button id="drawing-3" onclick="mainFunction(document.getElementById('drawing-3').textContent)">Drawing #3</button>
+        </div>
+        <div id="select-shape-container">
+          <h1 id="current-selection"></h1>
+        </div>
         <div id="button-container">
           <button id="box" onclick="mainFunction(document.getElementById('box').textContent)">Box</button>
           <button id="pentagon" onclick="mainFunction(document.getElementById('pentagon').textContent)">Pentagon</button>
           <button id="star" onclick="mainFunction(document.getElementById('star').textContent)">Star</button>
-        </div>
-      </div>
-      <div id="page-detail-bar">
-        <h1 id="first-detail">.</h1>
-        <h1 id="second-detail">.</h1>
-        <h1 id="third-detail">.</h1>
-        <h1 id="fourth-detail">.</h1>
-        <h1 id="fifth-detail">.</h1>
-      </div>
-      <div id="side-bar">
-        <div id="app-background">
-          <h1 id="background-title">Background</h1>
-          <p id="background-info-f">This project uses a Canvas to let the user draw multiple drawings</p>
-          <p id="background-info-r">
-            given the inputs on the sidebar and picking what shape to draw. To draw a shape go to
-            the bottom left of the page to select which shape to draw. Once selected you can pick what 
-            attributes you want on the drawing. Now you can use your mouse to click on the canvas, drag 
-            while holding, than let go to draw your shape. To change what drawing you are working with 
-            go to the bottom right and click on "Drawing #3" as an example. This allows you to work with 
-            more than one shape. You can save and load your shapes. Only allowed one save artwork at a time.
-          </p>
         </div>
         <div id="slide-container">
           <p id="p-w">Line Width: <span id="line-w"></span></p>
@@ -88,14 +69,21 @@
         <div id="clear-container">
           <button id="clear-but" onclick="mainFunction(document.getElementById('clear-but').textContent)">Clear</button>
         </div>
-        <div id="curr-drawing-cont">
-          <h1 id="current-drawing"></h1>
+      </div>
+      <div id="page-detail-bar">
+        <h1 id="first-detail">.</h1>
+        <h1 id="second-detail">.</h1>
+        <h1 id="third-detail">.</h1>
+        <h1 id="fourth-detail">.</h1>
+        <h1 id="fifth-detail">.</h1>
+      </div>
+      <div id="canvas-back">
+        <div id="nav-container">
+          <div id="github-container">
+            <a id="github" href="https://github.com/Ticonderago/Javascript-Project" target="_blank">Draw Shapes Github</a>
+          </div>
         </div>
-        <div id="drawing-but-container">
-          <button id="drawing-1" onclick="mainFunction(document.getElementById('drawing-1').textContent)">Drawing #1</button>
-          <button id="drawing-2" onclick="mainFunction(document.getElementById('drawing-2').textContent)">Drawing #2</button>
-          <button id="drawing-3" onclick="mainFunction(document.getElementById('drawing-3').textContent)">Drawing #3</button>
-        </div>
+        <canvas id="canv" width="800" height="550"></canvas>
       </div>
     </div>
   </div>

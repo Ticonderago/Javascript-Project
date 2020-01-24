@@ -1,33 +1,7 @@
 /* sidebar content */
-
-#app-background {
-    margin-bottom: 7px;
-    border: 1px dashed black;
-    width: 500px;
-    transition: 1s;
-}
-
-#background-title {
-    font-size: 24px;
-    font-weight: bold;
-    margin-left: 183px;
-    margin-top: 5px;
-    margin-bottom: 2px;
-}
-
-#background-info-f, #background-info-r {
-    font-size: 16px;
-}
-
-#background-info-f {
-    margin-left: 30px;
-    margin-right: 30px;
-}
-
-#background-info-r {
-    margin-left: 10px;
-    margin-right: 10px;
-    margin-bottom: 5px;
+#side-bar {
+    width: 505px;
+    margin-top: 50px;
 }
 
 /* page detail */
