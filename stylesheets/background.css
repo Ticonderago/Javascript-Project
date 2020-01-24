@@ -1,13 +1,13 @@
 /* sidebar content */
 #side-bar {
     width: 505px;
-    margin-top: 50px;
+    margin-top: 60px;
 }
 
 /* page detail */
 
 #first-detail, #second-detail, #third-detail,
-#fourth-detail, #fifth-detail {
+#fourth-detail, #fifth-detail, #sixth-detail, #seventh-detail {
     background-color: rgb(166, 255, 228);
     color: rgb(166, 255, 228);
 }
@@ -15,25 +15,25 @@
 #first-detail {
     width: 70px;
     height: 30px;
-    margin-top: 25px;
+    margin-top: 52px;
 }
 
 #second-detail {
     width: 30px;
-    height: 270px;
-    margin-bottom: -225px;
+    height: 72px;
+    margin-bottom: -200px;
     margin-left: 20px;
 }
 
 #third-detail {
     width: 70px;
     height: 30px;
-    margin-top: 225px;
+    margin-top: 200px;
 }
 
 #fourth-detail {
     width: 30px;
-    height: 222px;
+    height: 70px;
     margin-bottom: -225px;
     margin-left: 20px;
 }
@@ -41,7 +41,20 @@
 #fifth-detail {
     width: 70px;
     height: 30px;
-    margin-top: 225px;
+    margin-top: 220px;
+}
+
+#sixth-detail {
+    width: 30px;
+    height: 190px;
+    margin-bottom: -80px;
+    margin-left: 20px;
+}
+
+#seventh-detail {
+    width: 70px;
+    height: 30px;
+    margin-top: 80px;
 }
 
 /* fill */

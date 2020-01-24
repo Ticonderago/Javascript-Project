@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="./stylesheets/buttons.css">
   <link rel="stylesheet" href="./stylesheets/background.css">
   <link rel="stylesheet" href="./stylesheets/colorpicker.css">
+  <link rel="stylesheet" href="./stylesheets/howtopage.css">
   <title>Canvas App</title>
 </head>
 <body>
@@ -76,9 +77,14 @@
         <h1 id="third-detail">.</h1>
         <h1 id="fourth-detail">.</h1>
         <h1 id="fifth-detail">.</h1>
+        <h1 id="sixth-detail">.</h1>
+        <h1 id="seventh-detail">.</h1>
       </div>
       <div id="canvas-back">
         <div id="nav-container">
+          <div id="how-to-container">
+            <button id="how-to-but" onclick="pageTransfer(document.getElementById('how-to-but').textContent)">How To</button>
+          </div>
           <div id="github-container">
             <a id="github" href="https://github.com/Ticonderago/Javascript-Project" target="_blank">Draw Shapes Github</a>
           </div>
@@ -86,6 +92,11 @@
         <canvas id="canv" width="800" height="550"></canvas>
       </div>
     </div>
+  </div>
+  <div id="no-how-to-page">
+    <!-- this was just test and worked! -->
+    <h1>HIIIIIII</h1>
+    <button id="back-but" onclick="pageTransfer(document.getElementById('back-but').textContent)">Back</button>
   </div>
 
   <!-- these script tags are below cause they need html rendered to function. -->

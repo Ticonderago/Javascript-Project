@@ -1,0 +1,19 @@
+/* making sure root is display block */
+
+#root {
+    display: block;
+}
+
+#no-root {
+    display: none;
+}
+
+/* how to page details */
+
+#no-how-to-page {
+    display: none;
+}
+
+#how-to-page {
+    display: block;
+}
