@@ -17,3 +17,16 @@
 #how-to-page {
     display: block;
 }
+
+/* containers on how to */
+
+#back-but-container, #how-title-container, #how-content-container,
+#td-cont {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#back-but-container {
+    margin-top: 40px;
+}
