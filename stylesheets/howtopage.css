@@ -30,3 +30,50 @@
 #back-but-container {
     margin-top: 40px;
 }
+
+#draw-how-container, #save-load-container {
+    width: 550px;
+    border: 1px solid black;
+    border-style: dashed;
+    transition: 1s;
+}
+
+/* middle details */
+
+#detail-h1, #detail-h2, #detail-h3 {
+    background-color: rgb(166, 255, 228);
+    color: rgb(166, 255, 228);
+}
+
+#detail-h1 {
+    height: 30px;
+    width: 100px;
+}
+
+#detail-h2 {
+    width: 30px;
+    height: 100px;
+    margin-left: 35px;
+}
+
+#detail-h3 {
+    height: 30px;
+    width: 100px;
+}
+
+/* content stylings */
+
+#draw-first-p, #draw-second-p, #draw-third-p, #draw-fourth-p,
+#saveload-first-p, #saveload-second-p, #saveload-third-p, #saveload-fourth-p {
+    font-size: 19px;    /* might change size depending on how much content text */
+}
+
+#draw-first-p, #draw-third-p, #saveload-first-p, #saveload-third-p {
+    margin-left: 40px;
+}
+
+#draw-second-p, #draw-fourth-p, #saveload-second-p, #saveload-fourth-p {
+    margin-left: 10px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+}
