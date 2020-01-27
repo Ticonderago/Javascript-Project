@@ -43,7 +43,7 @@
     cursor: pointer;
     color: rgb(0, 0, 0);
     box-shadow: rgba(0, 0, 0, 0.2) 0 0 5px;
-    background-color: rgb(200, 142, 255);
+    background-color: rgb(255, 172, 237);
 }
 
 /* below sidebar */
@@ -70,19 +70,11 @@
 
 #drawing-1, #drawing-2, #drawing-3,
 #box, #pentagon, #star {
-    background-color: rgb(210, 170, 255);
-}
-
-#clear-but {
-    font-weight: bold;
-    transition: 0.7s;
-    border-radius: 3px;
-    padding-left: 20px;
-    padding-right: 20px;
+    background-color: rgb(255, 195, 242);
 }
 
 /* disabled buttons */ 
 
 #dis-d1, #dis-d2, #dis-d3 {
-    background-color: rgb(211, 192, 233);
+    background-color: rgb(255, 220, 247);
 }

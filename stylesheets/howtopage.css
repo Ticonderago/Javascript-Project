@@ -51,8 +51,8 @@
 /* middle details */
 
 #detail-h1, #detail-h2, #detail-h3 {
-    background-color: rgb(166, 255, 228);
-    color: rgb(166, 255, 228);
+    background-color: rgb(255, 195, 242);
+    color: rgb(255, 195, 242);
 }
 
 #detail-h1 {
@@ -89,14 +89,20 @@
 }
 
 #background-titles, #how-title {
+    text-align: center;
     font-weight: bold;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    background-color: rgb(255, 195, 242);
 }
 
 #background-titles {
     font-size: 38px;
+    width: 300px;
+    border-radius: 8px;
 }
 
 #how-title {
     font-size: 44px;
+    width: 250px;
+    border-radius: 8px;
 }

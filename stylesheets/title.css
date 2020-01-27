@@ -40,7 +40,7 @@
 #clear-but, #how-to-but, #back-but {
     color: rgb(48, 48, 48);
     font-size: 18px;
-    background-color: rgb(166, 255, 228);
+    background-color: rgb(255, 195, 242);
     border-radius: 3px;
     padding-top: 8px;
     padding-bottom: 8px;
@@ -105,8 +105,21 @@
 #restore-drawing:hover, #clear-but:hover, #back-but:hover {
     cursor: pointer;
     color: rgb(24, 24, 24);
-    background-color: rgb(137, 255, 220);
+    background-color: rgb(255, 172, 237);
     box-shadow: rgba(0, 0, 0, 0.2) 0 0 5px;
+}
+
+#clear-but {
+    font-weight: bold;
+    transition: 0.7s;
+    border-radius: 3px;
+    padding-left: 20px;
+    padding-right: 20px;
+    background-color: rgb(255, 100, 133);
+}
+
+#clear-but:hover {
+    background-color: rgb(255, 55, 98);
 }
 
 /* selection titles */
