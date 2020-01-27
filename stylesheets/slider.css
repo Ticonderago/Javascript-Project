@@ -1,7 +1,7 @@
 /* Slider styling */
 
 #slide-container {
-    border: 1px solid black;
+    border: 2px dashed black;
     border-style: dashed;
     margin-right: 40px;
     width: 502px;
@@ -10,7 +10,7 @@
 
 #slide-container:hover, #app-background:hover, 
 #button-container:hover, #drawing-but-container:hover {
-    background-color: rgb(255, 208, 255);
+    background-color: rgb(206, 255, 185);
 }
   
 .slider {

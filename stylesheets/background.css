@@ -12,48 +12,44 @@
     color: rgb(166, 255, 228);
 }
 
-#first-detail {
+#first-detail, #third-detail, #fifth-detail, #seventh-detail {
     width: 70px;
     height: 30px;
+}
+
+#second-detail, #fourth-detail, #sixth-detail {
+    width: 30px;
+    margin-left: 21px;
+}
+
+#first-detail {
     margin-top: 52px;
 }
 
 #second-detail {
-    width: 30px;
     height: 72px;
     margin-bottom: -200px;
-    margin-left: 20px;
 }
 
 #third-detail {
-    width: 70px;
-    height: 30px;
     margin-top: 200px;
 }
 
 #fourth-detail {
-    width: 30px;
     height: 70px;
     margin-bottom: -225px;
-    margin-left: 20px;
 }
 
 #fifth-detail {
-    width: 70px;
-    height: 30px;
     margin-top: 220px;
 }
 
 #sixth-detail {
-    width: 30px;
     height: 190px;
     margin-bottom: -80px;
-    margin-left: 20px;
 }
 
 #seventh-detail {
-    width: 70px;
-    height: 30px;
     margin-top: 80px;
 }
 
