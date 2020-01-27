@@ -147,7 +147,7 @@ if (localStorage.getItem("firstTime") === null) {
     resetAttr(localStorage.getItem("CurrD"));
 
     let name = "Drawing #1";
-    localStorage.setItem("D1", name)
+    localStorage.setItem("D1", name);
     let output = document.getElementById("current-drawing");
     output.innerHTML = `${localStorage.getItem("D1")} Selected`;
 
@@ -328,7 +328,7 @@ const mainFunction = (htmlText) => {
         localStorage.setItem("CurrD", "D1");
         draw1.id = "dis-d1";
         draw1.disabled = true;
-        localStorage.setItem("D1Bol", "true");  /////// THIS MIGHT NEED TO BE REFACTORED!
+        localStorage.setItem("D1Bol", "true");
 
         // change the id of drawing button back when a different button is clicked
         if (draw2.id === "dis-d2") {
@@ -344,7 +344,7 @@ const mainFunction = (htmlText) => {
         resetAttr(localStorage.getItem("CurrD"));
 
         functionName = "Drawing #1";
-        localStorage.setItem("D1", functionName)
+        localStorage.setItem("D1", functionName);
         let output = document.getElementById("current-drawing");
         output.innerHTML = `${localStorage.getItem("D1")} Selected`;
     }
@@ -370,7 +370,7 @@ const mainFunction = (htmlText) => {
         resetAttr(localStorage.getItem("CurrD"));
 
         functionName = "Drawing #2";
-        localStorage.setItem("D2", functionName)
+        localStorage.setItem("D2", functionName);
         let output = document.getElementById("current-drawing");
         output.innerHTML = `${localStorage.getItem("D2")} Selected`;
     }
@@ -396,14 +396,14 @@ const mainFunction = (htmlText) => {
         resetAttr(localStorage.getItem("CurrD"));
 
         functionName = "Drawing #3";
-        localStorage.setItem("D3", functionName)
+        localStorage.setItem("D3", functionName);
         let output = document.getElementById("current-drawing");
         output.innerHTML = `${localStorage.getItem("D3")} Selected`;
     }
 
     // reseting x and y postions to draw nothing
     if (htmlText === "Box" || htmlText === "Pentagon" || htmlText === "Star") {
-        let newShape = localStorage.getItem(`${currD}DrawFunction`)
+        let newShape = localStorage.getItem(`${currD}DrawFunction`);
 
         if (newShape !== prevShape) {
             localStorage.setItem(`D${currD}X`, "0");
@@ -734,7 +734,8 @@ const callingDrawF = (drawFunction, downX, downY, upX, upY, LWidth, LColor) => {
     }
 }
 
-// when the page is reloaded runs this function
+// the big function that connects all the other functions together to run
+// a process whenever something happens with the application
 const returnFunction = () => {
     // checking which drawing is the current one saving to variable
     var CurrDraw = localStorage.getItem("CurrD");
@@ -810,6 +811,8 @@ const returnFunction = () => {
         );
     }
 
+    // drawNum is used inside the drawing functions to check which drawing the
+    // application is drawing for to know to use those values for that specific drawing
     localStorage.setItem("drawNum", "D2");
 
     if (localStorage.getItem("D2Bol") === "true") {

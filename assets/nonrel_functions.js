@@ -31,7 +31,7 @@ const pageTransfer = (htmlText) => {
         document.getElementById("no-how-to-page").id = "how-to-page";
     }
 
-    if (htmlText === "Back") {
+    if (htmlText === "Back To Canvas") {
         document.getElementById("how-to-page").id = "no-how-to-page";
         document.getElementById("no-root").id = "root";
     }
