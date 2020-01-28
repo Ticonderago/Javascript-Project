@@ -10,7 +10,7 @@
 
 #slide-container:hover, #app-background:hover, 
 #button-container:hover, #drawing-but-container:hover {
-    background-color: rgb(206, 255, 185);
+    background-color: rgb(133, 182, 255);
 }
   
 .slider {
@@ -22,7 +22,7 @@
     width: 460px;
     height: 15px;
     border-radius: 5px;
-    background: rgb(255, 195, 242);
+    background: rgb(254, 255, 195);
     outline: none;
     opacity: 0.7;
     -webkit-transition: .2s;
