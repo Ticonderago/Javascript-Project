@@ -106,7 +106,7 @@
 #restore-drawing:hover, #clear-but:hover, #back-but:hover {
     cursor: pointer;
     color: rgb(24, 24, 24);
-    background-color: rgb(253, 255, 158);
+    background-color: rgb(252, 255, 97);
     box-shadow: rgba(0, 0, 0, 0.2) 0 0 5px;
 }
 
