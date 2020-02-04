@@ -81,8 +81,8 @@ const star = (downX, downY, upX, upY, LWidth, LColor) => {
     }
 }
  ```
- 
- For the save load feature this is a snippet of the save part when the user clicks on the "Save Artwork" button the main function fires and the main function just checks for the buttons htmlTextContent to see what the button says. It matches the "htmlText" with any string that I choose for logic. If the "Save Artwork" button is clicked I create two variables to have an array of keys and an array of values.  After I use a for loop to assign every key to the corresponding value in the other array. So index position 0 of the first array will be the key for the index postion 0 of the second array which is the value for that key and so on.  After all of this I show the user that all the information for the artwork has been saved.
+ ### Save Button Function
+ For the save load feature this is a snippet of the save part when the user clicks on the "Save Artwork" button the main function fires and the main function just checks for the buttons htmlTextContent to see what the button says. It matches the "htmlText" with any string that I choose for logic. If the "Save Artwork" button is clicked I create two variables to have an array of keys and an array of values.  After I use a for loop to assign every key to the corresponding value in the other array. So index position 0 of the first array will be the key for the index postion 0 of the second array which is the value for that key and so on.  After all of this I show the user that all the information for the artwork has been saved. Keys start with S in front of the current key values for "Save".
 ```JavaScript
 // saves all properties for the restore to use
     if (htmlText === "Save Artwork") {
@@ -119,3 +119,7 @@ const star = (downX, downY, upX, upY, LWidth, LColor) => {
 ```
  
 ## Screenshots
+
+![](images/javascriptproj1.jpeg)
+
+![](images/javascriptproj2.jpeg)
