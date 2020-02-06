@@ -77,7 +77,7 @@ const star = (downX, downY, upX, upY, LWidth, LColor) => {
  ```
  
  ### Local Storage Feature
- This project uses local storage all over to keep track of drawing information to storing varaibles as local storage keys and vaules to keep track of actions over reloads.  Here is an example of initializng the project when the user first opens the webpage.
+ This project uses local storage all over to keep track of drawing information to storing varaibles as local storage keys and vaules to keep track of actions over reloads.  Here is an example of initializng the project when the user first opens the webpage. This has to be done at the first time since the user needs to have these keys and values or the project will break on first load.
 ```JavaScript
 // null cases covered, first time visiting the website
 
