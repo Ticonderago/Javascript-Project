@@ -20,6 +20,8 @@ Developed by: [Nathan Reinhardt](https://github.com/Ticonderago)
 x and y postions and the same for when the mouseup or mouseout events are triggered to get the start and end points for 
 the star to be drawn. First you grab the canvas with the canvas id to get the context of the canvas to start working with it. Next, I checked to clear the canvas if this is the first drawing being drawn onto the canvas since I need to clear all previous drawings. Second was to check if this was a drawing being load from the save feature. Third was to draw the shape. I had to put some logic in to make sure that the y postions after subtracting them would not be negitive so I would not get negitive numbers when drawing the star.  Last is to fillcheck the shape to check whether or not the user wants the shape to be filled with color or not.
 
+![](images/livedraw.gif)
+
  ```JavaScript
 // Star Drawing
 const star = (downX, downY, upX, upY, LWidth, LColor) => {
@@ -75,9 +77,68 @@ const star = (downX, downY, upX, upY, LWidth, LColor) => {
  ```
  
  ### Local Storage Feature
+ This project uses local storage all over to keep track of drawing information to storing varaibles as local storage keys and vaules to keep track of actions over reloads.  Here is an example of initializng the project when the user first opens the webpage.
+```JavaScript
+// null cases covered, first time visiting the website
+
+if (localStorage.getItem("firstTime") === null) {
+    var functionPicker = "0";
+    localStorage.setItem("fP", functionPicker);
+
+    var keys = [
+        "checked", "lineWidth", "Save", "Restore", "CurrD",
+        "lineColor", "fillColor", "downBool", "opacity",
+        "D1Bol", "D2Bol", "D3Bol", "CurrD", "canvClearBol",
+        "D1DrawFunction", "D2DrawFunction", "D3DrawFunction",
+        "refresh", "DNChecked", "DNLWidth", "DNLColor", "DNFillColor",
+        "D1fP", "D2fP", "D3fP", "D1Checked", "D2Checked", "D3Checked",
+        "D1FillColor", "D2FillColor", "D3FillColor", "D1LWidth", "D2LWidth",
+        "D3LWidth", "D1LColor", "D2LColor", "D3LColor"
+    ];
+    var values = [
+        "false", "5", "false", "false", "D1",
+        "#000000", "#000000", "false", "false",
+        "true", "false", "false", "D1", "true",
+        "None", "None", "None", "false",
+        "false", "1", "#000000", "#000000",
+        "0", "0", "0", "false", "false", "false",
+        "#000000", "#000000", "#000000", "5", "5", "5",
+        "#000000", "#000000", "#000000"
+    ];
+
+    for (let i = 0; i < keys.length; i++) {
+        if (localStorage.getItem(keys[i]) === null) {
+            localStorage.setItem(keys[i], values[i]);
+        }
+    }
+
+    let firstTimeDraw = document.getElementById("drawing-1");
+    if (firstTimeDraw === null) {
+        firstTimeDraw = document.getElementById("dis-d1");
+    }
+    else {
+        firstTimeDraw.id = "dis-d1";
+        firstTimeDraw.disabled = true;
+    }
+    
+    localStorage.setItem("D1Bol", "true");
+
+    resetAttr(localStorage.getItem("CurrD"));
+
+    let name = "Drawing #1";
+    localStorage.setItem("D1", name);
+    let output = document.getElementById("current-drawing");
+    output.innerHTML = `${localStorage.getItem("D1")} Selected`;
+
+    localStorage.setItem("firstTime", "false");
+}
+```
  
  ### Save and Load Feature
- For the save load feature this is a snippet of the save part when the user clicks on the "Save Artwork" button the main function fires and the main function just checks for the buttons htmlTextContent to see what the button says. It matches the "htmlText" with any string that I choose for logic. If the "Save Artwork" button is clicked I create two variables to have an array of keys and an array of values.  After I use a for loop to assign every key to the corresponding value in the other array. So index position 0 of the first array will be the key for the index postion 0 of the second array which is the value for that key and so on.  After all of this I show the user that all the information for the artwork has been saved. Keys start with S in front of the current key values for "Save".
+ For the save load feature this is a snippet of the save part when the user clicks on the "Save Artwork" button. The main function fires and the main function just checks for the buttons htmlTextContent to see what the button says. It matches the "htmlText" with any string that I choose for logic. If the "Save Artwork" button is clicked I create two variables to have an array of keys and an array of values.  After I use a for loop to assign every key to the corresponding value in the other array. So index position 0 of the first array will be the key for the index postion 0 of the second array which is the value for that key and so on.  After all of this I show the user that all the information for the artwork has been saved. Keys start with S in front of the current key values for "Save".
+ 
+![](images/saveload.gif)
+ 
 ```JavaScript
 // saves all properties for the restore to use
     if (htmlText === "Save Artwork") {
@@ -113,12 +174,77 @@ const star = (downX, downY, upX, upY, LWidth, LColor) => {
     }
 ```
 
-### Clear Button Feature
-
-### How To Page
+ ### Clear Button Feature
+ The clear button will clear any drawing that is currently being worked on or selected. When there is more than one drawing, it will select a new current drawing after clearing the old one. When there is only one drawing and it gets cleared, the user is given a "No drawing is selected" which means the user will have to click on what drawing to work with to start drawing again.
  
-## Screenshots
+![](images/clearbutton.gif)
 
-![](images/javascriptproj1.jpeg)
+```JavaScript
+// check each type of edgecase to determine which drawing to switch to when another gets cleared
+    if (CurrD === "D1") {
+        button1.id = "drawing-1";
+        button1.disabled = false;
+        if (D2Bol === "false" && D3Bol === "true") {
+            button3.id = "dis-d3";
+            button3.disabled = true;
+            localStorage.setItem("CurrD", "D3");
+        }
+        else if (D2Bol === "true" && D3Bol === "false" || D2Bol === "true" && D3Bol === "true") {
+            button2.id = "dis-d2";
+            button2.disabled = true;
+            localStorage.setItem("CurrD", "D2");
+        }
+    }
+    else if (CurrD === "D2") {
+        if (D1Bol === "false" && D3Bol === "true") {
+            button3.id = "dis-d3";
+            button3.disabled = true;
+            localStorage.setItem("CurrD", "D3");
+        }
+        else if (D1Bol === "true" && D3Bol === "false" || D1Bol === "true" && D3Bol === "true") {
+            button1.id = "dis-d1";
+            button1.disabled = true;
+            localStorage.setItem("CurrD", "D1");
+        }
+    }
+    else if (CurrD === "D3") {
+        if (D1Bol === "false" && D2Bol === "true") {
+            button2.id = "dis-d2";
+            button2.disabled = true;
+            localStorage.setItem("CurrD", "D2");
+        }
+        else if (D1Bol === "true" && D2Bol === "false" || D1Bol === "true" && D2Bol === "true") {
+            button1.id = "dis-d1";
+            button1.disabled = true;
+            localStorage.setItem("CurrD", "D1");
+        }
+    }
+    if (D1Bol === "false" && D2Bol === "false" && D3Bol === "false") {
+        let output = document.getElementById("current-drawing");
+        output.innerHTML = "No Drawing Selected!";
+        localStorage.setItem("CurrD", "DN");
+    }
+    resetAttr(localStorage.getItem("CurrD"));
+```
 
-![](images/javascriptproj2.jpeg)
+ ### How To Page
+ This page helps new users understand how the project works. At the top above the canvas is the "How To" Button which will hide all the current content and display new content with some css tricks like display: none and display: block of specific div id's. The user can go back to the canvas by going to the bottom of the How To Page and be directed back to the canvas.
+ 
+![](images/howto.gif)
+
+```JavaScript
+/* how to button - moving too and back from the help page */
+
+const pageTransfer = (htmlText) => {
+
+    if (htmlText === "How To") {
+        document.getElementById("root").id = "no-root";
+        document.getElementById("no-how-to-page").id = "how-to-page";
+    }
+
+    if (htmlText === "Back To Canvas") {
+        document.getElementById("how-to-page").id = "no-how-to-page";
+        document.getElementById("no-root").id = "root";
+    }
+}
+```
