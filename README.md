@@ -1,7 +1,10 @@
-# [JavaScript-Project](https://ticonderago.github.io/Javascript-Project/)
-JavaScript Project is a frontend project that works with HTML canvas to draw live drawings of a variety of shapes with different attributes and able to save artworks created by the user.
+# JavaScript-Project
+
+[JavaScript-Project](https://ticonderago.github.io/JavaScript-Project/) is a frontend project that works with HTML canvas to draw live drawings of a variety of shapes with different attributes and able to save artworks created by the user.
 
 Developed by: [Nathan Reinhardt](https://github.com/Ticonderago)
+
+![](images/canvasdrawingproject.gif)
 
 ## Technologies
 * JavaScript
@@ -97,13 +100,13 @@ if (localStorage.getItem("firstTime") === null) {
     ];
     var values = [
         "false", "5", "false", "false", "D1",
-        "#000000", "#000000", "false", "false",
+        "#ff2c00", "#3b4fff", "false", "false",
         "true", "false", "false", "D1", "true",
         "None", "None", "None", "false",
         "false", "1", "#000000", "#000000",
         "0", "0", "0", "false", "false", "false",
-        "#000000", "#000000", "#000000", "5", "5", "5",
-        "#000000", "#000000", "#000000"
+        "#3b4fff", "#3b4fff", "#3b4fff", "5", "5", "5",
+        "#ff2c00", "#ff2c00", "#ff2c00"
     ];
 
     for (let i = 0; i < keys.length; i++) {
