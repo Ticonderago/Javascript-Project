@@ -118,13 +118,13 @@ if (localStorage.getItem("firstTime") === null) {
     ];
     var values = [
         "false", "5", "false", "false", "D1",
-        "#000000", "#000000", "false", "false",
+        "#ff2c00", "#3b4fff", "false", "false",
         "true", "false", "false", "D1", "true",
         "None", "None", "None", "false",
         "false", "1", "#000000", "#000000",
         "0", "0", "0", "false", "false", "false",
-        "#000000", "#000000", "#000000", "5", "5", "5",
-        "#000000", "#000000", "#000000"
+        "#3b4fff", "#3b4fff", "#3b4fff", "5", "5", "5",
+        "#ff2c00", "#ff2c00", "#ff2c00"
     ];
 
     for (let i = 0; i < keys.length; i++) {
@@ -452,9 +452,9 @@ const clearButtonHelper = (CurrD) => {
     localStorage.setItem(`${CurrD}DrawFunction`, "None");
     localStorage.setItem(`${CurrD}fP`, "0");
     localStorage.setItem(`${CurrD}Checked`, "false");
-    localStorage.setItem(`${CurrD}FillColor`, "#000000");
+    localStorage.setItem(`${CurrD}FillColor`, "#3b4fff");
     localStorage.setItem(`${CurrD}LWidth`, "5");
-    localStorage.setItem(`${CurrD}LColor`, "#000000");
+    localStorage.setItem(`${CurrD}LColor`, "#ff2c00");
 
     // check each type of edgecase to determine which drawing to switch to when another gets cleared
     if (CurrD === "D1") {
