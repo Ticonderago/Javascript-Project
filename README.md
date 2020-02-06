@@ -2,9 +2,9 @@
 
 [JavaScript-Project](https://ticonderago.github.io/JavaScript-Project/) is a frontend project that works with HTML canvas to draw live drawings of a variety of shapes with different attributes and able to save artworks created by the user.
 
-Developed by: [Nathan Reinhardt](https://github.com/Ticonderago)
-
 ![](images/canvasdrawingproject.gif)
+
+Developed by: [Nathan Reinhardt](https://github.com/Ticonderago)
 
 ## Technologies
 * JavaScript
