@@ -3,17 +3,10 @@ JavaScript Project is a frontend project that works with HTML canvas to draw liv
 
 Developed by: [Nathan Reinhardt](https://github.com/Ticonderago)
 
-## Table of Contents
-* [Technologies](#technologies)
-* [Features](#features)
-* [Code Snipets](#code-snipets)
-* [Screenshots](#screenshots)
-
 ## Technologies
 * JavaScript
 * CSS3
 * HTML5
-* Local Storage
 
 ## Features
  * Live Drawing with the canvas to draw 3 different types of shapes.
@@ -22,8 +15,7 @@ Developed by: [Nathan Reinhardt](https://github.com/Ticonderago)
  * Clear button feature to clear the current drawing you are on to draw something new.
  * "How To" page to help the user understand how the project works and insturctions on how to start.
  
-## Code Snipets
- ### The Star Drawing Function
+ ### Live Drawing with Canvas
  When the mouseup or mouseout event handler is triggered, this function will be fired.  It takes the current downmouse
 x and y postions and the same for when the mouseup or mouseout events are triggered to get the start and end points for 
 the star to be drawn. First you grab the canvas with the canvas id to get the context of the canvas to start working with it. Next, I checked to clear the canvas if this is the first drawing being drawn onto the canvas since I need to clear all previous drawings. Second was to check if this was a drawing being load from the save feature. Third was to draw the shape. I had to put some logic in to make sure that the y postions after subtracting them would not be negitive so I would not get negitive numbers when drawing the star.  Last is to fillcheck the shape to check whether or not the user wants the shape to be filled with color or not.
@@ -81,7 +73,10 @@ const star = (downX, downY, upX, upY, LWidth, LColor) => {
     }
 }
  ```
- ### Save Button Function
+ 
+ ### Local Storage Feature
+ 
+ ### Save and Load Feature
  For the save load feature this is a snippet of the save part when the user clicks on the "Save Artwork" button the main function fires and the main function just checks for the buttons htmlTextContent to see what the button says. It matches the "htmlText" with any string that I choose for logic. If the "Save Artwork" button is clicked I create two variables to have an array of keys and an array of values.  After I use a for loop to assign every key to the corresponding value in the other array. So index position 0 of the first array will be the key for the index postion 0 of the second array which is the value for that key and so on.  After all of this I show the user that all the information for the artwork has been saved. Keys start with S in front of the current key values for "Save".
 ```JavaScript
 // saves all properties for the restore to use
@@ -117,6 +112,10 @@ const star = (downX, downY, upX, upY, LWidth, LColor) => {
         document.getElementById("has-saved").innerHTML = "Saved!";
     }
 ```
+
+### Clear Button Feature
+
+### How To Page
  
 ## Screenshots
 
