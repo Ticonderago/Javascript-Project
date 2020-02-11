@@ -1,6 +1,6 @@
-# JavaScript-Project
+# Canvas-Shape_Creator
 
-[JavaScript-Project](https://ticonderago.github.io/JavaScript-Project/) is a frontend project that works with HTML canvas to draw live drawings of a variety of shapes with different attributes and able to save artworks created by the user.
+[Canvas-Shape-Creator](https://ticonderago.github.io/Canvas-Shape-Creator/) is a frontend project that works with HTML canvas to draw live drawings of a variety of shapes with different attributes and able to save artworks created by the user.
 
 ![](images/canvasdrawingproject.gif)
 
