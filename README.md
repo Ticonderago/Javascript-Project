@@ -251,4 +251,3 @@ const pageTransfer = (htmlText) => {
     }
 }
 ```
-Testing local github information
