@@ -229,18 +229,19 @@
     const drawcanv = document.getElementById('canv');
 
     // stops drawing the shape
-    const stopDrawing = () => {
+    const stopDrawing = (event) => {
       if (bool === true) {
         bool = false;
         localStorage.setItem("downBool", "false");
         localStorage.setItem("opacity", "false");
-        getCursorPositionUp(drawcanv, e);
+        getCursorPositionUp(drawcanv, event);
         localStorage.setItem("resetopacity", "true");
-        getCursorPositionUp(drawcanv, e);
+        getCursorPositionUp(drawcanv, event);
       }
     }
 
     drawcanv.addEventListener('mousedown', (e) => {
+      document.getElementById("has-loaded").innerHTML = "";
       bool = true;
       localStorage.setItem("downBool", "true");
       localStorage.setItem("opacity", "true");
@@ -255,11 +256,11 @@
     })
 
     drawcanv.addEventListener('mouseup', (e) => {
-      stopDrawing();
+      stopDrawing(e);
     })
 
     drawcanv.addEventListener('mouseout', (e) => {
-      stopDrawing();
+      stopDrawing(e);
     })
   </script>
 

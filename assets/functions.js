@@ -114,7 +114,7 @@ if (localStorage.getItem("firstTime") === null) {
         "refresh", "DNChecked", "DNLWidth", "DNLColor", "DNFillColor",
         "D1fP", "D2fP", "D3fP", "D1Checked", "D2Checked", "D3Checked",
         "D1FillColor", "D2FillColor", "D3FillColor", "D1LWidth", "D2LWidth",
-        "D3LWidth", "D1LColor", "D2LColor", "D3LColor"
+        "D3LWidth", "D1LColor", "D2LColor", "D3LColor", "firstSave"
     ];
     var values = [
         "false", "5", "false", "false", "D1",
@@ -124,7 +124,7 @@ if (localStorage.getItem("firstTime") === null) {
         "false", "1", "#000000", "#000000",
         "0", "0", "0", "false", "false", "false",
         "#3b4fff", "#3b4fff", "#3b4fff", "5", "5", "5",
-        "#ff2c00", "#ff2c00", "#ff2c00"
+        "#ff2c00", "#ff2c00", "#ff2c00", "false"
     ];
 
     for (let i = 0; i < keys.length; i++) {
@@ -207,93 +207,97 @@ const mainFunction = (htmlText) => {
 
         document.getElementById("has-loaded").innerHTML = "";
         document.getElementById("has-saved").innerHTML = "Saved!";
+
+        localStorage.setItem("firstSave", "true");
     }
     
     // if load drawing is clicked
     else if (htmlText === "Load Artwork") {
-        // replace all D keys with the SD keys
+        if (localStorage.getItem("firstSave") === "true") {
+            // replace all D keys with the SD keys
 
-        localStorage.setItem("DD1X", localStorage.getItem("SD1X"));
-        localStorage.setItem("DD1Y", localStorage.getItem("SD1Y"));
-        localStorage.setItem("DD2X", localStorage.getItem("SD2X"));
-        localStorage.setItem("DD2Y", localStorage.getItem("SD2Y"));
-        localStorage.setItem("DD3X", localStorage.getItem("SD3X"));
-        localStorage.setItem("DD3Y", localStorage.getItem("SD3Y"));
-        localStorage.setItem("DU1X", localStorage.getItem("SU1X"));
-        localStorage.setItem("DU1Y", localStorage.getItem("SU1Y"));
-        localStorage.setItem("DU2X", localStorage.getItem("SU2X"));
-        localStorage.setItem("DU2Y", localStorage.getItem("SU2Y"));
-        localStorage.setItem("DU3X", localStorage.getItem("SU3X"));
-        localStorage.setItem("DU3Y", localStorage.getItem("SU3Y"));
-        localStorage.setItem("D1Checked", localStorage.getItem("SD1Checked"));
-        localStorage.setItem("D2Checked", localStorage.getItem("SD2Checked"));
-        localStorage.setItem("D3Checked", localStorage.getItem("SD3Checked"));
-        localStorage.setItem("D1FillColor", localStorage.getItem("SD1FillColor"));
-        localStorage.setItem("D2FillColor", localStorage.getItem("SD2FillColor"));
-        localStorage.setItem("D3FillColor", localStorage.getItem("SD3FillColor"));
-        localStorage.setItem("D1LColor", localStorage.getItem("SD1LColor"));
-        localStorage.setItem("D2LColor", localStorage.getItem("SD2LColor"));
-        localStorage.setItem("D3LColor", localStorage.getItem("SD3LColor"));
-        localStorage.setItem("D1LWidth", localStorage.getItem("SD1LWidth"));
-        localStorage.setItem("D2LWidth", localStorage.getItem("SD2LWidth"));
-        localStorage.setItem("D3LWidth", localStorage.getItem("SD3LWidth"));
-        localStorage.setItem("D1Bol", localStorage.getItem("SD1Bol"));
-        localStorage.setItem("D2Bol", localStorage.getItem("SD2Bol"));
-        localStorage.setItem("D3Bol", localStorage.getItem("SD3Bol"));
-        localStorage.setItem("D1DrawFunction", localStorage.getItem("SD1DrawFunction"));
-        localStorage.setItem("D2DrawFunction", localStorage.getItem("SD2DrawFunction"));
-        localStorage.setItem("D3DrawFunction", localStorage.getItem("SD3DrawFunction"));
-        localStorage.setItem("D1fP", localStorage.getItem("SD1fP"));
-        localStorage.setItem("D2fP", localStorage.getItem("SD2fP"));
-        localStorage.setItem("D3fP", localStorage.getItem("SD3fP"));
+            localStorage.setItem("DD1X", localStorage.getItem("SD1X"));
+            localStorage.setItem("DD1Y", localStorage.getItem("SD1Y"));
+            localStorage.setItem("DD2X", localStorage.getItem("SD2X"));
+            localStorage.setItem("DD2Y", localStorage.getItem("SD2Y"));
+            localStorage.setItem("DD3X", localStorage.getItem("SD3X"));
+            localStorage.setItem("DD3Y", localStorage.getItem("SD3Y"));
+            localStorage.setItem("DU1X", localStorage.getItem("SU1X"));
+            localStorage.setItem("DU1Y", localStorage.getItem("SU1Y"));
+            localStorage.setItem("DU2X", localStorage.getItem("SU2X"));
+            localStorage.setItem("DU2Y", localStorage.getItem("SU2Y"));
+            localStorage.setItem("DU3X", localStorage.getItem("SU3X"));
+            localStorage.setItem("DU3Y", localStorage.getItem("SU3Y"));
+            localStorage.setItem("D1Checked", localStorage.getItem("SD1Checked"));
+            localStorage.setItem("D2Checked", localStorage.getItem("SD2Checked"));
+            localStorage.setItem("D3Checked", localStorage.getItem("SD3Checked"));
+            localStorage.setItem("D1FillColor", localStorage.getItem("SD1FillColor"));
+            localStorage.setItem("D2FillColor", localStorage.getItem("SD2FillColor"));
+            localStorage.setItem("D3FillColor", localStorage.getItem("SD3FillColor"));
+            localStorage.setItem("D1LColor", localStorage.getItem("SD1LColor"));
+            localStorage.setItem("D2LColor", localStorage.getItem("SD2LColor"));
+            localStorage.setItem("D3LColor", localStorage.getItem("SD3LColor"));
+            localStorage.setItem("D1LWidth", localStorage.getItem("SD1LWidth"));
+            localStorage.setItem("D2LWidth", localStorage.getItem("SD2LWidth"));
+            localStorage.setItem("D3LWidth", localStorage.getItem("SD3LWidth"));
+            localStorage.setItem("D1Bol", localStorage.getItem("SD1Bol"));
+            localStorage.setItem("D2Bol", localStorage.getItem("SD2Bol"));
+            localStorage.setItem("D3Bol", localStorage.getItem("SD3Bol"));
+            localStorage.setItem("D1DrawFunction", localStorage.getItem("SD1DrawFunction"));
+            localStorage.setItem("D2DrawFunction", localStorage.getItem("SD2DrawFunction"));
+            localStorage.setItem("D3DrawFunction", localStorage.getItem("SD3DrawFunction"));
+            localStorage.setItem("D1fP", localStorage.getItem("SD1fP"));
+            localStorage.setItem("D2fP", localStorage.getItem("SD2fP"));
+            localStorage.setItem("D3fP", localStorage.getItem("SD3fP"));
 
-        let button1 = document.getElementById("drawing-1");
-        let button2 = document.getElementById("drawing-2");
-        let button3 = document.getElementById("drawing-3");
-        // checking if the id has been changed of the button
-        if (button1 === null) {
-            button1 = document.getElementById("dis-d1");
-        }
-        else if (button2 === null) {
-            button2 = document.getElementById("dis-d2");
-        }
-        else if (button3 === null) {
-            button3 = document.getElementById("dis-d3");
-        }
-        
-        button1.id = "drawing-1";
-        button1.disabled = false;
-        button2.id = "drawing-2";
-        button2.disabled = false;
-        button3.id = "drawing-3";
-        button3.disabled = false;
+            let button1 = document.getElementById("drawing-1");
+            let button2 = document.getElementById("drawing-2");
+            let button3 = document.getElementById("drawing-3");
+            // checking if the id has been changed of the button
+            if (button1 === null) {
+                button1 = document.getElementById("dis-d1");
+            }
+            else if (button2 === null) {
+                button2 = document.getElementById("dis-d2");
+            }
+            else if (button3 === null) {
+                button3 = document.getElementById("dis-d3");
+            }
+            
+            button1.id = "drawing-1";
+            button1.disabled = false;
+            button2.id = "drawing-2";
+            button2.disabled = false;
+            button3.id = "drawing-3";
+            button3.disabled = false;
 
-        if (localStorage.getItem("D1Bol") === "true") {
-            localStorage.setItem("CurrD", "D1");
-            button1.id = "dis-d1";
-            button1.disabled = true;
-        }
-        else if (localStorage.getItem("D2Bol") === "true") {
-            localStorage.setItem("CurrD", "D2");
-            button2.id = "dis-d2";
-            button2.disabled = true;
-        }
-        else if (localStorage.getItem("D3Bol") === "true") {
-            localStorage.setItem("CurrD", "D3");
-            button3.id = "dis-d3";
-            button3.disabled = true;
-        }
-        else {
-            localStorage.setItem("CurrD", "DN");
-        }
+            if (localStorage.getItem("D1Bol") === "true") {
+                localStorage.setItem("CurrD", "D1");
+                button1.id = "dis-d1";
+                button1.disabled = true;
+            }
+            else if (localStorage.getItem("D2Bol") === "true") {
+                localStorage.setItem("CurrD", "D2");
+                button2.id = "dis-d2";
+                button2.disabled = true;
+            }
+            else if (localStorage.getItem("D3Bol") === "true") {
+                localStorage.setItem("CurrD", "D3");
+                button3.id = "dis-d3";
+                button3.disabled = true;
+            }
+            else {
+                localStorage.setItem("CurrD", "DN");
+            }
 
-        resetAttr(localStorage.getItem("CurrD"));
+            resetAttr(localStorage.getItem("CurrD"));
 
-        document.getElementById("has-saved").innerHTML = "";
-        document.getElementById("has-loaded").innerHTML = "Loaded!";
+            document.getElementById("has-saved").innerHTML = "";
+            document.getElementById("has-loaded").innerHTML = "Loaded!";
 
-        localStorage.setItem("Restore", "true");
-        returnFunction();
+            localStorage.setItem("Restore", "true");
+            returnFunction();
+        }
     }
 
     // when the user wants to clear a drawing currently selected (erase it)
@@ -534,7 +538,6 @@ const box = (downX, downY, upX, upY, LWidth, LColor) => {
 
         // if restore is false than have opacity and clear has-loaded
         if (localStorage.getItem("Restore") !== "true") {
-            document.getElementById("has-loaded").innerHTML = "";
             opacityCheck(ctx);
         }
 
@@ -572,7 +575,6 @@ const pentagon = (downX, downY, upX, upY, LWidth, LColor) => {
 
         // if restore is false than have opacity and clear has-loaded
         if (localStorage.getItem("Restore") !== "true") {
-            document.getElementById("has-loaded").innerHTML = "";
             opacityCheck(ctx);
         }
 
@@ -624,7 +626,6 @@ const star = (downX, downY, upX, upY, LWidth, LColor) => {
 
         // if restore is false than have opacity and clear has-loaded
         if (localStorage.getItem("Restore") !== "true") {
-            document.getElementById("has-loaded").innerHTML = "";
             opacityCheck(ctx);
         }
 
@@ -839,6 +840,7 @@ const returnFunction = () => {
     // set this to false to show that load is over
     if (localStorage.getItem("Restore") === "true") {
         localStorage.setItem("Restore", "false");
+        localStorage.setItem("hasLoaded", "true");
         location.reload();
     }
 }
@@ -876,6 +878,11 @@ if (localStorage.getItem("refresh") === "true") {
         let output = document.getElementById("current-drawing");
         output.innerHTML = "No Drawing Selected!";
         updateDrawInfo(localStorage.getItem("CurrD"));
+    }
+
+    if (localStorage.getItem("hasLoaded") === "true") {
+        document.getElementById("has-loaded").innerHTML = "Loaded!";
+        localStorage.setItem("hasLoaded", "false");
     }
 
     resetAttr(setDrawingNum);
