@@ -2,55 +2,11 @@
 #side-bar {
     width: 505px;
     margin-top: 60px;
+    margin-right: 30px;
 }
 
-/* page detail */
-
-#first-detail, #second-detail, #third-detail,
-#fourth-detail, #fifth-detail, #sixth-detail, #seventh-detail {
-    background-color: rgb(255, 148, 154);
-    color: rgb(255, 148, 154);
-}
-
-#first-detail, #third-detail, #fifth-detail, #seventh-detail {
-    width: 70px;
-    height: 30px;
-}
-
-#second-detail, #fourth-detail, #sixth-detail {
-    width: 30px;
-    margin-left: 21px;
-}
-
-#first-detail {
-    margin-top: 52px;
-}
-
-#second-detail {
-    height: 72px;
-    margin-bottom: -200px;
-}
-
-#third-detail {
-    margin-top: 200px;
-}
-
-#fourth-detail {
-    height: 70px;
-    margin-bottom: -225px;
-}
-
-#fifth-detail {
-    margin-top: 220px;
-}
-
-#sixth-detail {
-    height: 190px;
-    margin-bottom: -80px;
-}
-
-#seventh-detail {
-    margin-top: 80px;
+#canvas-back {
+    margin-left: 30px;
 }
 
 /* fill */
