@@ -228,6 +228,18 @@
     var bool = false;
     const drawcanv = document.getElementById('canv');
 
+    // stops drawing the shape
+    const stopDrawing = () => {
+      if (bool === true) {
+        bool = false;
+        localStorage.setItem("downBool", "false");
+        localStorage.setItem("opacity", "false");
+        getCursorPositionUp(drawcanv, e);
+        localStorage.setItem("resetopacity", "true");
+        getCursorPositionUp(drawcanv, e);
+      }
+    }
+
     drawcanv.addEventListener('mousedown', (e) => {
       bool = true;
       localStorage.setItem("downBool", "true");
@@ -243,23 +255,11 @@
     })
 
     drawcanv.addEventListener('mouseup', (e) => {
-      bool = false;
-      localStorage.setItem("downBool", "false");
-      localStorage.setItem("opacity", "false");
-      getCursorPositionUp(drawcanv, e);
-      localStorage.setItem("resetopacity", "true");
-      getCursorPositionUp(drawcanv, e);
+      stopDrawing();
     })
 
     drawcanv.addEventListener('mouseout', (e) => {
-      if (bool === true) {
-        bool = false;
-        localStorage.setItem("downBool", "false");
-        localStorage.setItem("opacity", "false");
-        getCursorPositionUp(drawcanv, e);
-        localStorage.setItem("resetopacity", "true");
-        getCursorPositionUp(drawcanv, e);
-      }
+      stopDrawing();
     })
   </script>
 
