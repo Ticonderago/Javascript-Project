@@ -52,16 +52,21 @@
 }
 
 #how-to-but {
-    padding-left: 18px;
-    padding-right: 18px;
+    margin-top: -4px;
+    font-size: 22px;
+    padding-left: 25px;
+    padding-right: 25px;
     padding-top: 12px;
     padding-bottom: 12px;
-    margin-left: 30px;
+    margin-left: 70px;
 }
 
 #github {
-    padding-left: 8px;
-    padding-right: 8px;
+    margin-top: -6px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 14px;
+    padding-top: 8px;
     margin-right: 30px;
     width: 30px;
     height: 30px;
