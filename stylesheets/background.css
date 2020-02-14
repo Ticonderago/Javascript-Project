@@ -1,12 +1,12 @@
 /* sidebar content */
 #side-bar {
     width: 505px;
-    margin-top: 60px;
     margin-right: 30px;
 }
 
 #canvas-back {
     margin-left: 30px;
+    margin-top: -45px;
 }
 
 /* fill */

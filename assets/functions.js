@@ -26,16 +26,16 @@ const resetAttrHelper = (CurrD) => {
     localStorage.setItem("fillColor", localStorage.getItem(`${CurrD}FillColor`));
     let selectTitle = document.getElementById("current-selection");
     if (localStorage.getItem(`${CurrD}fP`) === "0") {
-        selectTitle.innerHTML = "Current Selection - None";
+        selectTitle.innerHTML = "Current Shape - None";
     }
     else if (localStorage.getItem(`${CurrD}fP`) === "1") {
-        selectTitle.innerHTML = "Current Selection - Box";
+        selectTitle.innerHTML = "Current Shape - Box";
     }
     else if (localStorage.getItem(`${CurrD}fP`) === "2") {
-        selectTitle.innerHTML = "Current Selection - Pentagon";
+        selectTitle.innerHTML = "Current Shape - Pentagon";
     }
     else {
-        selectTitle.innerHTML = "Current Selection - Star";
+        selectTitle.innerHTML = "Current Shape - Star";
     }
     resetDrawSelection(localStorage.getItem(`${CurrD}DrawFunction`), CurrD);
 }
@@ -522,7 +522,7 @@ const selectedDrawing = () => {
     }
     else {
         selectDraw.innerHTML = "No Drawing Selected!";
-        document.getElementById("current-selection").innerHTML = "Current Selection - None";
+        document.getElementById("current-selection").innerHTML = "Current Shape - None";
     }
 }
 
@@ -746,15 +746,15 @@ const returnFunction = () => {
     let outSelection = document.getElementById("current-selection");
 
     if (localStorage.getItem(`${CurrDraw}fP`) === "1") {
-        outSelection.innerHTML = "Current Selection - Box";
+        outSelection.innerHTML = "Current Shape - Box";
     }
 
     else if (localStorage.getItem(`${CurrDraw}fP`) === "2") {
-        outSelection.innerHTML = "Current Selection - Pentagon";
+        outSelection.innerHTML = "Current Shape - Pentagon";
     }
 
     else if (localStorage.getItem(`${CurrDraw}fP`) === "3") {
-        outSelection.innerHTML = "Current Selection - Star";
+        outSelection.innerHTML = "Current Shape - Star";
     }
 
     // now to set all shape details for specific current drawing selected
