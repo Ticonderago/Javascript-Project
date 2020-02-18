@@ -4,7 +4,6 @@
 
 ![](images/canvasdrawingproject.gif)
 
-I will be updating gifs soon.
 Developed by: [Nathan Reinhardt](https://github.com/Nathan-Reinhardt)
 
 ## Technologies
