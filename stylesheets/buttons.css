@@ -23,7 +23,7 @@
 }
 
 #button-container {
-    width: 482px;
+    width: 96%;
     margin-top: 5px;
     margin-bottom: 35px;
 }
@@ -59,7 +59,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 500px;
+    width: 100%;
 }
 
 #clear-container {
@@ -72,7 +72,7 @@
 }
 
 #drawing-but-container {
-    width: 482px;
+    width: 96%;
 }
 
 #drawing-1, #drawing-2, #drawing-3,
@@ -81,8 +81,25 @@
     transition: 0.7s;
 }
 
+#drawing-1, #drawing-2, #drawing-3 {
+    width: 18%;
+}
+
+#box {
+    width: 6%;
+}
+
+#pentagon {
+    width: 16%;
+}
+
+#star {
+    width: 8%;
+}
+
 /* disabled buttons */ 
 
 #dis-d1, #dis-d2, #dis-d3 {
     background-color: rgb(255, 255, 231);
+    width: 18%;
 }

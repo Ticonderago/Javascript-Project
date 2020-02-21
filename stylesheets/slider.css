@@ -4,7 +4,7 @@
     border: 2px dashed black;
     border-style: dashed;
     margin-right: 40px;
-    width: 502px;
+    width: 100%;
     transition: 1s;
 }
 
@@ -19,7 +19,7 @@
     margin-right: 15px;
     margin-bottom: 15px;
     -webkit-appearance: none;
-    width: 460px;
+    width: 94%;
     height: 15px;
     border-radius: 5px;
     background: rgb(252, 255, 97);
@@ -53,12 +53,15 @@
 
 /* other parts of the slider */
 
+#line-width-cont {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
 #p-w, #line-w {
     margin-top: 13px;
     font-weight: bold;
     font-size: 22px;
-}
-
-#p-w {
-    margin-left: 182px;
 }
