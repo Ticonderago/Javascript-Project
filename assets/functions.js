@@ -114,7 +114,7 @@ if (localStorage.getItem("firstTime") === null) {
         "refresh", "DNChecked", "DNLWidth", "DNLColor", "DNFillColor",
         "D1fP", "D2fP", "D3fP", "D1Checked", "D2Checked", "D3Checked",
         "D1FillColor", "D2FillColor", "D3FillColor", "D1LWidth", "D2LWidth",
-        "D3LWidth", "D1LColor", "D2LColor", "D3LColor", "firstSave"
+        "D3LWidth", "D1LColor", "D2LColor", "D3LColor", "firstSave", "howTo"
     ];
     var values = [
         "false", "5", "false", "false", "D1",
@@ -124,7 +124,7 @@ if (localStorage.getItem("firstTime") === null) {
         "false", "1", "#000000", "#000000",
         "0", "0", "0", "false", "false", "false",
         "#3b4fff", "#3b4fff", "#3b4fff", "5", "5", "5",
-        "#ff2c00", "#ff2c00", "#ff2c00", "false"
+        "#ff2c00", "#ff2c00", "#ff2c00", "false", "true"
     ];
 
     for (let i = 0; i < keys.length; i++) {

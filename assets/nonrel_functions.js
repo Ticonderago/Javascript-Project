@@ -36,3 +36,17 @@ const pageTransfer = (htmlText) => {
         document.getElementById("no-root").id = "root";
     }
 }
+
+/* when you are on the site first time the X button for the how to 
+makes the how to button on the canvas show the how to button on the 
+top of the page instead. Only used first time visit. Can't use the
+canvas until this button is pressed */
+
+const xOut = () => {
+    document.getElementById("start-how-to-container").id = "no-start-how-to-container";
+    document.getElementById("no-how-to-but").id = "how-to-but";
+    if (localStorage.getItem("howTo") === "true") {
+        localStorage.setItem("howTo", "false");
+        location.reload();
+    }
+}
