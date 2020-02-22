@@ -3,7 +3,7 @@
 /* big containers */
 
 #curr-full-cont {
-    margin-bottom: 35px;
+    margin-bottom: 29px;
     padding-top: 40px;
 }
 
@@ -25,11 +25,7 @@
 #button-container {
     width: 96%;
     margin-top: 5px;
-    margin-bottom: 35px;
-}
-
-#page-detail-bar {
-    margin-left: 1px;
+    margin-bottom: 25px;
 }
 
 #box, #pentagon, #star,
@@ -68,7 +64,7 @@
 
 #curr-drawing-cont {
     margin-top: 5px;
-    margin-bottom: 5px;
+    margin-bottom: 6px;
 }
 
 #drawing-but-container {
