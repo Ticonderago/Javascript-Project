@@ -19,6 +19,11 @@
     justify-content: center;
 }
 
+#content-container {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
 #select-shape-container {
     margin-top: 10px;
 }
