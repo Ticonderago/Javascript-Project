@@ -19,7 +19,7 @@ Developed by: [Nathan Reinhardt](https://github.com/Nathan-Reinhardt)
  * "How To" page to help the user understand how the project works and insturctions on how to start.
  
  ### Live Drawing with Canvas
- When the mouseup or mouseout event handler is triggered, this function will be fired.  It takes the current mousedown
+ When the mouseup or mouseout event handler is triggered, this action will be fired.  It takes the current mousedown
 x and y postions and the same for when the mouseup or mouseout events are triggered to get the start and end points for 
 the star to be drawn. First you grab the canvas with the canvas id to get the context of the canvas to start working with it. Next, I checked to clear the canvas if this is the first drawing being drawn onto the canvas since I need to clear all previous drawings. Second was to check if this was a drawing being load from the save feature. Third was to draw the shape. I had to put some logic in to make sure that the y postions after subtracting them would not be negitive so I would not get negitive numbers when drawing the star.  Last is to fillcheck the shape to check whether or not the user wants the shape to be filled with color or not.
 
