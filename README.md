@@ -18,6 +18,9 @@ Developed by: [Nathan Reinhardt](https://github.com/Nathan-Reinhardt)
  * Clear button feature to clear the current drawing you are on to draw something new.
  * "How To" page to help the user understand how the project works and insturctions on how to start.
  
+## Future Features
+ * Update the UI to be more resemblance of a drawing application.
+ 
  ### Live Drawing with Canvas
  When the mouseup or mouseout event handler is triggered, this action will be fired.  It takes the current mousedown
 x and y postions and the same for when the mouseup or mouseout events are triggered to get the start and end points for 
