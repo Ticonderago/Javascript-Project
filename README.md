@@ -19,7 +19,7 @@ Developed by: [Nathan Reinhardt](https://github.com/Nathan-Reinhardt)
  * "How To" page to help the user understand how the project works and insturctions on how to start.
  
 ## Future Features
- * Update the UI to be more resemblance of a drawing application.
+ * Update the UI to be more resemblance of a drawing application...
  
  ### Live Drawing with Canvas
  When the mouseup or mouseout event handler is triggered, this action will be fired.  It takes the current mousedown
