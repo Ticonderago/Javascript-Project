@@ -20,7 +20,7 @@ Developed by: [Nathan Reinhardt](https://github.com/Nathan-Reinhardt)
  
 ## Future Features
  * Update the UI to be more resemblance of a drawing application...
- * Add in erase feature to cover drawings with the same color as the background.
+ * Add in erase feature to cover drawings with the same color as the background...
  
  ### Live Drawing with Canvas
  When the mouseup or mouseout event handler is triggered, this action will be fired.  It takes the current mousedown
