@@ -1,6 +1,6 @@
 # Canvas-Shape-Creator
 
-[Canvas-Shape-Creator](https://nathan-reinhardt.github.io/Canvas-Shape-Creator/) is a frontend project that works with HTML canvas to draw live drawings of a variety of shapes with different attributes and able to save artworks created by the user.
+[Canvas-Shape-Creator](https://nathan-reinhardt.github.io/Canvas-Shape-Creator/) is a frontend project that works with HTML canvas to draw live drawings of a variety of shapes with different attributes and able to save artworks by the user.
 
 ![](images/canvasdrawingproject.gif)
 
