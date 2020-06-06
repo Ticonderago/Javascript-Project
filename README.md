@@ -16,7 +16,7 @@ Developed by: [Nathan Reinhardt](https://github.com/Nathan-Reinhardt)
  * Using local storage to help draw shapes and keep logic in check.
  * Save and Load feature to save multiple drawings in one save state to go back to in the future.
  * Clear button feature to clear the current drawing you are on to draw something new.
- * "How To" page to help the user understand how the project works and insturctions on how to start.
+ * "How To" page to help understand how the project works and insturctions on how to start.
  
 ## Future Features
  * Update the UI to be more resemblance of a drawing application...
