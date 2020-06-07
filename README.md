@@ -15,7 +15,7 @@ Developed by: [Nathan Reinhardt](https://github.com/Nathan-Reinhardt)
  * Live Drawing with the canvas to draw 3 different types of shapes.
  * Using local storage to help draw shapes and keep logic in check.
  * Save and Load feature to save multiple drawings in one save state to go back to in the future.
- * Clear button feature to clear the current drawing you are on to draw something new.
+ * Clear button feature to clear the current drawing you are on to draw something new. (will be adding on erase method to replace this feature)
  * "How To" page to help understand how the project works and insturctions on how to start.
  
 ## Future Features
